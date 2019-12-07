@@ -3,30 +3,30 @@
 	<h4>登録情報</h4>
 	<%= link_to '編集する', edit_user_path(@user) %>
 	<%= link_to 'パスワードを編集する', edit_user_path(@user) %>
-	<table>
+	<table style="border:1px solid #000;">
 		<tbody>
 			<tr>
-				<th>名前</th>
+				<th style="background-color: #eee;">名前</th>
 				<td><%= @user.last_name %> <%= @user.first_name %></td>
 			</tr>
 			<tr>
-				<th>フリガナ</th>
+				<th style="background-color: #eee;">フリガナ</th>
 				<td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
 			</tr>
 			<tr>
-				<th>郵便番号</th>
+				<th style="background-color: #eee;">郵便番号</th>
 				<td>〒 <%= @user.postal_code %></td>
 			</tr>
 			<tr>
-				<th>住所</th>
+				<th style="background-color: #eee;">住所</th>
 				<td><%= @user.address %></td>
 			</tr>
 			<tr>
-				<th>電話番号</th>
+				<th style="background-color: #eee;">電話番号</th>
 				<td><%= @user.phone %></td>
 			</tr>
 			<tr>
-				<th>メールアドレス</th>
+				<th style="background-color: #eee;">メールアドレス</th>
 				<td><%= @user.email %></td>
 			</tr>
 
@@ -34,7 +34,7 @@
 	</table>
 
 	<h4>配送先</h4>
-		<%= link_to '一覧を見る', '#' %>
+		<%= link_to '一覧を見る', ship_to_addresses_path %>
 	<h4>注文履歴</h4>
-		<%= link_to '一覧を見る' '#' %>
+		<%= link_to '一覧を見る', '#'  %>
 </div>
