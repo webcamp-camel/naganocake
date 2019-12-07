@@ -1,52 +1,49 @@
-<h2>Sign up</h2>
+<div class="container">
+<h2>顧客新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
 
-  <div class="field">
-    <%= f.label :last_name %><br />
+  <div class="form-group">
+    <label>姓</label>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br />
+    <label>名</label>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name_kana %><br />
+  <div class="form-group">
+    <label>セイ</label>
     <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name_kana %><br />
+    <label>メイ</label>
     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
   </div>
 
-  <div class="field">
-    <%= f.label :postal_code %><br />
+  <div class="form-group">
+    <label>郵便番号（ハイフンなし）</label>
     <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
+   <div class="form-group">
+    <label>住所</label>
     <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
+    <label>メールアドレス</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="form-group">
+    <label>パスワード</label>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="form-group">
+    <label>パスワード（確認用）</label>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
@@ -56,3 +53,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
