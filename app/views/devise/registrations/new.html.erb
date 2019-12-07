@@ -30,6 +30,11 @@
   </div>
 
   <div class="form-group">
+    <label>電話番号</label>
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  <div class="form-group">
     <label>メールアドレス</label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
