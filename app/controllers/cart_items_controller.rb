@@ -1,9 +1,12 @@
 class CartItemsController < ApplicationController
 
-  before_action: set_user, only: [:add_items, :index, :all_destroy]
+  before_action: set_user, only: [:index, :all_destroy]
   before_action: set_product, only: [:show, :destroy]
 
+
   def add_items
+  	if CartItem.where(user_id: current_user.id)
+  	end
   end
 
   def index
