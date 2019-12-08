@@ -4,12 +4,8 @@ class HomeController < ApplicationController
 def about
 end
 
-#管理者側トップページ
-def admins
-end
-
+#顧客側サイトtopページ
 def top
-
 end
 
 end
