@@ -1,27 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admins do
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-  end
-  namespace :admins do
-    get 'products/index'
-    get 'products/new'
-    get 'products/create'
-    get 'products/show'
-    get 'products/edit'
-    get 'products/update'
-  end
-  namespace :admins do
-    get 'home/top'
-  end
-  namespace :admins do
-    get 'orders/index'
-    get 'orders/update'
-    get 'orders/show'
-  end
 root to: 'home#top'
 
 #認証機能に関して
@@ -31,7 +9,7 @@ root to: 'home#top'
 #管理者権限
   namespace :admin do
   	resources :users, only: [:index, :show, :edit, :update]
-  	resources :genres, only: [:index, :crate, :edit, :update]
+  	resources :genres, only: [:index, :create, :edit, :update]
   	resources :products, except: [:destroy]
   	resources :home, only: [:top]
   	resources :orders, only: [:index, :update, :show]
@@ -42,7 +20,7 @@ root to: 'home#top'
 	resources :cart_items, only: [:index, :destroy, :show, :update, :all_destroy]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
 	resources :ordered_items, only: [:show]
-	resources :ship_to_addresses, only: [:index, :destroy, :edit, :update]
+	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 	resources :home, only: [:top, :about]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
