@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
 root to: 'home#top'
-get 'home/admins' =>'home#top'
-get 'home/about' =>'home#about'
 
 #認証機能に関して
   devise_for :admins
