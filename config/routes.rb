@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+root to: 'home#top'
+
 #認証機能に関して
   devise_for :admins
   devise_for :users
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
 #管理者権限
   namespace :admin do
   	resources :users, only: [:index, :show, :edit, :update]
-  	resources :genres, only: [:index, :crate, :edit, :update]
+  	resources :genres, only: [:index, :create, :edit, :update]
   	resources :products, except: [:destroy]
   	resources :home, only: [:top]
   	resources :orders, only: [:index, :update, :show]
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
 	resources :cart_items, only: [:index, :destroy, :show, :update, :all_destroy]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
 	resources :ordered_items, only: [:show]
-	resources :ship_to_addresses, only: [:index, :destroy, :edit, :update]
+	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 	resources :home, only: [:top, :about]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
