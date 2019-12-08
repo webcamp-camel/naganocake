@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+root to: 'home#top'
+
 #認証機能に関して
   devise_for :admins
   devise_for :users
