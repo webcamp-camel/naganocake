@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-<<<<<<< HEAD
-	root
-=======
+
 root to: 'home#top'
->>>>>>> ecb9e8d5027c6c0e71aff9afe02d81e0cc505f05
+
 
 #認証機能に関して
   devise_for :admins
