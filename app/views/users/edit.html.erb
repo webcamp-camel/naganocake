@@ -1,5 +1,41 @@
-<div class="container">
+<%= form_for(@user) do |f| %>
+<h2>ユーザー情報編集</h2>
+<div class="form-group">
+    <label>姓</label>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <label>名</label>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
 
-	<p><%= @user.name %>さん</p>
+  <div class="form-group">
+    <label>セイ</label>
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+    <label>メイ</label>
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  </div>
 
-</div>
+  <div class="form-group">
+    <label>郵便番号（ハイフンなし）</label>
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+   <div class="form-group">
+    <label>住所</label>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+
+  <div class="form-group">
+    <label>電話番号</label>
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  <div class="form-group">
+    <label>メールアドレス</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "送信する" %>
+  </div>
+<% end %>
+
