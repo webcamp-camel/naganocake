@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
 
 # 顧客の注文履歴一覧ページ
 	def index
+		@order = Order.new
+		@orders = Order.all
 	end
 
 # 注文履歴詳細ページ
