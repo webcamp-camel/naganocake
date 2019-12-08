@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :admins do
+    get 'genres/index'
+    get 'genres/create'
+    get 'genres/edit'
+    get 'genres/update'
+  end
+  namespace :admins do
     get 'products/index'
     get 'products/new'
     get 'products/create'
