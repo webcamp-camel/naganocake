@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'cart_items/index'
-  get 'cart_items/show'
 root to: 'home#top'
 
 #認証機能に関して
