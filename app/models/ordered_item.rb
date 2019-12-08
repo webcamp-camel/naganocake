@@ -3,7 +3,7 @@ class OrderedItem < ApplicationRecord
 	belong_to :product
 	belong_to :order
 
-	#Validation
+	#validation
 	validates :price, presence: true
 	validates :quantity, presence: true
 	validates :product_status, presence: true
