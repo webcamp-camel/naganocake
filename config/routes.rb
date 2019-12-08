@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :admins do
+    get 'orders/index'
+    get 'orders/update'
+    get 'orders/show'
+  end
 root to: 'home#top'
 
 #認証機能に関して
