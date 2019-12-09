@@ -1,7 +1,8 @@
 class OrderedItem < ApplicationRecord
+
 	#テーブルの関連づけ
-	belong_to :product
-	belong_to :order
+	belongs_to :product
+	belongs_to :order
 
 	#validation
 	validates :price, presence: true
