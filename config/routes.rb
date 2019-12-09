@@ -3,11 +3,15 @@ Rails.application.routes.draw do
 
 
 #認証機能に関して
-  devise_for :admins
+  devise_for :admins, controllers: {
+    registrations: 'admins/registrations',
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords'
+  }
   devise_for :users
 
 #管理者権限
-  namespace :admin do
+  namespace :admins do
   	resources :users, only: [:index, :show, :edit, :update]
   	resources :genres, only: [:index, :create, :edit, :update]
   	resources :products, except: [:destroy]
