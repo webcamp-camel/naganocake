@@ -1,0 +1,35 @@
+<!-- 配送先編集画面 -->
+
+<body>
+
+  <!-- 編集フォーム見出し -->
+  <h1>配送先編集</h1>
+
+  <!-- 編集フォーム -->
+  <%= form_for(@ship_to_address) do |f| %>
+    <table>
+      <tr>
+	    <td>郵便番号</td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td>住所</td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td>電話番号</td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td>宛名</td>
+	    <td></td>
+	  </tr>
+	  <tr>
+	    <td>あてな</td>
+	    <td></td>
+	  </tr>
+    </table>
+
+  <% end %>
+
+</body>
