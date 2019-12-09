@@ -1,4 +1,21 @@
-
-<% @products.each do |product| %>
-	<%= product.name %>
+<h1>商品一覧ページ<h1>
+	<table>
+		<thead>
+			<tr>
+				<th>商品画像</th>
+				<th>商品名</th>
+				<th>税込み価格</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+			<tr>
+				<td><%= attachment_image_tag product, :image, :fill, 100, 100,　fallback: "no_image.jpg" %></td>
+				<td><%= product.name %></td>
+				<td><%= product.%></td>
+			</tr>
+		</tbody>
+	</table>
 <% end %>

@@ -28,6 +28,7 @@ before_action: total_price, only: [:show]
 	private
 	def total_price
 		@postage_in_price = @order.total_price + @order.postage
+	end
 
 end
 
