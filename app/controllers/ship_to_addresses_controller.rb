@@ -2,7 +2,7 @@ class ShipToAddressesController < ApplicationController
     #配送先一覧
     def index
         @user = current_user
-        @ship_to_addresses = @user.ship_to_addresses.all
+        @ship_to_addresses = @user.ship_to_addresses
         @ship_to_address = ShipToAddress.new
     end
 
