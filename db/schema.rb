@@ -57,14 +57,6 @@ ActiveRecord::Schema.define(version: 2019_12_08_081456) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ship_to_adresses", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "postal_code", null: false
-    t.text "address", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
