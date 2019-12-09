@@ -12,9 +12,7 @@ class ProductsController < ApplicationController
 	end
 #カートに入れる
 	def additem
-		@product = Product.new(product_params)
-		@product.save
-		redirect_to cart_items(@product.id)
+		
 	end
 
 	private
