@@ -1,2 +1,0 @@
-class ShipToAdress < ApplicationRecord
-end
