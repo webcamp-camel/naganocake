@@ -14,13 +14,10 @@
     <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" %>
   </div>
 
-<%= form_for(@product, url:admins_products_path) do |g| %>
   <div class="form-group">
     <label>ジャンル</label>
-    <%= g.label :genre_id %>
-    <%= g.collection_select :genre_id, Genre.all, :id, :genre_name %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
   </div>
-<% end %>
 
    <div class="form-group">
     <label>税抜価格</label>
