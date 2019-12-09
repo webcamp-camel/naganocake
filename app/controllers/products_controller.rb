@@ -6,11 +6,11 @@ class ProductsController < ApplicationController
 
 	end
 
-# 顧客側の商品一覧ページ
+# 顧客側の商品詳細ページ
 	def show
 		@product = Product.find(params[:id])
 	end
-
+#カートに入れる
 	def additem
 		@product = Product.new(product_params)
 		@product.save

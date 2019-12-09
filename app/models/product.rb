@@ -1,3 +1,10 @@
 class Product < ApplicationRecord
+	# refileを使用する
 	attachment :image
+	# カートの商品との紐付け
+	has_many :cart_items
+	# 注文詳細との紐付け
+	haa_many :ordered_items
+	# ジャンルとの紐付け
+	belongs_to :genre
 end
