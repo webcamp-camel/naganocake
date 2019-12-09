@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
 	end
 #カートに入れる
 	def additem
-		
 	end
 
 	private
