@@ -1,0 +1,57 @@
+<!-- 配送先一覧・登録 -->
+
+<body>
+
+  <!-- 配送先登録フォーム見出し -->
+  <h1>配送先/一覧</h1>
+
+  <!-- 配送先登録フォーム -->
+  <%= form_for (@ship_to_address) do |f| %>
+    <table>
+	  <tr>
+		<td>郵便番号</td>
+		<td><%= f.text_field :postal_code %></td>
+	  </tr>
+	  <tr>
+		<td>住所</td>
+		<td><%= f.text_field :address %></td>
+	  </tr>
+	  <tr>
+		<td>宛名</td>
+		<td>姓/名</td>
+	  </tr>
+	  <tr>
+		<td></td>
+		<td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
+	  </tr>
+	</table>
+	<%= f.submit "登録する" %>
+  <% end %>
+
+  <!-- 配送先一覧/編集/削除/ -->
+  <table>
+	<tr>
+		<td>郵便番号</td>
+		<td>住所</td>
+		<td>宛名</td>
+		<td></td>
+	</tr>
+	<% @ship_to_addresses.each do |ship_to_address| %>
+	  <tr>
+		<td>
+			<% ship_to_address.postal_code %>
+		</td>
+		<td>
+			<% ship_to_address.address %>
+		</td>
+		<td>
+			<% ship_to_address.last_name %><% ship_to_address.first_name %></td>
+		<td>
+			<%= link_to "編集する", edit_ship_to_address_path(@user.id) %>
+			<%= link_to "削除する", ship_to_addresses_path(@ship_to_address), method: :delete %>
+		</td>
+	  </tr>
+	<% end %>
+  </table>
+
+</body>
