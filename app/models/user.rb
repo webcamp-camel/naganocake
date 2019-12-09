@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #配送先との紐付け
-  has_many :ship_to_addresses
+  has_many :ship_to_addresses, dependent: :destroy
   #カートの商品との紐付け
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
   #注文履歴との紐付け
-  has_many :orders
+  has_many :orders, dependent: :destroy
 end
