@@ -1,3 +1,9 @@
 <%= form_for(@genre, url:admins_genres_path) do |f| %>
 
+<div class="form-group">
+	<%= f.text_field :name %>
+</div>
+<div class="action">
+	<%= f.submit '追加' %>
+</div>
 <% end %>
