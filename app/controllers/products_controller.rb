@@ -6,18 +6,17 @@ class ProductsController < ApplicationController
 
 	end
 
-# 顧客側の商品一覧ページ
+# 顧客側の商品詳細ページ
 	def show
 		@product = Product.find(params[:id])
 	end
-
+#カートに入れる
 	def additem
-		@product = Product.new(product_params)
-		@product.save
-		redirect_to cart_items(@product.id)
 	end
 
 	private
 
 	def product_params
 		params.require(:product).permit(:image_id, :name, :introduction)
+	end
+end
