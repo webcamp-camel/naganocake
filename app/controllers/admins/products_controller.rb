@@ -8,10 +8,15 @@ class Admins::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
+    if @product.save
+      redirect_to admins_product_path(@product)
+    else
+      render :new
+    end
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def edit
@@ -22,6 +27,6 @@ class Admins::ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:products).permit(:name, :image, :price, :introduction, :genre_id)
+      params.require(:product).permit(:name, :image, :price, :introduction)
     end
 end
