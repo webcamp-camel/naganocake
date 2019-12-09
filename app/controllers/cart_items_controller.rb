@@ -1,13 +1,6 @@
 class CartItemsController < ApplicationController
 
-  before_action: set_user, only: [:index, :all_destroy]
-  before_action: set_product, only: [:show, :destroy]
 
-
-  def add_items
-  	if CartItem.where(user_id: current_user.id)
-  	end
-  end
 
   def index
   end
@@ -24,13 +17,12 @@ class CartItemsController < ApplicationController
   end
 
   private
-  	def set_user
-  		@user = current_user
-  		@cart_items = @user.cart_items
-  	end
+    def set_item
+      @cart_item = CartItem.find(params[:id])
+    end
 
-  	def set_product
-  		@product = Product.find(params[:product_id])
-  		@cart_item = @product.cart_item
-  	end
+    def set_items
+      @user = current_user
+      @cart_items = @user.cart_items
+    end
 end
