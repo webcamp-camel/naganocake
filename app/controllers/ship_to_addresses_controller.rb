@@ -34,12 +34,20 @@ class ShipToAddressesController < ApplicationController
 
         if @ship_to_address.user.id != current_user.id
             flash[:notice] = "errors"
-            redirect_to ship_to_addresses_path
+            redirect_to ship_to_address_path
         end
     end
 
     #編集内容保存
     def update
+        @ship_to_address = ShipToAddress.find(params[:id])
+
+        if ship_to_address.update(ship_to_address_params)
+            redirect_to ship_to_addresses_path(@ship_to_address.id)
+            flash[:notice] =  "You have updated book successfully."
+        else
+         render :edit
+     end
     end
 
 private
