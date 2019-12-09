@@ -39,8 +39,8 @@ class ShipToAddressesController < ApplicationController
 	#変更内容保存する
 	def update
 		@ship_to_address = Ship_to_address.find(params[:id])
-        if @ship_to_address.update(book_params)
-        redirect_to ship_to_addresses_path(@book.id)
+        if @ship_to_address.update(ship_to_address_params)
+        redirect_to ship_to_addresses_path(@ship_to_address.id)
          flash[:notice] =  "You have updated ship_to_address successfully."
         else
          render :edit
