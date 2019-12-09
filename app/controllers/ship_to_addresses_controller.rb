@@ -9,7 +9,7 @@ class ShipToAddressesController < ApplicationController
 
     #配送先新規保存
     def create
-        @ship_to_address = Ship_to_address.new(ship_to_address_params)
+        @ship_to_address = ShipToAddress.new(ship_to_address_params)
         @ship_to_addresses.user_id = current_user.id
 
        if @ship_to_addresses.save
