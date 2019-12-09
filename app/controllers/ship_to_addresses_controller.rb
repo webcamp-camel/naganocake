@@ -21,10 +21,25 @@ class ShipToAddressesController < ApplicationController
         end
     end
 
+    #配送先削除
     def destroy
         @ship_to_address = ShipToAddress.find(params[:id])
         @ship_to_address.destroy
         redirect_to ship_to_addresses_path
+    end
+
+    #配送先編集
+    def edit
+        @ship_to_address = ShipToAddress.find(params[:id])
+
+        if @ship_to_address.user.id != current_user.id
+            flash[:notice] = "errors"
+            redirect_to ship_to_addresses_path
+        end
+    end
+
+    #編集内容保存
+    def update
     end
 
 private
