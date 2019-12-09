@@ -1,3 +1,40 @@
 <header>
 
+<% if current_user.sign_in? %>
+<p style="text-align:right; padding: 20px 20px 0 0; margin-bottom: 40px; color:#694D49;">
+	ようこそ、
+  <%= link_to user_path(current_user) do %>
+	<%= current_user.first_name %>
+  <% end %>
+  	さん
+</p>
+<% end %>
+<img src="assets/logo.jpg" style="text-align:center; height:240px;">
+<div class="link_box" style="margin: 20px auto;">
+	<% if current_user.sign_in? %>
+<!-- ログイン時表示される内容-->
+		<%= link_to home_about_path do %>
+			<span style="color:#694D49; margin-right: 10px;">ABOUT US</span>
+		<% end %>
+		<%= link_to cart_items_path do %>
+			<span style="color:#694D49; margin-right: 10px;">SHOPPING</span>
+		<% end %>
+		<%= link_to destroy_user_session_path, method: :delete do %>
+			<span style="color:#694D49;">LOGOUT</span>
+		<% end %>
+	<% else %>
+<!-- 非ログイン時、または非会員に表示される内容 -->
+		<%= link_to home_about_path do %>
+			<span style="color:#694D49; margin-right: 10px;">ABOUT US</span>
+		<% end %>
+		<%= link_to new_user_registration_path do %>
+			<span style="color:#694D49; margin-right: 10px;">SIGN UP</span>
+		<% end %>
+		<%= link_to new_user_session_path do %>
+			<span style="color:#694D49; margin-right: 10px;">LOGIN</span>
+		<% end %>
+	<% end %>
+</div>
+
+
 </header>
