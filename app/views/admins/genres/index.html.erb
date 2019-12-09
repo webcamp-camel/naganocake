@@ -7,3 +7,12 @@
 	<%= f.submit '追加' %>
 </div>
 <% end %>
+
+<table>
+	<tr><th>ジャンルの名前</th></tr>
+		<% @genres.each do |genre| %>
+
+		<tr><td><%= genre.name %></td></tr>
+
+		<% end %>
+</table>
