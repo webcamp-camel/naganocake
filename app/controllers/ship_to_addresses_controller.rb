@@ -23,7 +23,7 @@ class ShipToAddressesController < ApplicationController
     end
 
 private
-    def ship_toaddress_params
+    def ship_to_address_params
         params.require(:ship_to_address).permit(:last_name, :first_name, :postal_code, :address)
 
 end
