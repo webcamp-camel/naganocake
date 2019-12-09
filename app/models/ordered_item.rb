@@ -1,4 +1,5 @@
 class OrderedItem < ApplicationRecord
+
 	#テーブルの関連づけ
 	belongs_to :product
 	belongs_to :order
