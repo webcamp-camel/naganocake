@@ -21,3 +21,5 @@ class ProductsController < ApplicationController
 
 	def product_params
 		params.require(:product).permit(:image_id, :name, :introduction)
+	end
+end
