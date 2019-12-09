@@ -6,7 +6,7 @@ def about
 end
 #顧客側サイトtopページ
 def top
-	@top = Product.find(params:[:id])
+
 end
 
 end
