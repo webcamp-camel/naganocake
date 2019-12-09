@@ -13,7 +13,7 @@ root to: 'home#top'
   devise_for :users
 
 #管理者権限
-  namespace :admin do
+  namespace :admins do
   	resources :users, only: [:index, :show, :edit, :update]
   	resources :genres, only: [:index, :create, :edit, :update]
   	resources :products, except: [:destroy]
