@@ -11,8 +11,9 @@
  <% @cart_items.each do |item| %>
 	<tr>
 		<td><%= item.product.name %></td>
-		<td><%= tax_in(item.product.price) %></td>
+		<td><%= addTax(item.product.price) %></td>
 		<td><%= item.quantity %></td>
+		<td><%= totalPrice(addTax(item.product.price),item.quantity) %></td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
 	</tr>
  <% end %>
