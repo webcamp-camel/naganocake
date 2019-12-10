@@ -8,6 +8,6 @@ class Product < ApplicationRecord
 	# ジャンルとの紐付け
 	belongs_to :genre
 
-	scope :active, →{where(is_stopped: :false)}
+	scope :active, -> {where(is_stopped: false)}
 
 end

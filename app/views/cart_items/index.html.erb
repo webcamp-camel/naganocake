@@ -1,2 +1,24 @@
-<h1>CartItems#index</h1>
-<p>Find me in app/views/cart_items/index.html.erb</p>
+<h4>ショッピングカート</h4>
+
+<table>
+	<tr>
+		<th>商品名</th>
+		<th>単価（税込）</th>
+		<th>数量</th>
+		<th>小計</th>
+		<th></th>
+	</tr>
+ <% @cart_items.each do |item| %>
+	<tr>
+		<td><%= item.product.name %></td>
+		<td><%= item.product.price.tax_in %></td>
+	<%= form_for(item, cart_item_path(item)) do |f| %>
+		<td><%= f.text_field :item.quantity %></td>
+	<% end %>
+		<td><%= product_total_price(item.product.price.tax_in,item.quantity) %></td>
+		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
+	</tr>
+ <% end %>
+</table>
+
+<%= link_to '買い物を続ける', products_path %>
