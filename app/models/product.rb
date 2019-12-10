@@ -7,5 +7,7 @@ class Product < ApplicationRecord
 	has_many :ordered_items
 	# ジャンルとの紐付け
 	belongs_to :genre
-	
+
+	scope :active, →{where(is_stopped: :false)}
+
 end
