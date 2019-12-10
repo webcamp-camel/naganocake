@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 #商品一覧ページ
 	def index
 		@products = Product.all
+		@users = Product.recent
 
 	end
 
@@ -10,8 +11,9 @@ class ProductsController < ApplicationController
 	def show
 		@product = Product.find(params[:id])
 	end
-#カートに入れる
+#カートに入れる(CREATEアクション)
 	def additem
+		@product = Product.new
 	end
 
 	private

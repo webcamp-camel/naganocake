@@ -8,4 +8,7 @@ class Product < ApplicationRecord
 	# ジャンルとの紐付け
 	belongs_to :genre
 	
+	scope :active, →{where(delete: :false)}
+	scope :softer, →{order(created_at: :desc)}
+	dcope :recent, →{active.sorted}
 end

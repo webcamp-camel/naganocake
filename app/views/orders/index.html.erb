@@ -1,5 +1,6 @@
-<h1>注文履歴一覧<h1>
-<table>
+<div class="container">
+<h1>注文履歴一覧</h1>
+<table  class="table table-bordered ">
 	<thead>
 		<tr>
 			<th>注文日</th>
@@ -16,9 +17,9 @@
 			<td><%= order.ship_to_addresse %></td>
 			<td><%= order.product_name %></td>
 			<td><%= order.total_price %></td>
-			<td><%= link_to "表示する", order_path(order.id) %></td>
+			<td><%= link_to "表示する", order_path(order.id) :class => "btn btn-primary"%></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
-
+</div>

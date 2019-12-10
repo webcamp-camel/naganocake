@@ -1,21 +1,25 @@
 
-<div class="container">
-	<div class="col-xs-3" style = "background-color: red">
+<div class="container" >
+	<div class="row">
+	<div class="col-xs-3" style = "margin-top: 50px">
 	</div>
 
-	<div class="col-xs-5" >
+	<div class="col-xs-5" style ="margin: 100px 0 100px 0">
 		<%= attachment_image_tag @product, :image, :fill, 400, 200,　fallback: "no_image.jpg", :align => "center"%>
 	</div>
 
 
-<div class="col-xs-4" >
+<div class="col-xs-4" style ="margin: 100px 0 100px 0">
 	<h3><%= @product.name %></h3>
 
-	<%= @product.introduction%>
+	<p><%= @product.introduction%></p>
+
+	<h4><%= @product.price %></h4>
 <!-- #選択型のプルダウンメニュー -->
-<%= form_for (@product) do |product| %>
+<%= form_for @product, url: cart_items_path do |product| %>
 <form>
-	<select name="個数選択">
+	<select name="個数", style ="margin: 5px 0 5px 0;">
+	<option value="">個数選択</option>
 	<option value="1">1</option>
 	<option value="2">2</option>
 	<option value="3">3</option>
@@ -31,5 +35,6 @@
 
 <%= product.submit "カートに入れる", class: 'btn btn-primary col-xs-5' %>
 <% end %>
+	</div>
 	</div>
 </div>
