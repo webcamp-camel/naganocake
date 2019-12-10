@@ -1,8 +1,15 @@
 class CartItemsController < ApplicationController
 
 
-
   def index
+    @cart_items = current_user.cart_items
+  end
+
+  def create
+    @cart_item = CartItem.new(item_params)
+    @cart_item.user_id = current_user.id
+    @cart_item.save
+    redirect_to cart_items_path
   end
 
   def show
@@ -17,12 +24,11 @@ class CartItemsController < ApplicationController
   end
 
   private
-    def set_item
-      @cart_item = CartItem.find(params[:id])
+    def item_params
+      params.require(:cart_item).permit(:user_id, :product_id, :quantity)
     end
 
-    def set_items
-      @user = current_user
-      @cart_items = @user.cart_items
+    def product_total_price(price,quantity)
+      return price * quantity
     end
 end

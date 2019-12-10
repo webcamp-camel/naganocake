@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 #顧客表示部分
 	resources :users, only: [:show, :edit, :update]
 	resources :products, only: [:index, :show]
-	resources :cart_items, only: [:index, :destroy, :show, :update, :all_destroy]
+	resources :cart_items, only: [:index, :create, :destroy, :show, :update, :all_destroy]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
 	resources :ordered_items, only: [:show]
 	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
