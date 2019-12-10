@@ -15,9 +15,9 @@
 		<tr><td><%= genre.name %></td>
 			<td>
 				<%= if Genre.is_disable == false  %>
-				  <%= "無効にする" %>
+				  <%= link_to "無効にする", disable_admins_genre_path %>
 				<% else %>
-				  <%= "有効にする" %>
+				  <%= link_to "有効にする", enable_admins_genre_path %>
 				<% end %>
 			</td>
 			<td><%= link_to "編集する", edit_admins_genre_path(genre.id) %></td>
