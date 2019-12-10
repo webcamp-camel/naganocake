@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   	resources :users, only: [:index, :show, :edit, :update]
   	resources :genres, only: [:index, :create, :edit, :update] do
       member do
-        post :enable
-        post :disable
+        patch :enable
+        patch :disable
       end
     end
 
