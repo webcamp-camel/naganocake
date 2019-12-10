@@ -12,9 +12,13 @@
 	<tr>
 		<td><%= item.product.name %></td>
 		<td><%= item.product.price.tax_in %></td>
-		<td><%= item.quantity %></td>
+	<%= form_for(item, cart_item_path(item)) do |f| %>
+		<td><%= f.text_field :item.quantity %></td>
+	<% end %>
 		<td><%= product_total_price(item.product.price.tax_in,item.quantity) %></td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
 	</tr>
  <% end %>
 </table>
+
+<%= link_to '買い物を続ける' products_path %>
