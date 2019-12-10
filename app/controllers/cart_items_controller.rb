@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
 
+
   def index
     @cart_items = current_user.cart_items
   end
@@ -7,8 +8,6 @@ class CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(item_params)
     @cart_item.user_id = current_user.id
-    product = Product.find(params[:id])
-    @cart_item.product_id = product.id
     @cart_item.save
     redirect_to cart_items_path
   end
@@ -27,10 +26,6 @@ class CartItemsController < ApplicationController
   private
     def item_params
       params.require(:cart_item).permit(:user_id, :product_id, :quantity)
-    end
-
-    def self.tax_in
-      return self * 1.1
     end
 
     def product_total_price(price,quantity)

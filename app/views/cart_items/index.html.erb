@@ -1,6 +1,6 @@
 <h4>ショッピングカート</h4>
 
-<table>
+<table class="table table-striped">
 	<tr>
 		<th>商品名</th>
 		<th>単価（税込）</th>
@@ -11,11 +11,8 @@
  <% @cart_items.each do |item| %>
 	<tr>
 		<td><%= item.product.name %></td>
-		<td><%= item.product.price.tax_in %></td>
-	<%= form_for(item, cart_item_path(item)) do |f| %>
-		<td><%= f.text_field :item.quantity %></td>
-	<% end %>
-		<td><%= product_total_price(item.product.price.tax_in,item.quantity) %></td>
+		<td><%= tax_in(item.product.price) %></td>
+		<td><%= item.quantity %></td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
 	</tr>
  <% end %>

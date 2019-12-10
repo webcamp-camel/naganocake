@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 # 顧客側の商品詳細ページ
 	def show
 		@product = Product.find(params[:id])
+		@cart_item = CartItem.new(product_id: @product.id)
 	end
 
 	private
