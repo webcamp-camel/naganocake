@@ -13,7 +13,13 @@ Rails.application.routes.draw do
 #管理者権限
   namespace :admins do
   	resources :users, only: [:index, :show, :edit, :update]
-  	resources :genres, only: [:index, :create, :edit, :update]
+  	resources :genres, only: [:index, :create, :edit, :update] do
+      member do
+        patch :enable
+        patch :disable
+      end
+    end
+
   	resources :products, except: [:destroy]
   	resources :home, only: [:top]
   	resources :orders, only: [:index, :update, :show]
