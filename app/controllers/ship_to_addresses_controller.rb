@@ -34,7 +34,7 @@ class ShipToAddressesController < ApplicationController
 
         if @ship_to_address.user.id != current_user.id
             flash[:notice] = "errors"
-            redirect_to ship_to_address_path
+            redirect_to ship_to_addresses_path
         end
     end
 
@@ -47,7 +47,7 @@ class ShipToAddressesController < ApplicationController
             flash[:notice] =  "You have updated book successfully."
         else
          render :edit
-     end
+        end
     end
 
 private
