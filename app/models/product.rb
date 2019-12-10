@@ -7,8 +7,7 @@ class Product < ApplicationRecord
 	has_many :ordered_items
 	# ジャンルとの紐付け
 	belongs_to :genre
-	
-	scope :active, →{where(delete: :false)}
-	scope :softer, →{order(created_at: :desc)}
-	dcope :recent, →{active.sorted}
+
+	scope :active, →{where(is_stopped: :false)}
+
 end
