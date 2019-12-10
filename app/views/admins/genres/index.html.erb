@@ -1,27 +1,38 @@
+<!-- ジャンル一覧ページ -->
+
+<!-- ジャンル追加フォーム -->
 <%= form_for(@genre, url:admins_genres_path) do |f| %>
 
-<div class="form-group">
-	<%= f.text_field :name %>
-</div>
-<div class="action">
+  <div class="form-group">
+    <%= f.text_field :name %>
+  </div>
+  <div class="action">
 	<%= f.submit '追加' %>
-</div>
+  </div>
 <% end %>
 
+<!-- ジャンル一覧/使用切り替え/編集 -->
 <table>
-	<tr><th>ジャンルの名前</th></tr>
-		<% @genres.each do |genre| %>
+  <tr>
+	<th>ジャンルの名前</th>
+  </tr>
+  <% @genres.each do |genre| %>
 
-		<tr><td><%= genre.name %></td>
-			<td>
-				<%= if Genre.is_disable == false  %>
-				  <%= link_to "無効にする", disable_admins_genre_path %>
-				<% else %>
-				  <%= link_to "有効にする", enable_admins_genre_path %>
-				<% end %>
-			</td>
-			<td><%= link_to "編集する", edit_admins_genre_path(genre.id) %></td>
-		</tr>
+    <tr>
+      <td>
+	    <%= genre.name %>
+	  </td>
+	  <td>
 
-		<% end %>
+	    <% if genre.is_disable == false  %>
+	      <%= link_to "無効にする", disable_admins_genre_path(genre), method: :patch %>
+	    <% elsif genre.is_disable == true %>
+		  <%= link_to "有効にする", enable_admins_genre_path(genre), method: :patch %>
+	    <% end %>
+
+	  </td>
+	  <td><%= link_to "編集する", edit_admins_genre_path(genre.id) %></td>
+    </tr>
+
+  <% end %>
 </table>
