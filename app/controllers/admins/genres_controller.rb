@@ -17,6 +17,12 @@ class Admins::GenresController < ApplicationController
   	end
   end
 
+  def enable
+  end
+
+  def disable
+  end
+
   def edit
   end
 
