@@ -12,7 +12,16 @@
 	<tr><th>ジャンルの名前</th></tr>
 		<% @genres.each do |genre| %>
 
-		<tr><td><%= genre.name %></td></tr>
+		<tr><td><%= genre.name %></td>
+			<td>
+				<%= if Genre.is_disable == false  %>
+				  <%= "無効にする" %>
+				<% else %>
+				  <%= "有効にする" %>
+				<% end %>
+			</td>
+			<td><%= link_to "編集する", edit_admins_genre_path(genre.id) %></td>
+		</tr>
 
 		<% end %>
 </table>
