@@ -10,12 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_12_09_052655) do
-=======
 ActiveRecord::Schema.define(version: 2019_12_09_074141) do
->>>>>>> 70791e2d8a241bc2134742e6c91304c943837959
+
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,11 +34,8 @@ ActiveRecord::Schema.define(version: 2019_12_09_074141) do
   end
 
   create_table "genres", force: :cascade do |t|
-<<<<<<< HEAD
-=======
     t.string "name", null: false
     t.boolean "is_disable", default: false, null: false
->>>>>>> 70791e2d8a241bc2134742e6c91304c943837959
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
