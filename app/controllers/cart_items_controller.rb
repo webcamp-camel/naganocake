@@ -13,6 +13,7 @@ class CartItemsController < ApplicationController
   end
 
   def show
+    @cart_items = current_user.cart_items
   end
 
   def destroy
