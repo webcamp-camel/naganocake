@@ -14,10 +14,10 @@
 	<h3><%= @product.name %></h3>
 
 	<p><%= @product.introduction%></p>
+<!-- application_helper (税込価格	) -->
+	<h4><%= addTax(@product.price) %></h4>
 
-	<h4><%= @product.price %></h4>
 <!-- #選択型のプルダウンメニュー -->
-
 <%= form_for(@cart_item) do |f| %>
 		<%= f.hidden_field :product_id %>
 		<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10] %>
