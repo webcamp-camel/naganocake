@@ -1,8 +1,7 @@
 class CartItemsController < ApplicationController
 
-
-
   def index
+    @cart_items = current_user.cart_items
   end
 
   def create
@@ -28,5 +27,13 @@ class CartItemsController < ApplicationController
   private
     def item_params
       params.require(:cart_item).permit(:user_id, :product_id, :quantity)
+    end
+
+    def self.tax_in
+      return self * 1.1
+    end
+
+    def product_total_price(price,quantity)
+      return price * quantity
     end
 end
