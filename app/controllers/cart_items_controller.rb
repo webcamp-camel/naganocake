@@ -27,8 +27,4 @@ class CartItemsController < ApplicationController
     def item_params
       params.require(:cart_item).permit(:user_id, :product_id, :quantity)
     end
-
-    def product_total_price(price,quantity)
-      return price * quantity
-    end
 end
