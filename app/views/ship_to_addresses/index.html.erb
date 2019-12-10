@@ -3,45 +3,51 @@
 <body>
 
   <!-- 配送先登録フォーム見出し -->
-  <h1>配送先/一覧</h1>
+  <h3>配送先/一覧</h3>
 
   <!-- 配送先登録フォーム -->
-  <%= form_for (@ship_to_address) do |f| %>
-    <table>
-	  <tr>
-		<td>郵便番号</td>
-		<td><%= f.text_field :postal_code %></td>
-	  </tr>
-	  <tr>
-		<td>住所</td>
-		<td><%= f.text_field :address %></td>
-	  </tr>
-	  <tr>
-	  	<td>電話番号</td>
-	  	<td><%= f.text_field :phone %></td>
-	  </tr>
-	  <tr>
-		<td>宛名</td>
-		<td>姓/名</td>
-	  </tr>
-	  <tr>
-		<td></td>
-		<td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
-	  </tr>
-	  <tr>
-	  	<td>あてな</td>
-	  	<td>せい/めい</td>
-	  </tr>
-	  <tr>
-	  	<td></td>
-	  	<td><%= f.text_field :last_name_kana %>/<%= f.text_field :first_name_kana %></td>
-	  </tr>
-	</table>
-	<%= f.submit "登録する" %>
-  <% end %>
+  <div class="row">
+    <div class="col-xs-4">
+      <%= form_for (@ship_to_address) do |f| %>
+        <table class="table-bordered">
+	      <tr>
+		    <td>郵便番号</td>
+		    <td><%= f.text_field :postal_code %></td>
+	      </tr>
+	      <tr>
+		    <td>住所</td>
+		    <td><%= f.text_field :address %></td>
+	      </tr>
+	      <tr>
+	  	    <td>電話番号</td>
+	  	    <td><%= f.text_field :phone %></td>
+	      </tr>
+	      <tr>
+		    <td>宛名</td>
+		    <td>姓/名</td>
+	      </tr>
+	      <tr>
+		    <td></td>
+		    <td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
+	      </tr>
+	      <tr>
+	  	    <td>あてな</td>
+	  	    <td>せい/めい</td>
+	      </tr>
+	      <tr>
+	  	    <td></td>
+	  	    <td><%= f.text_field :last_name_kana %>/<%= f.text_field :first_name_kana %></td>
+	      </tr>
+	    </table>
+	</div>
+	    <div class="col-xs-3">
+	      <%= f.submit "登録する" %>
+	    </div>
+      <% end %>
+  </div>
 
   <!-- 配送先一覧/編集/削除/ -->
-  <table>
+  <table class="table-bordered index">
 	<tr>
 		<td>郵便番号</td>
 		<td>住所</td>
