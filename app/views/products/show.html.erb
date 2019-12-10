@@ -9,6 +9,7 @@
 	</div>
 
 
+
 <div class="col-xs-4" style ="margin: 100px 0 100px 0">
 	<h3><%= @product.name %></h3>
 
@@ -16,24 +17,11 @@
 
 	<h4><%= @product.price %></h4>
 <!-- #選択型のプルダウンメニュー -->
-<%= form_for @product, url: cart_items_path do |product| %>
-<form>
-	<select name="個数", style ="margin: 5px 0 5px 0;">
-	<option value="">個数選択</option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
-	</select>
-</form>
 
-<%= product.submit "カートに入れる", class: 'btn btn-primary col-xs-5' %>
+<%= form_for(@cart_item) do |f| %>
+		<%= f.hidden_field :product_id %>
+		<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10] %>
+		<%= f.submit "カートに入れる", class: 'btn btn-primary col-xs-5' %>
 <% end %>
 	</div>
 	</div>
