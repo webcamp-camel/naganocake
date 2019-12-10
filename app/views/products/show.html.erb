@@ -1,26 +1,35 @@
 
+<div class="container">
+	<div class="col-xs-3" style = "background-color: red">
+	</div>
 
-<%= attachment_image_tag @product, :image, :fill, 100, 100,　fallback: "no_image.jpg" %>
-<%= @product.name %>
-<%= @product.introduction %>
-<%= @product.
+	<div class="col-xs-5" >
+		<%= attachment_image_tag @product, :image, :fill, 400, 200,　fallback: "no_image.jpg", :align => "center"%>
+	</div>
 
-# 選択型のプルダウンメニュー
+
+<div class="col-xs-4" >
+	<h3><%= @product.name %></h3>
+
+	<%= @product.introduction%>
+<!-- #選択型のプルダウンメニュー -->
 <%= form_for (@product) do |product| %>
 <form>
-<select name="個数選択">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-</select>
+	<select name="個数選択">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	</select>
 </form>
 
-<%= product.submit "カートに入れる", class: 'btn btn-primary col-xs-12' %>
+<%= product.submit "カートに入れる", class: 'btn btn-primary col-xs-5' %>
 <% end %>
+	</div>
+</div>
