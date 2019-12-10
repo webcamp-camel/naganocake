@@ -68,7 +68,7 @@
 			<%= ship_to_address.last_name_kana %><% ship_to_address.first_name_kana %>
 		</td>
 		<td>
-			<%= link_to "編集する", edit_ship_to_address_path(@user.id) %>
+			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address) %>
 			<%= link_to "削除する", ship_to_address_path(ship_to_address), method: :delete %>
 		</td>
 	  </tr>

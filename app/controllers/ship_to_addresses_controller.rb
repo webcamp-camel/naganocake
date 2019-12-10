@@ -28,6 +28,7 @@ class ShipToAddressesController < ApplicationController
         redirect_to ship_to_addresses_path
     end
 
+    #配送先編集
     def edit
         @ship_to_address = ShipToAddress.find(params[:id])
 
@@ -37,7 +38,16 @@ class ShipToAddressesController < ApplicationController
         end
     end
 
+    #編集内容保存
     def update
+        @ship_to_address = ShipToAddress.find(params[:id])
+
+        if @ship_to_address.update(ship_to_address_params)
+            redirect_to ship_to_addresses_path(@ship_to_address.id)
+            flash[:notice] =  "You have updated book successfully."
+        else
+         render :edit
+        end
     end
 
 private
