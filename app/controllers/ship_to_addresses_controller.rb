@@ -42,7 +42,7 @@ class ShipToAddressesController < ApplicationController
     def update
         @ship_to_address = ShipToAddress.find(params[:id])
 
-        if ship_to_address.update(ship_to_address_params)
+        if @ship_to_address.update(ship_to_address_params)
             redirect_to ship_to_addresses_path(@ship_to_address.id)
             flash[:notice] =  "You have updated book successfully."
         else
