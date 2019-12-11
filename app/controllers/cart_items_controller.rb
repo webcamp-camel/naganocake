@@ -13,6 +13,7 @@ class CartItemsController < ApplicationController
   end
 
   def show
+    @cart_items = current_user.cart_items
   end
 
   def destroy
@@ -26,9 +27,5 @@ class CartItemsController < ApplicationController
   private
     def item_params
       params.require(:cart_item).permit(:user_id, :product_id, :quantity)
-    end
-
-    def product_total_price(price,quantity)
-      return price * quantity
     end
 end

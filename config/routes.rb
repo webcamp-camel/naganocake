@@ -27,13 +27,16 @@ Rails.application.routes.draw do
 #顧客表示部分
 	resources :users, only: [:show, :edit, :update]
 	resources :products, only: [:index, :show]
-	resources :cart_items, only: [:index, :create, :destroy, :show, :update, :all_destroy]
+	resources :cart_items, only: [:index, :create, :destroy, :update]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
-	resources :ordered_items, only: [:show]
+	resources :ordered_items, only: [:confirm]
 	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 
   root to: "home#top"
   get 'home/about' => 'home#about'
+
+  get 'cart_items/confirm' => 'cart_items#confirm'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
