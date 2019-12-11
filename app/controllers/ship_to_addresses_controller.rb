@@ -13,7 +13,7 @@ class ShipToAddressesController < ApplicationController
 
        if @ship_to_address.save
            flash[:notice] = "You have creatad ship_to_addresses successfully."
-           redirect_to ship_to_addresses_path(@ship_to_address)
+           redirect_to ship_to_addresses_path
         else
             @user = current_user
             @ship_to_addresses = Ship_to_address.all
@@ -43,7 +43,7 @@ class ShipToAddressesController < ApplicationController
         @ship_to_address = ShipToAddress.find(params[:id])
 
         if @ship_to_address.update(ship_to_address_params)
-            redirect_to ship_to_addresses_path(@ship_to_address.id)
+            redirect_to ship_to_addresses_path
             flash[:notice] =  "You have updated book successfully."
         else
          render :edit
