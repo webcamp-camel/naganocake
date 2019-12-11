@@ -27,7 +27,7 @@
 
   <div class="form-group">
     <label>販売ステータス</label>
-    <%= f
+    <%= f.select :is_stopped,{販売中:false, 販売停止:true}%>
   </div>
 
   <div class="actions">
