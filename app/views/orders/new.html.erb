@@ -37,7 +37,7 @@
 		<div class="radio">
 			<label><%= radio_button_tag("_add", "newAdd") %>新しいお届け先</label>
 		</div>
-			<%= f.fields_for :ship_to_address do |a| %>
+			<%= fields_for :ship_to_address do |a| %>
 			<label>郵便番号</label>
 				<%= a.text_field :postal_code %>
 			<label>住所</label>
