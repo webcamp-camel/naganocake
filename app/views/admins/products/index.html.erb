@@ -21,7 +21,13 @@
 			</td>
 			<td><%= product.price %></td>
 			<td><%= product.genre.name %></td>
-			<td><%= product.is_stopped %></td>
+			<td>
+				<% if product.is_stopped == false %>
+				販売中
+				<% elsif product.is_stopped == true %>
+				販売停止
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>

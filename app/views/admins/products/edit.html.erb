@@ -1,2 +1,31 @@
-<h1>Admins::Products#edit</h1>
-<p>Find me in app/views/admins/products/edit.html.erb</p>
+<h1>商品編集画面</h1>
+<div class="container">
+		<%= form_for(@product, url:admins_products_path, method: :patch) do |f| %>
+
+		<%= attachment_image_tag @product, :image, :fill, 150,100, fallback: "no_imag.jpg" %>
+			<%= f.attachment_field :image %>
+		<table>
+				<tr>
+					<th>商品名</th>
+					<td><%= f.text_field :name, autofocus: true %></td>
+				</tr>
+				<tr>
+					<th>商品説明</th>
+					<td><%= f.text_area :introduction, autofocus: true %>
+				</tr>
+				<tr>
+					<th>ジャンル</th>
+					<td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+				</tr>
+				<tr>
+					<th>税抜価格</th>
+					<td><%= f.text_field :price, autofocus:true %>円</td>
+				</tr>
+				<tr>
+					<th>販売ステータス</th>
+					<td></td>
+				</tr>
+		</table>
+		<%= f.submit "変更を保存する" %>
+<% end %>
+</div>

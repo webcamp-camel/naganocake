@@ -17,9 +17,24 @@
 					</tr>
 					<tr>
 						<th>ジャンル</th>
-						<td><% @product.genre.name %></td>
+						<td><%= @product.genre.name %></td>
+					</tr>
+					<tr>
+						<th>税込価格 （税抜価格）</th>
+						<td><%= addTax(@product.price) %>   (<%= @product.price %>)  円</td>
+					</tr>
+					<tr>
+						<th>販売ステータス</th>
+						<td>
+							<% if @product.is_stopped == false %>
+							販売中
+							<% elsif @product.is_stopped == true %>
+							販売停止
+							<% end %>
+						</td>
 					</tr>
 			</table>
+			<td><%= link_to "編集する", edit_admins_product_path(@product.id) %></td>
 		</div>
 	</div>
 </div>
