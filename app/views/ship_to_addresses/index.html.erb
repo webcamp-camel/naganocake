@@ -2,12 +2,12 @@
 
 <body>
 
-  <!-- 配送先登録フォーム見出し -->
-  <h5>配送先/一覧</h5>
 
   <!-- 配送先登録フォーム -->
   <div class="row">
+  	<div class="col-xs-3"></div>
     <div class="col-xs-4">
+    	<h5>配送先/一覧</h5>
       <%= form_for (@ship_to_address) do |f| %>
         <table class="table-bordered">
 	      <tr>
@@ -23,19 +23,19 @@
 	  	    <td><%= f.text_field :phone %></td>
 	      </tr>
 	      <tr>
-		    <td>宛名</td>
+		    <td></td>
 		    <td>姓/名</td>
 	      </tr>
 	      <tr>
-		    <td></td>
+		    <td>漢字</td>
 		    <td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
 	      </tr>
 	      <tr>
-	  	    <td>あてな</td>
-	  	    <td>せい/めい</td>
+	  	    <td></td>
+	  	    <td>セイ/メイ</td>
 	      </tr>
 	      <tr>
-	  	    <td></td>
+	  	    <td>カナ</td>
 	  	    <td><%= f.text_field :last_name_kana %>/<%= f.text_field :first_name_kana %></td>
 	      </tr>
 	    </table>
