@@ -21,11 +21,24 @@ class OrdersController < ApplicationController
 
 # 情報の保存
 	def create
-		if params[:_address] == "myAddress"
-			pp "マイaddress"
-		end
 		@order = Order.new(order_params)
-		@order.user_id = current_user.id
+		@user = current_user
+			if params[:_add] == "usersAdd"
+				@order.ship_address = @user.address
+				@order.ship_name = @user.last_name
+				@order.ship_postal_code = @user.postal_code
+			elsif params[:_add] == "shipAdds"
+				@ad = @ads.find(params[:id])
+				@order.ship_to_address = @ad.address
+				@order.ship_name = @ad.last_name
+				@order.ship_postal_code = @ad.postal_code
+			elsif params[:_add] == "newAdd"
+				@ad = ShipToAddress.new(user_id: current_user.id)
+				@order.ship_to_address = @ad.address
+				@order.ship_name = @ad.last_name
+				@order.ship_postal_code = @ad.postal_code
+			end
+		@order.user_id = @user.id
 		@order.save
 		redirect_to orders_path
 	end

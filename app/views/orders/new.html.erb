@@ -19,27 +19,30 @@
 		<!-- 自宅 -->
 		<div class="radio">
 			<label>
-				<%= radio_button_tag("_address", "myAddress") %>ご自身の住所
+				<%= radio_button_tag("_add", "usersAdd") %>ご自身の住所
 			</label>
 		</div>
 			<span>
+				〒<%= current_user.postal_code %>
+				<%= current_user.address %>
 			</span>
 
 		<!-- 登録した配送先 -->
 		<div class="radio">
-			<label><%= radio_button_tag("_address", "shipAddress") %>登録済住所から選択</label>
+			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
 		</div>
-		<% @adds.each do |a| %>
-			<span>
-				〒<%= a.postal_code %> <%= a.address %>
-				<%= a.last_name %><%= a.first_name %>
-			</span><br>
-		<% end %>
+			<%= f.collection_select(:user_id, @user.ship_to_addresses, :id, :address) %>
 
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
-			<label><%= radio_button_tag("_address", "newAddress") %>新しいお届け先</label>
+			<label><%= radio_button_tag("_add", "newAdd") %>新しいお届け先</label>
 		</div>
+			<%= f.fields_for :ship_to_address do |a| %>
+			<label>郵便番号</label>
+				<%= a.text_field :postal_code %>
+			<label>住所</label>
+				<%= a.text_field :address %>
+			<% end %>
 	</div>
 
 	<%= f.submit '登録する' %>
