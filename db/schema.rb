@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_074141) do
+ActiveRecord::Schema.define(version: 2019_12_11_102543) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,16 +49,19 @@ ActiveRecord::Schema.define(version: 2019_12_09_074141) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "ship_status", null: false
+    t.integer "ship_status", default: 1
     t.integer "payment", null: false
-    t.integer "total_price", null: false
+    t.integer "total_price"
     t.integer "postage", default: 800, null: false
-    t.string "ship_name", null: false
     t.text "ship_address", null: false
-    t.string "ship_postal_code", null: false
-    t.integer "deposit_status", null: false
+    t.string "ship_postal_code"
+    t.integer "deposit_status", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
   end
 
   create_table "products", force: :cascade do |t|
@@ -73,13 +76,13 @@ ActiveRecord::Schema.define(version: 2019_12_09_074141) do
   end
 
   create_table "ship_to_addresses", force: :cascade do |t|
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.string "phone", null: false
-    t.string "postal_code", null: false
-    t.text "address", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.string "phone"
+    t.string "postal_code"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
