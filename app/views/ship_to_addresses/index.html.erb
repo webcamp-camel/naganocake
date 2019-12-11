@@ -3,7 +3,7 @@
 <body>
 
   <!-- 配送先登録フォーム見出し -->
-  <h3>配送先/一覧</h3>
+  <h5>配送先/一覧</h5>
 
   <!-- 配送先登録フォーム -->
   <div class="row">
@@ -41,7 +41,7 @@
 	    </table>
 	</div>
 	    <div class="col-xs-3">
-	      <%= f.submit "登録する" %>
+	      <%= f.submit "登録する", class:"btn-primary btn-sm" %>
 	    </div>
       <% end %>
   </div>
@@ -74,8 +74,8 @@
 			<%= ship_to_address.last_name_kana %><% ship_to_address.first_name_kana %>
 		</td>
 		<td>
-			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address) %>
-			<%= link_to "削除する", ship_to_address_path(ship_to_address), method: :delete %>
+			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address), class:"btn-primary btn-sm" %>
+			<%= link_to "削除する", ship_to_address_path(ship_to_address), class:"btn-danger btn-sm", method: :delete %>
 		</td>
 	  </tr>
 	<% end %>
