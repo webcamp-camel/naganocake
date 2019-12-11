@@ -1,2 +1,40 @@
-<h1>Admins::Users#edit</h1>
-<p>Find me in app/views/admins/users/edit.html.erb</p>
+<%= form_for(@user) do |f| %>
+<h2>会員情報編集</h2>
+  <label>会員ID</label>
+    <%= @user.id %>
+<div class="form-group">
+    <label>氏名</label>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  </div>
+
+  <div class="form-group">
+    <label>フリガナ</label>
+    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+  </div>
+
+  <div class="form-group">
+    <label>郵便番号（ハイフンなし）</label>
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  </div>
+
+   <div class="form-group">
+    <label>住所</label>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div>
+
+  <div class="form-group">
+    <label>電話番号</label>
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  <div class="form-group">
+    <label>メールアドレス</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+    <%= f.submit "変更を保存する" %>
+
+<% end %>
+
