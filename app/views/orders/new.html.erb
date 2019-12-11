@@ -1,5 +1,26 @@
-<div class="container">
-	<h1>購入情報入力</h1>
-	<h2>支払い方法</h2>
-	<input type="radio" name="test1" value="1" required>クレジットカード
-	<input type="radio" name="test1" value="2" >銀行振込
+<h4>購入情報入力</h4>
+
+<%= form_for(@order) do |f| %>
+
+	<div class="form-group">
+		<label for="inputPayment">支払い方法</lable>
+			<%= f.radio_button :payment, :クレジットカード, class: "form_control", id:"inputPayment" %>
+			<%= f.label :クレジットカード, class: "payment_label" %>
+			<%= f.radio_button :payment, :銀行振込, class: "form_control", id:"inputPayment" %>
+			<%= f.label :銀行振込, class: "payment_label" %>
+	</div>
+
+	<div class="form-group">
+		<label for="inputAddress">お届け先</label>
+			<%= f.radio_button :address, :自宅, class: "form_control", id:"inputAddress" %>
+			<%= f.label :ご自身の住所, class: "address_label" %>
+
+			<%= f.radio_button :address, :登録済配送先, class: "form_control", id:"inputAddress" %>
+			<%= f.label :登録済住所から選択, class: "address_label" %>
+
+			<%= f.radio_button :address, :新規配送先, class: "form_control", id:"inputAddress" %>
+			<%= f.label :新しいお届け先, class: "address_label" %>
+	</div>
+
+
+<% end %>
