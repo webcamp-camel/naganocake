@@ -1,0 +1,25 @@
+<h4>会員一覧画面</h4>
+
+<table>
+	<tr>
+		<th>顧客ID</th>
+		<th>氏名</th>
+		<th>フリガナ</th>
+		<th>メールアドレス</th>
+		<th>ステータス</th>
+	</tr>
+</table>
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.id %></td>
+		<td><%= user.last_name %> <%= user.first_name %></td>
+		<td><%= user.last_name_kana %><%= user.first_name_kana %></td>
+		<td><%= user.email %></td>
+	<% if user.is_deleted == false %>
+		<td><span class="badge" style="background:palegreen">有効</span></td>
+	<% else %>
+		<td><span class="badge" style="background:red">無効</span></td>
+	<% end %>
+	</tr>
+
+	<% end %>
