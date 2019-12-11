@@ -1,5 +1,6 @@
 <div class="container">
 <h1>商品一覧</h1>
+<%= link_to "" , new_admins_product_path, class:"glyphicon glyphicon-plus-sign" %>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -17,7 +18,7 @@
 			<td><%= product.name %></td>
 			<td><%= product.price %></td>
 			<td><%= product.genre.name %></td>
-			<td></td>
+			<td><%= product.is_stopped %></td>
 		</tr>
 		<% end %>
 	</tbody>

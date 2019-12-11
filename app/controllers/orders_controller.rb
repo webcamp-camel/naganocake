@@ -24,6 +24,9 @@ before_action: total_price, only: [:show]
 	def finish
 	end
 
+	def shouhizei
+	end
+
 
 	private
 	def total_price

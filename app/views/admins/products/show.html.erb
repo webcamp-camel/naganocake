@@ -1,2 +1,9 @@
 
-<%= @product.name %>
+<div class="container" >
+	<div class="row" >
+	<div class="col-xs-3" ></div>
+	<div class="col-xs-5" style ="margin: 100px 0 100px 0">
+		<%= attachment_image_tag @product, :image, :fill, 400, 200,　fallback: "no_image.jpg", :align => "center"%>
+		<% end %>
+	<div class="col-xs-4" style ="margin: 100px 0 100px 0">
+		
