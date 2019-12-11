@@ -19,16 +19,15 @@
 		<!-- 自宅 -->
 		<div class="radio">
 			<label>
-				<%= f.radio_button :ship_address, current_user.address %>ご自身の住所
+				<%= radio_button_tag("_address", "myAddress") %>ご自身の住所
 			</label>
 		</div>
 			<span>
-				〒<%= current_user.postal_code %> <%= current_user.address %>
 			</span>
 
 		<!-- 登録した配送先 -->
 		<div class="radio">
-			<label><%= f.radio_button :ship_address, :既存配送先 %>登録済住所から選択</label>
+			<label><%= radio_button_tag("_address", "shipAddress") %>登録済住所から選択</label>
 		</div>
 		<% @adds.each do |a| %>
 			<span>
@@ -39,7 +38,7 @@
 
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
-			<label><%= f.radio_button :ship_address, :新規配送先 %>新しいお届け先</label>
+			<label><%= radio_button_tag("_address", "newAddress") %>新しいお届け先</label>
 		</div>
 	</div>
 

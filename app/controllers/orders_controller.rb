@@ -21,6 +21,9 @@ class OrdersController < ApplicationController
 
 # 情報の保存
 	def create
+		if params[:_address] == "myAddress"
+			pp "マイaddress"
+		end
 		@order = Order.new(order_params)
 		@order.user_id = current_user.id
 		@order.save
