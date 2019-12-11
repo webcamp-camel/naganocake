@@ -15,7 +15,10 @@
 		<% @products.each do |product| %>
 		<tr>
 			<td><%= product.id %></td>
-			<td><%= product.name %></td>
+			<td><%= link_to admins_product_path(product.id) do %>
+					<%= product.name %>
+					<% end %>
+			</td>
 			<td><%= product.price %></td>
 			<td><%= product.genre.name %></td>
 			<td><%= product.is_stopped %></td>
