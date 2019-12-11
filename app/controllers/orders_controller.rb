@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
 
-before_action: total_price, only: [:show]
 
 # 顧客の注文履歴一覧ページ
 	def index
@@ -14,10 +13,42 @@ before_action: total_price, only: [:show]
 
 # 顧客の購入情報の入力画面
 	def new
+		@user = current_user
+		@order = Order.new(user_id: @user.id)
+		@ads = @user.ship_to_addresses
+		@ship_to_address = ShipToAddress.new(user_id: @user.id)
 	end
 
 # 情報の保存
 	def create
+		@order = Order.new(order_params)
+		@user = current_user
+		@ads = @user.ship_to_addresses
+			if params[:_add] == "usersAdd"
+				@order.ship_address = @user.address
+				@order.ship_name = @user.last_name
+				@order.ship_postal_code = @user.postal_code
+			elsif params[:_add] == "shipAdds"
+				@ad = @ads.find(params[:ShipToAddress][:id])
+				@order.ship_address = @ad.address
+				@order.last_name = @ad.last_name
+				@order.ship_postal_code = @ad.postal_code
+			elsif params[:_add] == "newAdd"
+			#ship_to_addressテーブルに保存させる
+				@ad = ShipToAddress.new(user_id: @user.id)
+				@ad.address = params[:ship_to_address][:address]
+				@ad.last_name = params[:ship_to_address][:last_name]
+				@ad.first_name = params[:ship_to_address][:first_name]
+				@ad.last_name_kana = params[:ship_to_address][:last_name_kana]
+				@ad.first_name_kana = params[:ship_to_address][:first_name_kana]
+				@ad.first_name_kana = params[:ship_to_address][:postal_code]
+
+				@order.ship_address = params[:ship_to_address][:address]
+				@order.last_name = params[:ship_to_address][:last_name]
+				@order.ship_postal_code = params[:ship_to_address][:postal_code]
+			end
+		@order.save
+		redirect_to orders_path
 	end
 
 # 注文完了画面
@@ -26,9 +57,9 @@ before_action: total_price, only: [:show]
 
 
 	private
-	def total_price
-		@postage_in_price = @order.total_price + @order.postage
-	end
+	 def order_params
+	 	params.require(:order).permit(:user_id, :payment, :ship_address, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana])
+	 end
 
 end
 

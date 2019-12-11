@@ -1,5 +1,6 @@
 <div class="container">
 <h1>商品一覧</h1>
+<%= link_to "" , new_admins_product_path, class:"glyphicon glyphicon-plus-sign" %>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -14,10 +15,19 @@
 		<% @products.each do |product| %>
 		<tr>
 			<td><%= product.id %></td>
-			<td><%= product.name %></td>
+			<td><%= link_to admins_product_path(product.id) do %>
+					<%= product.name %>
+					<% end %>
+			</td>
 			<td><%= product.price %></td>
 			<td><%= product.genre.name %></td>
-			<td></td>
+			<td>
+				<% if product.is_stopped == false %>
+					<span>販売中</span>
+				<% elsif product.is_stopped == true %>
+					<span>販売停止</span>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>

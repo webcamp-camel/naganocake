@@ -3,9 +3,7 @@
 <% if user_signed_in? %>
 <p style="text-align:right; padding: 10px 10px 0 0; color:#694D49;">
 	ようこそ、
-  <%= link_to user_path(current_user) do %>
 	<%= current_user.first_name %>
-  <% end %>
   	さん
 </p>
 <% end %>
