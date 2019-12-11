@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_102543) do
+ActiveRecord::Schema.define(version: 2019_12_11_114113) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -76,13 +76,13 @@ ActiveRecord::Schema.define(version: 2019_12_11_102543) do
   end
 
   create_table "ship_to_addresses", force: :cascade do |t|
-    t.string "last_name"
-    t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
-    t.string "phone"
-    t.string "postal_code"
-    t.text "address"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.string "phone", null: false
+    t.string "postal_code", null: false
+    t.text "address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
