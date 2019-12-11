@@ -1,7 +1,6 @@
 <div class="container">
 <h1>商品一覧ページ</h1>
 	<table  class="table table-bordered ">
-		<thead>
 			<tr>
 				<th>商品画像</th>
 				<th>商品名</th>
@@ -9,8 +8,6 @@
 				<th></th>
 				<th></th>
 			</tr>
-		</thead>
-		<tbody>
 			<% @products.each do |product| %>
 			<tr>
 				<td><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></td>
@@ -20,7 +17,6 @@
 				</td>
 				<td><%= product.price %></td>
 			</tr>
-		</tbody>
+			<% end %>
 	</table>
-<% end %>
 </div>
