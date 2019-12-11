@@ -7,6 +7,10 @@ class Order < ApplicationRecord
 	#enum_支払い方法
 	enum payment: {クレジットカード:1, 銀行振込:2}
 
-	#お届け先一覧
-	enum address: {自宅:1, 登録済配送先:2, 新規配送先:3}
+	#配送状況
+	enum ship_status: {発送待ち:1, 発送済み:2}
+
+	#入金状況
+	enum deposit_status: {入金待ち:1,入金済み:2}
+
 end
