@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 	def new
 		@user = current_user
 		@order = Order.new(user_id: @user.id)
-		@adds = @user.ship_to_addresses
+		@ads = @user.ship_to_addresses
 		@ship_to_address = ShipToAddress.new(user_id: @user.id)
 	end
 
@@ -23,22 +23,30 @@ class OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		@user = current_user
+		@ads = @user.ship_to_addresses
 			if params[:_add] == "usersAdd"
 				@order.ship_address = @user.address
 				@order.ship_name = @user.last_name
 				@order.ship_postal_code = @user.postal_code
 			elsif params[:_add] == "shipAdds"
-				@ad = @ads.find(params[:id])
-				@order.ship_to_address = @ad.address
-				@order.ship_name = @ad.last_name
+				@ad = @ads.find(params[:ShipToAddress][:id])
+				@order.ship_address = @ad.address
+				@order.last_name = @ad.last_name
 				@order.ship_postal_code = @ad.postal_code
 			elsif params[:_add] == "newAdd"
-				@ad = ShipToAddress.new(user_id: current_user.id)
-				@order.ship_to_address = @ad.address
-				@order.ship_name = @ad.last_name
-				@order.ship_postal_code = @ad.postal_code
+			#ship_to_addressテーブルに保存させる
+				@ad = ShipToAddress.new(user_id: @user.id)
+				@ad.address = params[:ship_to_address][:address]
+				@ad.last_name = params[:ship_to_address][:last_name]
+				@ad.first_name = params[:ship_to_address][:first_name]
+				@ad.last_name_kana = params[:ship_to_address][:last_name_kana]
+				@ad.first_name_kana = params[:ship_to_address][:first_name_kana]
+				@ad.first_name_kana = params[:ship_to_address][:postal_code]
+
+				@order.ship_address = params[:ship_to_address][:address]
+				@order.last_name = params[:ship_to_address][:last_name]
+				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
-		@order.user_id = @user.id
 		@order.save
 		redirect_to orders_path
 	end
@@ -49,7 +57,7 @@ class OrdersController < ApplicationController
 
 	private
 	 def order_params
-	 	params.require(:order).permit(:user_id, :payment, :ship_address)
+	 	params.require(:order).permit(:user_id, :payment, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana])
 	 end
 
 end

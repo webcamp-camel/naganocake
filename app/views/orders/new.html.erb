@@ -31,7 +31,7 @@
 		<div class="radio">
 			<label><%= radio_button_tag("_add", "shipAdds") %>登録済住所から選択</label>
 		</div>
-			<%= f.collection_select(:user_id, @user.ship_to_addresses, :id, :address) %>
+			<%= collection_select(:ShipToAddress, :id, @ads, :id, :address) %>
 
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
@@ -42,6 +42,11 @@
 				<%= a.text_field :postal_code %>
 			<label>住所</label>
 				<%= a.text_field :address %>
+			<div class="row"></div>
+			<label>姓名</label>
+				<%= a.text_field :last_name %><%= a.text_field :first_name %>
+			<label>カナ</label>
+				<%= a.text_field :last_name_kana %><%= a.text_field :first_name_kana %>
 			<% end %>
 	</div>
 
