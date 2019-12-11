@@ -1,2 +1,18 @@
-<h1>CartItems#show</h1>
-<p>Find me in app/views/cart_items/show.html.erb</p>
+<h4>注文情報確認</h4>
+
+<table class="table table-striped">
+	<tr>
+		<th>商品名</th>
+		<th>単価（税込）</th>
+		<th>数量</th>
+		<th>小計</th>
+	</tr>
+ <% @cart_items.each do |item| %>
+	<tr>
+		<td><%= item.product.name %></td>
+		<td><%= addTax(item.product.price) %></td>
+		<td><%= item.quantity %></td>
+		<td><%= totalPrice(addTax(item.product.price),item.quantity) %></td>
+	</tr>
+ <% end %>
+</table>
