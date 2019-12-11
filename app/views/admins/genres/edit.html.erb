@@ -1,2 +1,15 @@
-<h1>Admins::Genres#edit</h1>
-<p>Find me in app/views/admins/genres/edit.html.erb</p>
+<!-- ジャンル編集画面 -->
+
+<body>
+  <h3>ジャンル編集画面</h3>
+
+  <!-- フォームをupdateに飛ばす -->
+  <%= form_for(@genre, url:admins_genre_path, method: :patch) do |f| %>
+    <div>
+    	<%= f.text_field :name, autofocus: true %>
+    </div>
+    <%= f.submit "編集する" %>
+  <% end %>
+
+  <%= link_to "ジャンル一覧", admins_genres_path %>
+</body>
