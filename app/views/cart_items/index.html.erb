@@ -1,6 +1,14 @@
 <h4>ショッピングカート</h4>
 
-<table class="table table-striped">
+
+<div class="pull-right">
+	<%= link_to cart_items_path, method: :delete do %>
+		<span class="btn btn-danger">カートを空にする</span>
+	<% end %>
+</div>
+
+<%= form_for cart_items_path, method: :patch do |f| %>
+<table class="table table-bordered">
 	<tr>
 		<th>商品名</th>
 		<th>単価（税込）</th>
@@ -9,14 +17,28 @@
 		<th></th>
 	</tr>
  <% @cart_items.each do |item| %>
+ 	<%= hidden_field_tag :product_id, item.product_id %>
+ 	<%= hidden_field_tag :user_id, current_user.id %>
 	<tr>
 		<td><%= item.product.name %></td>
 		<td><%= addTax(item.product.price) %></td>
-		<td><%= item.quantity %></td>
+		<td><%= number_field_tag :quantity, item.quantity, in: 1..10 %></td>
 		<td><%= totalPrice(addTax(item.product.price),item.quantity) %></td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
 	</tr>
  <% end %>
 </table>
 
-<%= link_to '買い物を続ける', products_path %>
+<div class="row">
+	<div class="col-xs-4">
+		<%= link_to '買い物を続ける', products_path %>
+	</div>
+	<div class="col-xs-4 pull-right">
+		<table class="table table-striped">
+			<tr><th>合計金額</th></tr>
+			<tr><td></td></tr>
+		</table>
+		<%= f.submit '再計算する' %>
+		<% end %>
+	</div>
+</div>
