@@ -12,12 +12,13 @@
 
     <% @orders.each do |order| %>
   	  <tr>
-  	    <th><%= order.created.at %></th>
-  		<th><%= order.id %></th>
-  		<th></th>
-  		<th><%= @order.deposit_status %></th>
+  	    <th><%= order.created_at %></th>
+  		<th><%= order.user.last_name %><%= order.user.first_name %></th>
+  		<th><%= order.ordered_items.sum(:quantity) %>
+  		<th><%= order.deposit_status %></th>
   	  </tr>
     <% end %>
 
   </table>
 </body>
+
