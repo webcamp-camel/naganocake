@@ -33,13 +33,13 @@ Rails.application.routes.draw do
 	resources :products, only: [:index, :show]
 	resources :cart_items, only: [:index, :create, :destroy, :update]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
-	resources :ordered_items, only: [:confirm]
 	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 
   root to: "products#index"
   get 'home/about' => 'home#about'
 
   get 'cart_items/confirm' => 'cart_items#confirm'
+  delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
   get 'ordered_items/confirm' => 'ordered_items#confirm'
 
 
