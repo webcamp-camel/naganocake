@@ -2,13 +2,13 @@
 
 <body>
 
-  <!-- 配送先登録フォーム見出し -->
-  <h3>配送先/一覧</h3>
 
   <!-- 配送先登録フォーム -->
   <div class="row">
+  	<div class="col-xs-3"></div>
     <div class="col-xs-4">
-      <%= form_for (@ship_to_address) do |f| %>
+    	<h5>配送先/一覧</h5>
+      <%= form_for (@ship_to_address), html: {class: "h"} do |f| %>
         <table class="table-bordered">
 	      <tr>
 		    <td>郵便番号</td>
@@ -23,19 +23,19 @@
 	  	    <td><%= f.text_field :phone %></td>
 	      </tr>
 	      <tr>
-		    <td>宛名</td>
+		    <td></td>
 		    <td>姓/名</td>
 	      </tr>
 	      <tr>
-		    <td></td>
+		    <td>漢字</td>
 		    <td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
 	      </tr>
 	      <tr>
-	  	    <td>あてな</td>
-	  	    <td>せい/めい</td>
+	  	    <td></td>
+	  	    <td>セイ/メイ</td>
 	      </tr>
 	      <tr>
-	  	    <td></td>
+	  	    <td>カナ</td>
 	  	    <td><%= f.text_field :last_name_kana %>/<%= f.text_field :first_name_kana %></td>
 	      </tr>
 	    </table>
@@ -74,8 +74,8 @@
 			<%= ship_to_address.last_name_kana %><% ship_to_address.first_name_kana %>
 		</td>
 		<td>
-			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address) %>
-			<%= link_to "削除する", ship_to_address_path(ship_to_address), method: :delete %>
+			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address), class:"btn-primary btn-sm" %>
+			<%= link_to "削除する", ship_to_address_path(ship_to_address), class:"btn-danger btn-sm", method: :delete %>
 		</td>
 	  </tr>
 	<% end %>
