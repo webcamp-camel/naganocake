@@ -2,10 +2,7 @@ class Admins::GenresController < ApplicationController
   #ジャンル管理画面
   def index
   	@genre = Genre.new
-<<<<<<< HEAD
-=======
   	@genres = Genre.all
->>>>>>> 70791e2d8a241bc2134742e6c91304c943837959
   end
 
   def create
