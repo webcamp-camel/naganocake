@@ -16,12 +16,25 @@ class CartItemsController < ApplicationController
     @cart_items = current_user.cart_items
   end
 
+  #ある商品の入ったカートを空にする
   def destroy
+    @cart_item = CartItem.find(params[:id])
   	@cart_item.destroy
+    redirect_to cart_items_path
   end
 
-  def all_destroy
-  	@cart_items.destroy
+  #カートを空にする
+  def destroy_all
+  	@cart_items = current_user.cart_items
+    @cart_items.destroy_all
+    redirect_to cart_items_path
+  end
+
+  #再計算する
+  def update_all
+    @cart_items = current_user.cart_items
+    @cart_items.update_all(quantity: params[:quantity])
+    redirect_to cart_items_path
   end
 
   private

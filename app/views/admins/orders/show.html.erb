@@ -1,2 +1,30 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+
+<h1>注文詳細画面</h1>
+
+<%= @order.user.name %>
+
+<%= @order.user.ship_to_address %>
+<%= @order.user.ship_to_name %>
+
+<%=　@order.payment %>
+
+<%= @order.deposit_status %>
+
+<% @order.ordered_items_each do |ordered_item| %>
+
+	<%= ordered_item.product.name %>
+
+	<%= addTax(ordered_item.product.price) %>
+
+	<%= ordered_item.quantity %>
+
+	<%= totalPrice(ordered_item.product.price,quantity) %>
+
+	<%= ordered_item.product_status %>
+<% end %>
+
+	<%= @order.total_price %>
+
+	<%= @order.postage %>
+
+	<%= allPraice(@order.total_price,postage)%>
