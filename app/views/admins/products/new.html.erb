@@ -25,7 +25,8 @@
   </div>
 
   <div class="form-group">
-    <label>商品ステータス</label>
+    <label>販売ステータス</label>
+    <%= f.select :is_stopped,{販売中:false, 販売停止:true}%>
   </div>
 
   <div class="actions">

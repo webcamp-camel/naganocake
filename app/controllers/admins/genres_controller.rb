@@ -14,10 +14,32 @@ class Admins::GenresController < ApplicationController
   	end
   end
 
+  def enable
+    @genre = Genre.find(params[:id])
+    @genre.is_disable = false
+    @genre.save
+    redirect_to admins_genres_path
+  end
+
+  def disable
+    @genre = Genre.find(params[:id])
+    @genre.is_disable = true
+    @genre.save
+    redirect_to admins_genres_path
+  end
+
   def edit
+    @genre = Genre.find(params[:id])
   end
 
   def update
+    @genre = Genre.find(params[:id])
+    if @genre.update(genre_params)
+      redirect_to admins_genres_path
+      flash[:notice] = "You have updated genre successfully."
+    else
+      render :edit
+    end
   end
 
   private

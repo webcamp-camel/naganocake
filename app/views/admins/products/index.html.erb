@@ -1,2 +1,35 @@
-<h1>Admins::Products#index</h1>
-<p>Find me in app/views/admins/products/index.html.erb</p>
+<div class="container">
+<h1>商品一覧</h1>
+<%= link_to "" , new_admins_product_path, class:"glyphicon glyphicon-plus-sign" %>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>税抜価格</th>
+			<th>ジャンル</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @products.each do |product| %>
+		<tr>
+			<td><%= product.id %></td>
+			<td><%= link_to admins_product_path(product.id) do %>
+					<%= product.name %>
+					<% end %>
+			</td>
+			<td><%= product.price %></td>
+			<td><%= product.genre.name %></td>
+			<td>
+				<% if product.is_stopped == false %>
+					<span>販売中</span>
+				<% elsif product.is_stopped == true %>
+					<span>販売停止</span>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

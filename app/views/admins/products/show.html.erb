@@ -1,2 +1,42 @@
 
-<%= @product.name %>
+<div class="container" >
+	<div class="row" >
+		<div class="col-xs-3" ></div>
+		<div class="col-xs-5" style ="margin: 100px 0 100px 0">
+			<%= attachment_image_tag @product, :image, :fill, 400, 200,　fallback: "no_image.jpg", :align => "center"%>
+		</div>
+		<div class="col-xs-4" style ="margin: 100px 0 100px 0">
+			<table>
+					<tr>
+						<th>商品名</th>
+						<td><%= @product.name %></td>
+					</tr>
+					<tr>
+						<th>商品説明</th>
+						<td><%= @product.introduction %></td>
+					</tr>
+					<tr>
+						<th>ジャンル</th>
+						<td><%= @product.genre.name %></td>
+					</tr>
+					<tr>
+						<th>税込価格 （税抜価格）</th>
+						<td><%= addTax(@product.price) %>   (<%= @product.price %>)  円</td>
+					</tr>
+					<tr>
+						<th>販売ステータス</th>
+						<td>
+							<% if @product.is_stopped == false %>
+							販売中
+							<% elsif @product.is_stopped == true %>
+							販売停止
+							<% end %>
+						</td>
+					</tr>
+			</table>
+			<td><%= link_to "編集する", edit_admins_product_path(@product.id) %></td>
+		</div>
+	</div>
+</div>
+
+

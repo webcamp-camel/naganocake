@@ -1,7 +1,7 @@
 <h1>注文履歴詳細</h1>
 
 <strong>注文情報</strong>>
-<table>
+<table class="table table-bordered ">
 	<thead>
 		<tr>
 			<th></th>
@@ -12,7 +12,7 @@
 			<th>注文日</th>
 			<td><%= @order.created_at %></td>
 			<th>配送先</th>
-			<td><%= @order.ship_to_addresse %></td>
+			<td><%= @order.ship_address %></td>
 			<th>支払い方法</th>
 			<td><%= @order.payment %></td>
 			<th>ステータス</th>
@@ -22,7 +22,7 @@
 </table>
 
 <strong>請求情報</strong>
-<table>
+<table class="table table-bordered ">
 	<thead>
 		<tr>
 			<th></th>
@@ -41,21 +41,21 @@
 </table>
 
 <strong>注文内容</strong>
-<table>
+<table class="table table-bordered ">
 	<thead>
 		<tr>
 			<th>商品</th>
 			<th>単価（税込）</th>
-			<th><個数</th>
+			<th>個数</th>
 			<th>小計</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td><%= @order.product_name %></td>
-			<td><%= @order.product_price%></td>
-			<td><%= @order.%></td>
-			<td><%=%></td>
+			<td>商品名</td>
+			<td>商品の値段</td>
+			<td><%= @order.id%></td>
+			<td>aaa</td>
 		</tr>
 	</tbody>
 </table>

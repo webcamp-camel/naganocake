@@ -2,16 +2,14 @@ class ProductsController < ApplicationController
 
 #商品一覧ページ
 	def index
-		@products = Product.all
+		@products = Product.active
 
 	end
 
 # 顧客側の商品詳細ページ
 	def show
 		@product = Product.find(params[:id])
-	end
-#カートに入れる
-	def additem
+		@cart_item = CartItem.new(product_id: @product.id)
 	end
 
 	private
