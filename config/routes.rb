@@ -31,15 +31,16 @@ Rails.application.routes.draw do
 #顧客表示部分
 	resources :users, only: [:show, :edit, :update]
 	resources :products, only: [:index, :show]
-	resources :cart_items, only: [:index, :create, :destroy, :update]
+	resources :cart_items, only: [:index, :create, :destroy]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
-	resources :ordered_items, only: [:confirm]
 	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 
   root to: "products#index"
   get 'home/about' => 'home#about'
 
   get 'cart_items/confirm' => 'cart_items#confirm'
+  delete :cart_items, to: 'cart_items#destroy_all'
+  patch :cart_items, to: 'cart_items#update_all'
   get 'ordered_items/confirm' => 'ordered_items#confirm'
 
 
