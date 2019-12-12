@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
 #管理者権限
   namespace :admins do
-  	resources :users, only: [:index, :show, :edit, :update]
+  	resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        patch :toggle
+      end
+    end
   	resources :genres, only: [:index, :create, :edit, :update] do
       member do
         patch :enable
@@ -32,10 +36,11 @@ Rails.application.routes.draw do
 	resources :ordered_items, only: [:confirm]
 	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 
-  root to: "home#top"
+  root to: "products#index"
   get 'home/about' => 'home#about'
 
   get 'cart_items/confirm' => 'cart_items#confirm'
+  get 'ordered_items/confirm' => 'ordered_items#confirm'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
