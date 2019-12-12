@@ -1,5 +1,6 @@
 <h4>ショッピングカート</h4>
 
+
 <div class="pull-right">
 	<%= link_to cart_items_path, method: :delete do %>
 		<span class="btn btn-danger">カートを空にする</span>
@@ -28,9 +29,16 @@
  <% end %>
 </table>
 
-
-<%= link_to '買い物を続ける', products_path %>
-<%= f.submit '再計算する' %>
-<% end %>
-
-
+<div class="row">
+	<div class="col-xs-4">
+		<%= link_to '買い物を続ける', products_path %>
+	</div>
+	<div class="col-xs-4 pull-right">
+		<table class="table table-striped">
+			<tr><th>合計金額</th></tr>
+			<tr><td><%= params[:total] %></td></tr>
+		</table>
+		<%= f.submit '再計算する' %>
+		<% end %>
+	</div>
+</div>
