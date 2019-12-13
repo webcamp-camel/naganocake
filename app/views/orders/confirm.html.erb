@@ -29,25 +29,25 @@
 			</tr>
 			<tr>
 				<th>商品合計</th>
-				<td></td>
+				<td><%= addTax(@items.sum(:price)) %></td>
 			</tr>
 			<tr>
 				<th>請求金額</th>
-				<td></td>
+				<td><%= addTax(@items.sum(:price))+800 %></td>
 			</tr>
 		</table>
 	</div>
 </div>
 
 <label>支払い方法：</label>
-<p><%= @item.order.payment %></p>
+<p><%= @order.payment %></p>
 
 <label>お届け先</label>
-<p><%= @item.order.postal_code %></p>
-<p><%= @item.order.address %></p>
-<p><%= @item.order.last_name %> <%= @item.order.first_name %></p>
+<p><%= @order.ship_postal_code %></p>
+<p><%= @order.ship_address %></p>
+<p><%= @order.last_name %> <%= @order.first_name %></p>
 
 
-<%= link_to '注文を確定する', ordered_items_path, method: :post %>
+<%= link_to '注文を確定する', orders_finish_path %>
 
 

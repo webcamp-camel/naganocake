@@ -55,12 +55,30 @@ class OrdersController < ApplicationController
 				@order.last_name = params[:ship_to_address][:last_name]
 				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
+
+		#ordered_itemにデータ挿入
+			item = []
+			@items = @order.user.cart_items
+				@items.each do |i|
+					item << @order.ordered_items.build(product_id: i.id, price: i.price, quantity: i.quantity, product_status: 1)
+				end
+			OrderedItem.import item
+
 		@order.save
-		redirect_to ordered_items_confirm_path
+		redirect_to confirm_order_path(@order)
 	end
 
-# 注文完了画面
+
+#注文情報確認画面
+	def confirm
+		@order = Order.find(params[:id])
+		@items = @order.ordered_items
+	end
+
+# 注文完了画面(カートを空にする)
 	def finish
+		cart_items = current_user.cart_items
+    	cart_items.destroy_all
 	end
 
 
