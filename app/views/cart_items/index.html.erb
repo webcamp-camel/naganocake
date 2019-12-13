@@ -52,8 +52,4 @@
 	</div>
 </div>
 
-
-<%= form_tag(ordered_items_path) do %>
-	<%= hidden_field_tag :items, current_user.cart_items %>
-<%= submit_tag '情報入力に進む' %>
-<% end %>
+<%= link_to '購入情報の入力', new_order_path %>

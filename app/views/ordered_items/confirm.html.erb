@@ -1,0 +1,51 @@
+<h4>注文情報確認</h4>
+
+<div class="row">
+	<div class="col-xs-8">
+		<table class="table table-bordered">
+			<tr>
+				<th>商品名</th>
+				<th>単価（税込)</th>
+				<th>数量</th>
+				<th>小計</th>
+			</tr>
+
+		<% @items.each do |item| %>
+			<tr>
+				<td><%= item.product.name %></td>
+				<td><%= addTax(item.product.price) %></td>
+				<td><%= item.quantity %></td>
+				<td><%= addTax(item.price) %></td>
+			</tr>
+		<% end %>
+		</table>
+	</div>
+
+	<div class="col-xs-4">
+		<table class="table table-bordered">
+			<tr>
+				<th>送料</th>
+				<td>800</td>
+			</tr>
+			<tr>
+				<th>商品合計</th>
+				<td><%= addTax(@items.sum(:price)) %></td>
+			</tr>
+			<tr>
+				<th>請求金額</th>
+				<td><%= addTax(@items.sum(:price))+800 %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<label>支払い方法：</label>
+<p><%= @order.payment %></p>
+
+<label>お届け先</label>
+<p><%= @order.postal_code %></p>
+<p><%= @order.address %></p>
+<p><%= @order.last_name %> <%= @order.first_name %></p>
+
+
+<%= link_to '注文を確定する', orders_path %>

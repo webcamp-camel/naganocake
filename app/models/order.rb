@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
 	# 注文詳細との紐付け
 	has_many :ordered_items, dependent: :destroy
+	accepts_nested_attributes_for :ordered_items
 	# 顧客との紐付け
 	belongs_to :user
 
