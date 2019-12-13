@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 	resources :products, only: [:index, :show]
 	resources :cart_items, only: [:index, :create, :destroy]
 	resources :orders, only: [:index, :show, :new, :create, :finish]
+  resources :ordered_items, only: [:create]
 	resources :ship_to_addresses, only: [:create, :index, :destroy, :edit, :update]
 
   root to: "products#index"

@@ -52,6 +52,8 @@
 	</div>
 </div>
 
-<%= link_to new_order_path do %>
-	<span class="btn btn-primary center-block" style="width: 20%; display:block;">情報入力に進む</span>
+
+<%= form_tag(ordered_items_path) do %>
+	<%= hidden_field_tag :items, current_user.cart_items %>
+<%= submit_tag '情報入力に進む' %>
 <% end %>

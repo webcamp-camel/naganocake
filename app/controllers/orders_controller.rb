@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
 # 顧客の注文履歴一覧ページ
 	def index
 		@orders = Order.all
+		items = CartItem.includes(:user)
+		@total_price = items.sum(:price)
 	end
 
 # 注文履歴詳細ページ
@@ -26,7 +28,10 @@ class OrdersController < ApplicationController
 		@ads = @user.ship_to_addresses
 			if params[:_add] == "usersAdd"
 				@order.ship_address = @user.address
-				@order.ship_name = @user.last_name
+				@order.last_name = @user.last_name
+				@order.first_name = @user.first_name
+				@order.last_name_kana = @user.last_name_kana
+				@order.first_name_kana = @user.first_name_kana
 				@order.ship_postal_code = @user.postal_code
 			elsif params[:_add] == "shipAdds"
 				@ad = @ads.find(params[:ShipToAddress][:id])
@@ -51,7 +56,7 @@ class OrdersController < ApplicationController
 				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
 		@order.save
-		redirect_to orders_path
+		redirect_to order_path(@order)
 	end
 
 # 注文完了画面
