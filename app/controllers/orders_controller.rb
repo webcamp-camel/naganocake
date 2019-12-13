@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
 
 # 顧客の注文履歴一覧ページ
 	def index
-		@orders = Order.all
+		@user = current_user
+		@orders = @user.orders
 		items = CartItem.includes(:user)
 		@total_price = items.sum(:price)
 	end
@@ -56,16 +57,16 @@ class OrdersController < ApplicationController
 				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
 
-		#ordered_itemにデータ挿入
+
+			#ordered_itemにデータ挿入
 			item = []
-			@items = @order.user.cart_items
+			@items = @user.cart_items
 				@items.each do |i|
 					item << @order.ordered_items.build(product_id: i.id, price: i.price, quantity: i.quantity, product_status: 1)
 				end
 			OrderedItem.import item
-
-		@order.save
-		redirect_to confirm_order_path(@order)
+			@order.save
+			redirect_to confirm_order_path(@order)
 	end
 
 
