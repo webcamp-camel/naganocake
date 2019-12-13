@@ -35,13 +35,16 @@ class OrdersController < ApplicationController
 				@order.ship_postal_code = @ad.postal_code
 			elsif params[:_add] == "newAdd"
 			#ship_to_addressテーブルに保存させる
-				@ad = ShipToAddress.new(user_id: @user.id)
+				@ad = ShipToAddress.new
+				@ad.user_id = @user.id
 				@ad.address = params[:ship_to_address][:address]
 				@ad.last_name = params[:ship_to_address][:last_name]
 				@ad.first_name = params[:ship_to_address][:first_name]
 				@ad.last_name_kana = params[:ship_to_address][:last_name_kana]
 				@ad.first_name_kana = params[:ship_to_address][:first_name_kana]
-				@ad.first_name_kana = params[:ship_to_address][:postal_code]
+				@ad.postal_code = params[:ship_to_address][:postal_code]
+				@ad.phone = params[:ship_to_address][:phone]
+				@ad.save
 
 				@order.ship_address = params[:ship_to_address][:address]
 				@order.last_name = params[:ship_to_address][:last_name]
@@ -58,7 +61,7 @@ class OrdersController < ApplicationController
 
 	private
 	 def order_params
-	 	params.require(:order).permit(:user_id, :payment, :ship_address, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana])
+	 	params.require(:order).permit(:user_id, :payment, :ship_address, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone])
 	 end
 
 end

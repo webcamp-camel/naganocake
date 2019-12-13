@@ -17,13 +17,22 @@
 		<th></th>
 	</tr>
  <% @cart_items.each do |item| %>
- 	<%= hidden_field_tag :product_id, item.product_id %>
- 	<%= hidden_field_tag :user_id, current_user.id %>
 	<tr>
-		<td><%= item.product.name %></td>
-		<td><%= addTax(item.product.price) %></td>
-		<td><%= number_field_tag :quantity, item.quantity, in: 1..10 %></td>
-		<td><%= totalPrice(addTax(item.product.price),item.quantity) %></td>
+		<td>
+			<%= hidden_field_tag :product_id, item.product_id %>
+			<%= item.product.name %>
+		</td>
+		<td>
+ 			<%= hidden_field_tag :product_price, item.product.price %>
+			<%= addTax(item.product.price) %>
+		</td>
+		<td>
+			<%= number_field_tag :quantity, item.quantity, in: 1..10 %>
+		</td>
+		<td>
+			<%= hidden_field_tag :price, item.price %>
+			<%= addTax(item.price) %>
+		</td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
 	</tr>
  <% end %>
@@ -36,9 +45,13 @@
 	<div class="col-xs-4 pull-right">
 		<table class="table table-striped">
 			<tr><th>合計金額</th></tr>
-			<tr><td></td></tr>
+			<tr><td><%= addTax(@total_price) %></td></tr>
 		</table>
 		<%= f.submit '再計算する' %>
 		<% end %>
 	</div>
 </div>
+
+<%= link_to new_order_path do %>
+	<span class="btn btn-primary center-block" style="width: 20%; display:block;">情報入力に進む</span>
+<% end %>
