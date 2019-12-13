@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-　root to: "products#index"
-
 #認証機能に関して
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',
@@ -34,6 +32,8 @@ Rails.application.routes.draw do
 	resources :users, only: [:show, :edit, :update]
 	resources :products, only: [:show]
 	resources :cart_items, only: [:index, :create, :destroy]
+
+  get 'orders/finish' => 'orders#finish'
 	resources :orders, only: [:index, :show, :new, :create] do
     member do
       get :confirm
@@ -46,7 +46,8 @@ Rails.application.routes.draw do
   get 'cart_items/confirm' => 'cart_items#confirm'
   delete :cart_items, to: 'cart_items#destroy_all'
   patch :cart_items, to: 'cart_items#update_all'
-  get 'orders/finish' => 'orders#finish'
+
+  root to: 'products#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
