@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
 				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
 		@order.save
-		redirect_to order_path(@order)
+		redirect_to ordered_items_confirm_path
 	end
 
 # 注文完了画面
