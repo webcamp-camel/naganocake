@@ -2,8 +2,8 @@
 	<h2 style="font-weight: normal;">マイページ</h2>
 	<h4>登録情報</h4>
 	<%= link_to '編集する', edit_user_path(@user) %>
-	<%= link_to 'パスワードを編集する', edit_user_path(@user) %>
-	<table style="border:1px solid #000;">
+	<%= link_to 'パスワードを編集する', edit_user_registration_path %>
+	<table class="table table-condensed">
 		<tbody>
 			<tr>
 				<th style="background-color: #eee;">名前</th>
@@ -36,5 +36,5 @@
 	<h4>配送先</h4>
 		<%= link_to '一覧を見る', ship_to_addresses_path %>
 	<h4>注文履歴</h4>
-		<%= link_to '一覧を見る', '#'  %>
+		<%= link_to '一覧を見る', orders_path %>
 </div>

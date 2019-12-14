@@ -47,10 +47,11 @@
 				<%= a.text_field :last_name %><%= a.text_field :first_name %>
 			<label>カナ</label>
 				<%= a.text_field :last_name_kana %><%= a.text_field :first_name_kana %>
+			<label>電話</label>
+				<%= a.text_field :phone %>
 			<% end %>
 	</div>
 
-	<%= f.submit '登録する' %>
-
+		<%= f.submit '登録する' %>
 
 <% end %>
