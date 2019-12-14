@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 
 		#既にカートに商品が入っているときは、商品一覧ページに戻る
 			if items.pluck(:product_id).include?(@cart_item.product_id)
+				flash[:notice] = "その商品はカートに入っています"
 				redirect_to root_path
 			end
 	end
