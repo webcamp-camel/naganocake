@@ -65,10 +65,10 @@ class OrdersController < ApplicationController
 			item = []
 			@items = @user.cart_items
 				@items.each do |i|
-					item << @order.ordered_items.build(product_id: i.id, price: i.price, quantity: i.quantity, product_status: 1)
+					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
 				end
 			OrderedItem.import item
-
+			binding.pry
 			@order.save
 			redirect_to confirm_order_path(@order)
 	end
@@ -89,7 +89,7 @@ class OrdersController < ApplicationController
 	private
 	 def order_params
 	 	params.require(:order).permit(
-	 		:user_id, :payment, :ship_address,
+	 		:user_id, :payment, :ship_address, :ship_postal_code, :last_name, :first_name, :last_name_kana, :first_name_kana,
 	 		ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone]
 	 		)
 	 end
