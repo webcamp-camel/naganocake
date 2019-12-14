@@ -41,6 +41,7 @@ class CartItemsController < ApplicationController
 
   @items.each do |item|
         item.quantity = params[:quantity][item.id.to_s].to_i
+        item.price = item.quantity * params[:price][item.id.to_s].to_i
         item.save
   end
     redirect_to cart_items_path
