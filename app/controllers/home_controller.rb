@@ -4,9 +4,5 @@ class HomeController < ApplicationController
 def about
 
 end
-#顧客側サイトtopページ
-def top
-
-end
 
 end
