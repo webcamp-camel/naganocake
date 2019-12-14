@@ -10,6 +10,12 @@ class ProductsController < ApplicationController
 	def show
 		@product = Product.find(params[:id])
 		@cart_item = CartItem.new(product_id: @product.id)
+		items = current_user.cart_items
+
+		#既にカートに商品が入っているときは、商品一覧ページに戻る
+			if items.pluck(:product_id).include?(@cart_item.product_id)
+				redirect_to root_path
+			end
 	end
 
 	private
