@@ -18,7 +18,6 @@
  <% @cart_items.each do |item| %>
 	<tr>
 		<td>
-			<%= hidden_field_tag :product_id, item.product_id %>
 			<%= item.product.name %>
 		</td>
 		<td>
@@ -26,10 +25,11 @@
 			<%= addTax(item.product.price) %>
 		</td>
 		<td>
+			<%= hidden_field_tag "product_id[#{item.id}]", item.product_id %>
 			<%= number_field_tag "quantity[#{item.id}]", item.quantity, in: 1..10 %>
 		</td>
 		<td>
-			<%= hidden_field_tag :price, item.price %>
+			<%= hidden_field_tag "price[#{item.id}]", item.price %>
 			<%= addTax(item.price) %>
 		</td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
