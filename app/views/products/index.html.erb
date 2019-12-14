@@ -22,6 +22,6 @@
 
 	<!--　ジャンル検索ボタン　-->
 	<% @genres.each do |genre| %>
-	  <label><%= genre.name %></label>
+	  <label><%= link_to genre.name, root_path(genre: genre.id) %></label>
     <% end %>
 </div>
