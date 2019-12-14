@@ -12,7 +12,7 @@
 
     <% @orders.each do |order| %>
   	  <tr>
-  	    <th><%= order.created_at %></th>
+  	    <th><%= link_to order[:created_at].strftime("%Y-%m-%d%H:%M"), admins_order_path(order) %></th>
   		<th><%= order.user.last_name %><%= order.user.first_name %></th>
   		<th><%= order.ordered_items.sum(:quantity) %>
   		<th><%= order.deposit_status %></th>
