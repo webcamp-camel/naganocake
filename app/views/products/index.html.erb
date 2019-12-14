@@ -19,4 +19,9 @@
 			</tr>
 			<% end %>
 	</table>
+
+	<!--　ジャンル検索ボタン　-->
+	<% @genres.each do |genre| %>
+	  <label><%= genre.name %></label>
+    <% end %>
 </div>

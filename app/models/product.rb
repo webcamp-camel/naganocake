@@ -10,5 +10,4 @@ class Product < ApplicationRecord
 	belongs_to :genre
 
 	scope :active, -> {where(is_stopped: false)}
-
 end
