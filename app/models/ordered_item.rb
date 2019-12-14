@@ -8,4 +8,6 @@ class OrderedItem < ApplicationRecord
 	validates :price, presence: true
 	validates :quantity, presence: true
 	validates :product_status, presence: true
+
+	enum product_status: {制作待ち:1,製作中:2,制作完了:3}
 end

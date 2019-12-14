@@ -1,7 +1,8 @@
 
 <h1>注文詳細画面</h1>
-
-<%= @order.user.name %>
+<%= link_to admins_user_path(@order.id) do%>
+<%=  @order.user.name %>
+<%end%>
 
 <%= @order.user.ship_to_address %>
 <%= @order.user.ship_to_name %>
@@ -10,7 +11,9 @@
 
 <%= @order.deposit_status %>
 
-<% @order.ordered_items_each do |ordered_item| %>
+<button class="btn btn-primary">更新</button>
+
+<% @order.ordered_items each do |ordered_item| %>
 
 	<%= ordered_item.product.name %>
 
@@ -20,11 +23,12 @@
 
 	<%= totalPrice(ordered_item.product.price,quantity) %>
 
-	<%= ordered_item.product_status %>
+<%= ordered_item.select :product_status, OrderedItem.product_statuses.keys.to_a, {} %>
+
 <% end %>
 
 	<%= @order.total_price %>
 
 	<%= @order.postage %>
 
-	<%= allPraice(@order.total_price,postage)%>
+	<%= allPrice(@order.total_price,postage)%>
