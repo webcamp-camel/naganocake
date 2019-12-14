@@ -16,7 +16,7 @@
 			<td><%= order.created_at %></td>
 			<td><%= order.ship_address %></td>
 			<td><%= order.payment %></td>
-			<td><%= order.id %></td>
+			<td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
 			<td><%= link_to order_path(order), class: "btn btn-primary" do %>表示する<% end %></td>
 		</tr>
 		<% end %>

@@ -3,7 +3,10 @@ class OrdersController < ApplicationController
 
 # 顧客の注文履歴一覧ページ
 	def index
-		@orders = Order.all
+		@user = current_user
+		@orders = @user.orders
+		items = CartItem.includes(:user)
+		@total_price = items.sum(:price)
 	end
 
 # 注文履歴詳細ページ
@@ -26,7 +29,10 @@ class OrdersController < ApplicationController
 		@ads = @user.ship_to_addresses
 			if params[:_add] == "usersAdd"
 				@order.ship_address = @user.address
-				@order.ship_name = @user.last_name
+				@order.last_name = @user.last_name
+				@order.first_name = @user.first_name
+				@order.last_name_kana = @user.last_name_kana
+				@order.first_name_kana = @user.first_name_kana
 				@order.ship_postal_code = @user.postal_code
 			elsif params[:_add] == "shipAdds"
 				@ad = @ads.find(params[:ShipToAddress][:id])
@@ -35,30 +41,51 @@ class OrdersController < ApplicationController
 				@order.ship_postal_code = @ad.postal_code
 			elsif params[:_add] == "newAdd"
 			#ship_to_addressテーブルに保存させる
-				@ad = ShipToAddress.new(user_id: @user.id)
+				@ad = ShipToAddress.new
+				@ad.user_id = @user.id
 				@ad.address = params[:ship_to_address][:address]
 				@ad.last_name = params[:ship_to_address][:last_name]
 				@ad.first_name = params[:ship_to_address][:first_name]
 				@ad.last_name_kana = params[:ship_to_address][:last_name_kana]
 				@ad.first_name_kana = params[:ship_to_address][:first_name_kana]
-				@ad.first_name_kana = params[:ship_to_address][:postal_code]
+				@ad.postal_code = params[:ship_to_address][:postal_code]
+				@ad.phone = params[:ship_to_address][:phone]
+				@ad.save
 
 				@order.ship_address = params[:ship_to_address][:address]
 				@order.last_name = params[:ship_to_address][:last_name]
 				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
-		@order.save
-		redirect_to orders_path
+
+
+			#ordered_itemにデータ挿入
+			item = []
+			@items = @user.cart_items
+				@items.each do |i|
+					item << @order.ordered_items.build(product_id: i.id, price: i.price, quantity: i.quantity, product_status: 1)
+				end
+			OrderedItem.import item
+			@order.save
+			redirect_to confirm_order_path(@order)
 	end
 
-# 注文完了画面
+
+#注文情報確認画面
+	def confirm
+		@order = Order.find(params[:id])
+		@items = @order.ordered_items
+	end
+
+# 注文完了画面(カートを空にする)
 	def finish
+		cart_items = current_user.cart_items
+    	cart_items.destroy_all
 	end
 
 
 	private
 	 def order_params
-	 	params.require(:order).permit(:user_id, :payment, :ship_address, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana])
+	 	params.require(:order).permit(:user_id, :payment, :ship_address, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone])
 	 end
 
 end
