@@ -1,34 +1,46 @@
 
 <h1>注文詳細画面</h1>
-<%= link_to admins_user_path(@order.id) do%>
-<%=  @order.user.name %>
-<%end%>
 
-<%= @order.user.ship_to_address %>
-<%= @order.user.ship_to_name %>
-
-<%=　@order.payment %>
-
-<%= @order.deposit_status %>
-
-<button class="btn btn-primary">更新</button>
-
-<% @order.ordered_items each do |ordered_item| %>
-
-	<%= ordered_item.product.name %>
-
-	<%= addTax(ordered_item.product.price) %>
-
-	<%= ordered_item.quantity %>
-
-	<%= totalPrice(ordered_item.product.price,quantity) %>
-
-<%= ordered_item.select :product_status, OrderedItem.product_statuses.keys.to_a, {} %>
-
+<%= link_to  admins_user_path(@order.id) do %>
+	<%= @order.last_name %>
+	<%= @order.first_name %>
 <% end %>
+
+<%= @order.ship_postal_code %>
+<%= @order.ship_address %>
+<%= @order.last_name %>
+<%= @order.first_name %>
+
+<%= @order.payment %>
+
+<%= form_for(@order, url:admins_order_path, method: :patch) do |f| %>
+	<%= f.select :deposit_status,{入金待ち:1,入金済み:2} %>
+	<%= f.submit '更新する' %>
+<% end %>
+
+<table class="table table-bordered">
+			<tr>
+				<th>商品名</th>
+				<th>単価(税込)</th>
+				<th>数量</th>
+				<th>小計</th>
+				<th>制作ステータス</th>
+			</tr>
+		<tbody>
+			<% @order.ordered_items.each do |ordered_item| %>
+			<tr>
+				<td><%= ordered_item.product.name %></td>
+				<td><%= addTax(ordered_item.product.price) %></td>
+				<td><%= ordered_item.quantity %></td>
+				<td><%= totalPrice(ordered_item.product.price,ordered_item.quantity) %></td>
+				<td></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 
 	<%= @order.total_price %>
 
 	<%= @order.postage %>
 
-	<%= allPrice(@order.total_price,postage)%>
+	<%= @order.ordered_items.sum(:price) + @order.postage %>

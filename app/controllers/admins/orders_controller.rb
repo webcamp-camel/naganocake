@@ -3,9 +3,18 @@ class Admins::OrdersController < ApplicationController
   	@orders = Order.all
   end
 
-  def update
+  def show
+  	@order = Order.find(params[:id])
   end
 
-  def show
+  def update
+  	@order = Order.find(params[:id])
+  	@order.update(order_params)
+  	redirect_to orders_path
+  end
+
+  private
+  def order_params
+  	params.require(:order).permit(:product_status)
   end
 end
