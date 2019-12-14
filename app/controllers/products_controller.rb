@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 #商品一覧ページ
 	def index
         if params["genre"]
-        	@products = Product.where(genre_id: params["genre"])
+        	@products = Product.active.where(genre_id: params["genre"])
         else
 			@products = Product.active
         end
