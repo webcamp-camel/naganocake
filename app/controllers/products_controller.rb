@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 #商品一覧ページ
 	def index
 		@products = Product.active
-
+        @genres = Genre.active
 	end
 
 # 顧客側の商品詳細ページ
