@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     end
 
   	resources :products, except: [:destroy]
-  	resources :home, only: [:top]
   	resources :orders, only: [:index, :update, :show]
   end
 
@@ -50,6 +49,8 @@ Rails.application.routes.draw do
   get 'cart_items/confirm' => 'cart_items#confirm'
   delete :cart_items, to: 'cart_items#destroy_all'
   patch :cart_items, to: 'cart_items#update_all'
+
+  get 'admins' => 'admins/home#top'
 
   root to: 'products#index'
 

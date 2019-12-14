@@ -74,3 +74,4 @@ gem 'jquery-rails'
 
 # bulk insert用
 gem 'activerecord-import'
+gem 'pry-rails'
