@@ -1,5 +1,4 @@
 <h4>ショッピングカート</h4>
-<p id="notice"><%= @message %></p>
 
 <div class="pull-right">
 	<%= link_to cart_items_path, method: :delete do %>
@@ -52,4 +51,8 @@
 	</div>
 </div>
 
-<%= link_to '購入情報の入力', new_order_path %>
+<!-- カートに商品が入っていたら表示させる -->
+<% if @cart_items.blank? %>
+<% else %>
+	<%= link_to '購入情報の入力', new_order_path %>
+<% end %>

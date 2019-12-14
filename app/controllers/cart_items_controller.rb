@@ -4,6 +4,8 @@ class CartItemsController < ApplicationController
   def index
     @cart_items = current_user.cart_items
     @total_price = @cart_items.sum(:price)
+
+
   end
 
   def create
@@ -11,15 +13,8 @@ class CartItemsController < ApplicationController
     @cart_item.user_id = current_user.id
     #税抜の小計価格を設定
     @cart_item.price = @cart_item.product.price * @cart_item.quantity
-
-    #カートの中身が空の場合、保存は出来ない
-    if current_user.cart_items.blank?
-        flash[:notice] = "カートの中身は空です"
-        redirect_to root_path
-    else
-        @cart_item.save
-        redirect_to cart_items_path
-    end
+    @cart_item.save
+    redirect_to cart_items_path
   end
 
   def show
