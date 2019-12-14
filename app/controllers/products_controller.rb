@@ -2,7 +2,11 @@ class ProductsController < ApplicationController
 
 #商品一覧ページ
 	def index
-		@products = Product.active
+        if params["genre"]
+        	@products = Product.where(genre_id: params["genre"])
+        else
+			@products = Product.active
+        end
         @genres = Genre.active
 	end
 
