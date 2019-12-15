@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
 #ログインユーザーのみ閲覧可
   before_action :authenticate_user!
-
 #退会済みユーザー
   before_action :user_is_deleted
 
@@ -123,9 +122,17 @@ class OrdersController < ApplicationController
 
 #退会済みユーザーへの対応
     def user_is_deleted
-      if current_user.is_deleted?
+      if user_signed_in? && current_user.is_deleted?
          redirect_to root_path
       end
+    end
+
+    def authenticate_user!
+      unless admin_signed_in?
+      	redirect_to root_path
+      else
+      	current_admin = current_user
+     end
     end
 end
 

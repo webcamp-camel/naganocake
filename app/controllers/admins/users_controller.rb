@@ -27,13 +27,11 @@ class Admins::UsersController < ApplicationController
 
   	if @user.is_deleted?
   		  @user.is_deleted = false
-  		  @user.save
-  		  redirect_to edit_admins_user_path(@user)
   	else
   		  @user.is_deleted = true
-  		  @user.save
-  		  redirect_to edit_admins_user_path(@user)
   	end
+        @user.save
+        redirect_to edit_admins_user_path(@user)
   end
 
   private
