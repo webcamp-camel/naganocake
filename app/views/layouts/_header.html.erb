@@ -50,34 +50,4 @@
 		</li>
 	<% end %>
 </div>
-
-<!-- admin側のheader -->
-<% if admin_signed_in? %>
-	<img src="/assets/logo.jpg" style="height:100px; display:block; margin: 0 auto">
-	<ul>
-		<li>
-			<%=link_to admins_products_path do%>
-				<span style="color:#694D49;">商品一覧</span>
-			<% end %>
-		</li>
-		<li>
-			<%=link_to admins_users_path do%>
-				<span style="color:#694D49;">会員一覧</span>
-			<% end %>
-		</li>
-		<li>
-			<%=link_to admins_orders_path do%>
-				<span style="color:#694D49;">注文履歴一覧</span>
-			<% end %>
-		</li>
-		<li>
-			<%=link_to admins_genres_path do%>
-				<span style="color:#694D49;">ジャンル管理</span>
-			<% end %>
-		</li>
-	</ul>
-<%end%>
-
-
-
 </header>
