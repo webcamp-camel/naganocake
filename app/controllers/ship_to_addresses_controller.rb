@@ -1,4 +1,7 @@
 class ShipToAddressesController < ApplicationController
+#ログインユーザーのみ
+before_action :authenticate_user!
+
     #配送先一覧
     def index
         @user = current_user
