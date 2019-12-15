@@ -1,23 +1,28 @@
 class OrdersController < ApplicationController
 #ログインユーザーのみ閲覧可
+  before_action :authenticate_user!
 
-
+#退会済みユーザー
+  before_action :user_is_deleted
 
 
 # 顧客の注文履歴一覧ページ
 	def index
 		@user = User.find(params[:id])
+	# 他のuserのアクセス阻止
+		unless current_user.id == @user.id
+			redirect_to orders_path(id: current_user.id)
+		end
 		@orders = @user.orders
 	end
 
 # 注文履歴詳細ページ
 	def show
-	# 他のuserのアクセス阻止
-		if current_user.id != @order.user_id
-			redirect_to root_path
-		end
-
 	  @order = Order.find(params[:id])
+	# 他のuserのアクセス阻止
+		unless current_user.id == @order.user_id
+			redirect_to orders_path(id: current_user.id)
+		end
 	end
 
 # 顧客の購入情報の入力画面
@@ -94,6 +99,10 @@ class OrdersController < ApplicationController
 #注文情報確認画面
 	def confirm
 		@order = Order.find(params[:id])
+	# 他のuserのアクセス阻止
+		unless current_user.id == @order.user_id
+			redirect_to orders_path(id: current_user.id)
+		end
 		@items = @order.ordered_items
 	end
 
@@ -112,11 +121,11 @@ class OrdersController < ApplicationController
 	 		)
 	  end
 
-	  def user_is_deleted
-	  	if current_user.is_deleted?
-	  		sign_out
-	  		redirect_to root_path
-	  	end
-	  end
+#退会済みユーザーへの対応
+    def user_is_deleted
+      if current_user.is_deleted?
+         redirect_to root_path
+      end
+    end
 end
 
