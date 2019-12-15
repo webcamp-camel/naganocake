@@ -68,7 +68,6 @@ class OrdersController < ApplicationController
 					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
 				end
 			OrderedItem.import item
-			binding.pry
 			@order.save
 			redirect_to confirm_order_path(@order)
 	end
