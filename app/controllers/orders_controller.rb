@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+#ログインユーザーのみ閲覧可
+before_action :authenticate_user!
 
 
 # 顧客の注文履歴一覧ページ

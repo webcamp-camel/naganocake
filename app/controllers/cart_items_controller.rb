@@ -1,4 +1,6 @@
 class CartItemsController < ApplicationController
+#ログインユーザーのみ閲覧可
+before_action :authenticate_user!
 
 
   def index
