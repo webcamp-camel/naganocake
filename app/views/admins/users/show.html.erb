@@ -4,7 +4,7 @@
 
 <table class="table table-condensed">
 	<tr>
-		<th>顧客ID</th>
+		<th style="background: #dad7d7; border-bottom: 1px solid #fff;">顧客ID</th>
 		<td>
 		<%= @user.id %>
 			<% if @user.is_deleted? %>
@@ -15,35 +15,33 @@
 		</td>
 	</tr>
 	<tr>
-		<th>氏名</th>
+		<th style="background: #dad7d7; border-bottom: 1px solid #fff;">氏名</th>
 		<td><%= @user.last_name %> <%= @user.first_name %></td>
 	</tr>
 	<tr>
-		<th>フリガナ</th>
+		<th style="background: #dad7d7; border-bottom: 1px solid #fff;">フリガナ</th>
 		<td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
 	</tr>
 	<tr>
-		<th>郵便番号</th>
+		<th style="background: #dad7d7; border-bottom: 1px solid #fff;">郵便番号</th>
 		<td>〒<%= @user.postal_code %></td>
 	</tr>
 	<tr>
-		<th>電話番号</th>
+		<th style="background: #dad7d7; border-bottom: 1px solid #fff;">電話番号</th>
 		<td><%= @user.phone %></td>
 	</tr>
 	<tr>
-		<th>メールアドレス</th>
-		<td><%= @user.email %></td>
+		<th style="background: #dad7d7; border-bottom: 1px solid #fff;">メールアドレス</th>
+		<td style="border-bottom: 1px solid #dad7d7;"><%= @user.email %></td>
 	</tr>
 </table>
-
-<div class="btn-group" style="margin-top: 30px;">
+<hr>
 		<%= link_to edit_admins_user_path(@user) do %>
-					<span class="btn btn-default">編集する</span>
+					<span class="btn btn-info" style="display:inline-block;">編集する</span>
 		<% end %>
 
 		<%= link_to orders_path(id: @user.id) do %>
-					<span class="btn btn-default">注文一覧</span>
+					<span class="btn btn-success" style="display:inline-block;">注文一覧</span>
 		<% end %>
-</div>
 
 </div>
