@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     		admins_path
 		end
 	end
-
+  
 	def authenticate_user!
 		return unless user_signed_in? && current_user.is_deleted?
 		sign_out

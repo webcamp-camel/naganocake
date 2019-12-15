@@ -1,28 +1,49 @@
-<h4>会員詳細画面</h4>
+<div class="show-container" style="width:50%; margin: 20px auto;">
 
-<h4>顧客ID</h4>
-<%= @user.id %>
-	<% if @user.is_deleted == false %>
-		<span class="badge" style="background:#8bce9a">有効会員</span>
-	<% else %>
-		<span class="badge" style="background:red">退会済</span>
-	<% end %>
-<h4>氏名</h4>
-	<p><%= @user.last_name %> <%= @user.first_name %></p>
-<h4>フリガナ</h4>
-	<p><%= @user.last_name_kana %> <%= @user.first_name_kana %></p>
-<h4>郵便番号</h4>
-	<p>〒<%= @user.postal_code %></p>
-<h4>電話番号</h4>
-	<p><%= @user.phone %></p>
-<h4>メールアドレス</h4>
-	<p><%= @user.email %></p>
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">会員詳細画面</h4>
 
+<table class="table table-condensed">
+	<tr>
+		<th>顧客ID</th>
+		<td>
+		<%= @user.id %>
+			<% if @user.is_deleted? %>
+					<span class="badge" style="background:#d72238;">退会済</span>
+			<% else %>
+					<span class="badge" style="background:#8bce9a;">有効会員</span>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<th>氏名</th>
+		<td><%= @user.last_name %> <%= @user.first_name %></td>
+	</tr>
+	<tr>
+		<th>フリガナ</th>
+		<td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
+	</tr>
+	<tr>
+		<th>郵便番号</th>
+		<td>〒<%= @user.postal_code %></td>
+	</tr>
+	<tr>
+		<th>電話番号</th>
+		<td><%= @user.phone %></td>
+	</tr>
+	<tr>
+		<th>メールアドレス</th>
+		<td><%= @user.email %></td>
+	</tr>
+</table>
 
-<%= link_to edit_admins_user_path(@user) do %>
-	<span class="btn btn-default">編集する</span>
-<% end %>
+<div class="btn-group" style="margin-top: 30px;">
+		<%= link_to edit_admins_user_path(@user) do %>
+					<span class="btn btn-default">編集する</span>
+		<% end %>
 
-<%= link_to orders_path do %>
-	<span class="btn btn-default">注文一覧</span>
-<% end %>
+		<%= link_to orders_path(id: @user.id) do %>
+					<span class="btn btn-default">注文一覧</span>
+		<% end %>
+</div>
+
+</div>
