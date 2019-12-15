@@ -15,4 +15,8 @@ class Order < ApplicationRecord
 	#入金状況
 	enum deposit_status: {入金待ち:1,入金済み:2}
 
+
+    validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+    validates :first_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+    validates :ship_postal_code, format: /\A[0-9]+\z/ #郵便番号数字のみ
 end

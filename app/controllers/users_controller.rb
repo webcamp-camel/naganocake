@@ -14,6 +14,13 @@ before_action :set_user
   	@user.update(user_params)
   end
 
+#退会機能
+  def leave
+    @user.is_deleted = true
+    @user.save
+    redirect_to :root_path
+  end
+
   private
 # @userの値をセット
   	def set_user
@@ -21,6 +28,6 @@ before_action :set_user
   	end
 # ストロングパラメーター
   	def user_params
-  		params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :address, :postal_code, :phone, :email)
+  		params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :address, :postal_code, :phone, :email, :is_deleted)
   	end
 end
