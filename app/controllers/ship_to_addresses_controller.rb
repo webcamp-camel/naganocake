@@ -10,13 +10,12 @@ class ShipToAddressesController < ApplicationController
     def create
         @ship_to_address = ShipToAddress.new(ship_to_address_params)
         @ship_to_address.user_id = current_user.id
-
        if @ship_to_address.save
            flash[:notice] = "You have creatad ship_to_addresses successfully."
            redirect_to ship_to_addresses_path
         else
             @user = current_user
-            @ship_to_addresses = Ship_to_address.all
+            @ship_to_addresses = @user.ship_to_addresses.all
             render :index
         end
     end

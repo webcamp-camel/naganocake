@@ -10,4 +10,6 @@ class Product < ApplicationRecord
 	belongs_to :genre
 
 	scope :active, -> {where(is_stopped: false)}
+
+	validates :introduction, length: { maximum: 200 }
 end
