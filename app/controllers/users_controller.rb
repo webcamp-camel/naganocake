@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
+#ログインユーザーのみ
+before_action :authenticate_user!
 before_action :set_user
+before_action :access
 
 # 顧客詳細画面
   def show
@@ -24,8 +27,14 @@ before_action :set_user
   private
 # @userの値をセット
   	def set_user
-  		@user = current_user
+  		@user = User.find(params[:id])
   	end
+
+    def access
+      return if @user != current_user
+        redirect_to root_path
+    end
+
 # ストロングパラメーター
   	def user_params
   		params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :address, :postal_code, :phone, :email, :is_deleted)
