@@ -1,5 +1,6 @@
 <%= form_for(@product, url:admins_product_path) do |f| %>
 <h2>商品編集画面</h2>
+<div style ="text-align: center;">
   <div class="form-group">
     <label>画像投稿</label>
     <%= attachment_image_tag @product, :image, :fill, 150,100, fallback: "no_imag.jpg" %>
@@ -33,5 +34,6 @@
   <div class="actions">
     <%= f.submit "変更を保存する" %>
   </div>
+</div>
 <% end %>
 

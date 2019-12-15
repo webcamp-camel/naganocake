@@ -1,22 +1,22 @@
-<div class="container">
-<h1>商品一覧ページ</h1>
-	<table  class="table table-bordered ">
-			<tr>
-				<th>商品画像</th>
-				<th>商品名</th>
-				<th>税込み価格</th>
-				<th></th>
-				<th></th>
-			</tr>
+	<img src="assets/tart1" alt="非表示",height ="50px;",width ="100px;">
+	</img>
+	<div class="container">
+		<h1>PRODUCTS</h1>
+	<div>
+		<h1>ジャンル一覧</h1>
+	<label><%= link_to "ジャンルで検索", root_path %></label>
+		<% @genres.each do |genre| %>
+	 		<label><%= link_to genre.name, root_path(genre: genre.id) %></label>
+   		 <% end %>
+	<div>
 			<% @products.each do |product| %>
-			<tr>
-				<td><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></td>
-				<td><%= link_to product_path(product.id) do %>
+			<div>
+				<span><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></span>
+				<%= link_to product_path(product.id) do %>
 						<%= product.name %>
 						<% end %>
-				</td>
-				<td><%= product.price %></td>
-			</tr>
+				<%= product.price %>
+			</div>
 			<% end %>
-	</table>
+	</div>
 </div>

@@ -1,12 +1,12 @@
+
+
+<div class="container">
 <h4>ショッピングカート</h4>
-
-
 <div class="pull-right">
-	<%= link_to cart_items_path, method: :delete do %>
-		<span class="btn btn-danger">カートを空にする</span>
+<%= link_to cart_items_path, method: :delete do %>
+		<span class="btn btn-danger",style = "margin-bottom: 5px;">カートを空にする</span>
 	<% end %>
 </div>
-
 <%= form_for cart_items_path, method: :patch do |f| %>
 <table class="table table-bordered">
 	<tr>
@@ -50,6 +50,9 @@
 		<%= f.submit '再計算する' %>
 		<% end %>
 	</div>
+
 </div>
 
+
 <%= link_to '購入情報の入力', new_order_path %>
+</div>

@@ -1,8 +1,10 @@
+<div class="container">
 <%= form_for(@user) do |f| %>
 <h2>ユーザー情報編集</h2>
+
 <div class="form-group">
     <label>姓</label>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", style: "margin;"  %>
     <label>名</label>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
@@ -37,5 +39,7 @@
   <div class="actions">
     <%= f.submit "送信する" %>
   </div>
+
 <% end %>
+</div>
 
