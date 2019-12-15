@@ -89,12 +89,13 @@ before_action :authenticate_user!
 
 
 	private
-	 def order_params
+	  def order_params
 	 	params.require(:order).permit(
 	 		:user_id, :payment, :ship_address, :ship_postal_code, :last_name, :first_name, :last_name_kana, :first_name_kana,
 	 		ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone]
 	 		)
-	 end
+	  end
+
 
 end
 

@@ -1,6 +1,6 @@
 <%= form_for(@user) do |f| %>
 <h4>ユーザー情報編集</h4>
-  <%= link_to leave_user_path(@user), method: :patch do %>
+  <%= link_to leave_user_path(@user), method: :patch, data: { confirm: '本当に退会しますか？' } do %>
       <span class="btn btn-danger">退会する</span>
   <% end %>
 <div class="form-group">
