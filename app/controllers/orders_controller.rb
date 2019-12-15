@@ -1,25 +1,28 @@
 class OrdersController < ApplicationController
-#ログインユーザーのみ閲覧可
-  before_action :authenticate_user!
-#退会済みユーザー
-  before_action :user_is_deleted
+#管理者とログインユーザーのみ閲覧可
+	 before_action :authenticate!
+#退会済みユーザーは閲覧不可
+ 	before_action :user_is_deleted
+
+ 	before_action :params_check, only: [:index]
 
 
 # 顧客の注文履歴一覧ページ
 	def index
 		@user = User.find(params[:id])
-	# 他のuserのアクセス阻止
-		unless current_user.id == @user.id
+		@orders = @user.orders
+	#他のuserのアクセス阻止
+		unless current_user.nil? || current_user.id == @user.id
 			redirect_to orders_path(id: current_user.id)
 		end
-		@orders = @user.orders
 	end
 
 # 注文履歴詳細ページ
 	def show
-	  @order = Order.find(params[:id])
+	 	@order = Order.find(params[:id])
+
 	# 他のuserのアクセス阻止
-		unless current_user.id == @order.user_id
+		unless current_user.nil? || current_user.id == @order.user_id
 			redirect_to orders_path(id: current_user.id)
 		end
 	end
@@ -99,7 +102,7 @@ class OrdersController < ApplicationController
 	def confirm
 		@order = Order.find(params[:id])
 	# 他のuserのアクセス阻止
-		unless current_user.id == @order.user_id
+		unless current_user.nil? || current_user.id == @order.user_id
 			redirect_to orders_path(id: current_user.id)
 		end
 		@items = @order.ordered_items
@@ -108,17 +111,18 @@ class OrdersController < ApplicationController
 # 注文完了画面(カートを空にする)
 	def finish
 		cart_items = current_user.cart_items
-    	cart_items.destroy_all
+		cart_items.destroy_all
 	end
 
 
 	private
-	  def order_params
+#ストロングパラメーター
+	 def order_params
 	 	params.require(:order).permit(
 	 		:user_id, :payment, :ship_address, :ship_postal_code, :last_name, :first_name, :last_name_kana, :first_name_kana,
 	 		ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone]
 	 		)
-	  end
+	 end
 
 #退会済みユーザーへの対応
     def user_is_deleted
@@ -127,12 +131,19 @@ class OrdersController < ApplicationController
       end
     end
 
-    def authenticate_user!
-      unless admin_signed_in?
-      	redirect_to root_path
+#adminでなければuserの中で振り分ける
+    def authenticate!
+      if admin_signed_in?
       else
-      	current_admin = current_user
+      	authenticate_user!
      end
+    end
+
+#ordersと直打ちした場合
+    def params_check
+    	if params[:id].nil?
+    		redirect_to root_path
+    	end
     end
 end
 
