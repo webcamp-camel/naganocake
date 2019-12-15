@@ -1,7 +1,8 @@
 class CartItemsController < ApplicationController
 #ログインユーザーのみ閲覧可
-before_action :authenticate_user!
-
+  before_action :authenticate_user!
+#退会済みユーザーは閲覧不可
+  before_action :user_is_deleted
 
   def index
     @cart_items = current_user.cart_items
@@ -48,5 +49,10 @@ before_action :authenticate_user!
       params.require(:cart_item).permit(:user_id, :product_id, :quantity, :price)
     end
 
-
+    #退会済みユーザーへの対応
+    def user_is_deleted
+      if user_signed_in? && current_user.is_deleted?
+         redirect_to root_path
+      end
+    end
 end
