@@ -5,7 +5,8 @@ before_action :authenticate_user!
 
 # 顧客の注文履歴一覧ページ
 	def index
-		@orders = current_user.orders
+		@user = User.find(params[:id])
+		@orders = @user.orders
 	end
 
 # 注文履歴詳細ページ
