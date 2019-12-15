@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
+#ログインユーザーのみ閲覧可
+before_action :authenticate_user!
 
 
 # 顧客の注文履歴一覧ページ
 	def index
-		@user = current_user
+		@user = User.find(params[:id])
 		@orders = @user.orders
-		items = CartItem.includes(:user)
-		@total_price = items.sum(:price)
 	end
 
 # 注文履歴詳細ページ
@@ -38,6 +38,9 @@ class OrdersController < ApplicationController
 				@ad = @ads.find(params[:ShipToAddress][:id])
 				@order.ship_address = @ad.address
 				@order.last_name = @ad.last_name
+				@order.first_name = @ad.first_name
+				@order.last_name_kana = @ad.last_name_kana
+				@order.first_name_kana = @ad.first_name_kana
 				@order.ship_postal_code = @ad.postal_code
 			elsif params[:_add] == "newAdd"
 			#ship_to_addressテーブルに保存させる
@@ -54,6 +57,9 @@ class OrdersController < ApplicationController
 
 				@order.ship_address = params[:ship_to_address][:address]
 				@order.last_name = params[:ship_to_address][:last_name]
+				@order.first_name = params[:ship_to_address][:first_name]
+				@order.last_name_kana = params[:ship_to_address][:last_name_kana]
+				@order.first_name_kana = params[:ship_to_address][:first_name_kana]
 				@order.ship_postal_code = params[:ship_to_address][:postal_code]
 			end
 
@@ -62,13 +68,12 @@ class OrdersController < ApplicationController
 			item = []
 			@items = @user.cart_items
 				@items.each do |i|
-					item << @order.ordered_items.build(product_id: i.id, price: i.price, quantity: i.quantity, product_status: 1)
+					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
 				end
 			OrderedItem.import item
 			@order.save
 			redirect_to confirm_order_path(@order)
 	end
-
 
 #注文情報確認画面
 	def confirm
@@ -85,7 +90,10 @@ class OrdersController < ApplicationController
 
 	private
 	 def order_params
-	 	params.require(:order).permit(:user_id, :payment, :ship_address, ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone])
+	 	params.require(:order).permit(
+	 		:user_id, :payment, :ship_address, :ship_postal_code, :last_name, :first_name, :last_name_kana, :first_name_kana,
+	 		ship_to_address:[:postal_code, :address, :last_name, :first_name, :last_name_kana, :first_name_kana, :phone]
+	 		)
 	 end
 
 end

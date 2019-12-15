@@ -32,7 +32,11 @@ Rails.application.routes.draw do
 
 #顧客表示部分
 
-	resources :users, only: [:show, :edit, :update]
+	resources :users, only: [:show, :edit, :update] do
+    member do
+      patch :leave
+    end
+  end
 	resources :products, only: [:show]
 	resources :cart_items, only: [:index, :create, :destroy]
 

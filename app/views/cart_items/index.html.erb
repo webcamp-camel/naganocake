@@ -1,7 +1,10 @@
 
+<<<<<<< HEAD
 
 <div class="container">
 <h4>ショッピングカート</h4>
+=======
+>>>>>>> origin
 <div class="pull-right">
 <%= link_to cart_items_path, method: :delete do %>
 		<span class="btn btn-danger",style = "margin-bottom: 5px;">カートを空にする</span>
@@ -19,7 +22,6 @@
  <% @cart_items.each do |item| %>
 	<tr>
 		<td>
-			<%= hidden_field_tag :product_id, item.product_id %>
 			<%= item.product.name %>
 		</td>
 		<td>
@@ -27,10 +29,11 @@
 			<%= addTax(item.product.price) %>
 		</td>
 		<td>
-			<%= number_field_tag :quantity, item.quantity, in: 1..10 %>
+			<%= hidden_field_tag "product_id[#{item.id}]", item.product_id %>
+			<%= number_field_tag "quantity[#{item.id}]", item.quantity, in: 1..10 %>
 		</td>
 		<td>
-			<%= hidden_field_tag :price, item.price %>
+			<%= hidden_field_tag "price[#{item.id}]", item.price %>
 			<%= addTax(item.price) %>
 		</td>
 		<td><%= link_to '削除する', cart_item_path(item), method: :delete %></td>
@@ -53,6 +56,14 @@
 
 </div>
 
+<<<<<<< HEAD
 
 <%= link_to '購入情報の入力', new_order_path %>
 </div>
+=======
+<!-- カートに商品が入っていたら表示させる -->
+<% if @cart_items.blank? %>
+<% else %>
+	<%= link_to '購入情報の入力', new_order_path %>
+<% end %>
+>>>>>>> origin
