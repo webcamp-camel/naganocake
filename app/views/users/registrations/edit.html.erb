@@ -1,10 +1,11 @@
-<h2>パスワードを編集する</h2>
+<div class="edit-container" style="width:50%; margin: 20px auto;">
+<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">パスワードを編集する</h4>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="form-group">
-    <label>新しいパスワード</label>
+    <label class=>新しいパスワード</label>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
@@ -18,9 +19,12 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<hr>
+    <%= f.submit "更新する", class:"btn btn-success", style:"display:block; margin: 0 auto;" %>
 <% end %>
 
-<%= link_to "Back", :back %>
+<%= link_to user_path(current_user) do %>
+  <span class="glyphicon glyphicon-chevron-left">マイページ</span>
+<% end %>
+
+</div>

@@ -34,7 +34,13 @@
 	<%= link_to 'パスワードを編集する', edit_user_registration_path, class:"btn btn-success" %>
 	<hr>
 	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">配送先</h4>
-		<%= link_to '一覧を見る', ship_to_addresses_path %>
+		<%= link_to ship_to_addresses_path do %>
+			一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
+		<% end %>
+	<hr>
 	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴</h4>
-		<%= link_to '一覧を見る', orders_path(id: @user.id) %>
+		<%= link_to orders_path(id: @user.id) do %>
+			一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
+		<% end %>
+	<hr>
 </div>

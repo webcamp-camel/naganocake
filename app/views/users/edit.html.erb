@@ -1,8 +1,10 @@
+<div class="edit-container" style="width:50%; margin: 20px auto; position: relative;">
+  <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">ユーザー情報編集</h4>
 <%= form_for(@user) do |f| %>
-<h4>ユーザー情報編集</h4>
-  <%= link_to leave_user_path(@user), method: :patch, data: { confirm: '本当に退会しますか？' } do %>
-      <span class="btn btn-danger">退会する</span>
-  <% end %>
+       <%= link_to leave_user_path(@user), method: :patch, data: { confirm: '本当に退会しますか？' } do %>
+              <span class="btn btn-danger" style="position: absolute; top: 30px; right: 50px;">退会する</span>
+       <% end %>
+    <div class="row" style="height: 20px;"></div>
 <div class="form-group">
     <label>姓</label>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
@@ -24,21 +26,25 @@
 
    <div class="form-group">
     <label>住所</label>
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+    <%= f.text_field :address, autofocus: true, autocomplete: "address", style: "width: 80%;" %>
   </div>
 
   <div class="form-group">
     <label>電話番号</label>
-    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+    <%= f.telephone_field :phone, autofocus: true, autocomplete: "phone" %>
   </div>
 
   <div class="form-group">
     <label>メールアドレス</label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "送信する" %>
+  <hr>
+  <div style="text-align:center;">
+    <%= f.submit "変更を保存する", class:"btn btn-success", style: "display:inline-block" %>
   </div>
+  <%= link_to user_path(@user) do %>
+      <span class="glyphicon glyphicon-chevron-left">マイページ</span>
+  <% end %>
 <% end %>
+</div>
 
