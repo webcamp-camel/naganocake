@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 #ログインユーザーのみproduct#indexは閲覧可
-before_action :authenticate_user!, only: [:show]
+
 
 #商品一覧ページ
 	def index

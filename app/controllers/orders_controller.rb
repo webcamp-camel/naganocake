@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 #ログインユーザーのみ閲覧可
-before_action :authenticate_user!
+
+
 
 
 # 顧客の注文履歴一覧ページ
@@ -11,15 +12,25 @@ before_action :authenticate_user!
 
 # 注文履歴詳細ページ
 	def show
-		@order = Order.find(params[:id])
+	# 他のuserのアクセス阻止
+		if current_user.id != @order.user_id
+			redirect_to root_path
+		end
+
+	  @order = Order.find(params[:id])
 	end
 
 # 顧客の購入情報の入力画面
 	def new
 		@user = current_user
-		@order = Order.new(user_id: @user.id)
-		@ads = @user.ship_to_addresses
-		@ship_to_address = ShipToAddress.new(user_id: @user.id)
+	#cartが空の場合、cart_items#indexに戻される
+		if @user.cart_items.blank?
+			redirect_to cart_items_path
+		else
+			@order = Order.new(user_id: @user.id)
+			@ads = @user.ship_to_addresses
+			@ship_to_address = ShipToAddress.new(user_id: @user.id)
+		end
 	end
 
 # 情報の保存
@@ -71,8 +82,13 @@ before_action :authenticate_user!
 					item << @order.ordered_items.build(product_id: i.product_id, price: i.price, quantity: i.quantity, product_status: 1)
 				end
 			OrderedItem.import item
-			@order.save
+
+		#保存できたかどうかで分岐
+		if @order.save
 			redirect_to confirm_order_path(@order)
+		else
+			render :new
+		end
 	end
 
 #注文情報確認画面
@@ -96,6 +112,11 @@ before_action :authenticate_user!
 	 		)
 	  end
 
-
+	  def user_is_deleted
+	  	if current_user.is_deleted?
+	  		sign_out
+	  		redirect_to root_path
+	  	end
+	  end
 end
 

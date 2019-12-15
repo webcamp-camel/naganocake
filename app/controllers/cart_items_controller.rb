@@ -6,8 +6,6 @@ before_action :authenticate_user!
   def index
     @cart_items = current_user.cart_items
     @total_price = @cart_items.sum(:price)
-
-
   end
 
   def create
@@ -17,10 +15,6 @@ before_action :authenticate_user!
     @cart_item.price = @cart_item.product.price * @cart_item.quantity
     @cart_item.save
     redirect_to cart_items_path
-  end
-
-  def show
-    @cart_items = current_user.cart_items
   end
 
   #ある商品の入ったカートを空にする
