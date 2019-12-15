@@ -54,10 +54,5 @@ before_action :authenticate_user!
       params.require(:cart_item).permit(:user_id, :product_id, :quantity, :price)
     end
 
-    def authenticate_user!
-      unless user_signed_in? && current_user.is_deleted?
-        sign_out
-        redirect_to root_path
-      end
-    end
+
 end
