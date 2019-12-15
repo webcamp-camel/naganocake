@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
 #ログインユーザーのみproduct#indexは閲覧可
+  before_action :authenticate_user!, except: [:index]
 
+#退会済みユーザー
+  before_action :user_is_deleted, except: [:index]
 
 #商品一覧ページ
 	def index
@@ -30,6 +33,13 @@ class ProductsController < ApplicationController
 	def product_params
 		params.require(:product).permit(:image_id, :name, :introduction)
 	end
+
+#退会済みユーザーへの対応
+    def user_is_deleted
+      if current_user.is_deleted?
+         redirect_to root_path
+      end
+    end
 
 
 end
