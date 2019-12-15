@@ -1,30 +1,60 @@
 
 <h1>注文詳細画面</h1>
 
-<%= @order.user.name %>
-
-<%= @order.user.ship_to_address %>
-<%= @order.user.ship_to_name %>
-
-<%=　@order.payment %>
-
-<%= @order.deposit_status %>
-
-<% @order.ordered_items_each do |ordered_item| %>
-
-	<%= ordered_item.product.name %>
-
-	<%= addTax(ordered_item.product.price) %>
-
-	<%= ordered_item.quantity %>
-
-	<%= totalPrice(ordered_item.product.price,quantity) %>
-
-	<%= ordered_item.product_status %>
+<%= link_to  admins_user_path(@order.id) do %>
+	<%= @order.last_name %>
+	<%= @order.first_name %>
 <% end %>
 
-	<%= @order.total_price %>
+<%= @order.ship_postal_code %>
+<%= @order.ship_address %>
+<%= @order.last_name %>
+<%= @order.first_name %>
 
+<%= @order.payment %>
+
+<%= form_for(@order, url:admins_order_path, method: :patch) do |f| %>
+	<%= f.select :deposit_status,{入金待ち:1,入金済み:2} %>
+
+<table class="table table-bordered">
+			<tr>
+				<th>商品名</th>
+				<th>単価(税込)</th>
+				<th>数量</th>
+				<th>小計</th>
+				<th>制作ステータス</th>
+			</tr>
+		<tbody>
+			<% @items.each do |item| %>
+			<tr>
+				<td><%= item.product.name %></td>
+				<td><%= addTax(item.product.price) %></td>
+				<td><%= item.quantity %></td>
+				<td><%= totalPrice(item.product.price,item.quantity) %></td>
+			<%= fields_for :ordered_items do |i| %>
+				<td>
+					<%= i.select "product_status[#{item.id}]", OrderedItem.product_statuses.map{ |k,v| [k,v] } %>
+					<label>現在ステータス：</label>
+					<% case item.product_status when "製作待ち" %>
+								<span class="badge" style="background: red;"><%= item.product_status %></span>
+						<% when "製作中" %>
+								<span class="badge" style="background: green;"><%= item.product_status %></span>
+						<% when "製作完了" %>
+								<span class="badge" style="background: blue;"><%= item.product_status %></span>
+					<% end %>
+				</td>
+			<% end %>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= f.submit '更新する' %>
+	<% end %>
+
+	<label>商品合計</label>
+	<%= addTax(@items.sum(:price)) %>
+	<label>配送料</label>
 	<%= @order.postage %>
-
-	<%= allPraice(@order.total_price,postage)%>
+	<label>請求金額合計</label>
+	<%= @items.sum(:price) + @order.postage %>
