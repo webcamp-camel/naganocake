@@ -3,19 +3,22 @@
 <% if user_signed_in? %>
 <p style="text-align:right; padding: 10px 10px 0 0; color:#694D49;">
 	ようこそ、
+	<%= link_to user_path(current_user) do %>
 	<%= current_user.first_name %>
+	<% end %>
   	さん
 </p>
 <% end %>
-
+<%= link_to root_path do %>
 <img src="/assets/logo.jpg" style="height:100px; display:block; margin: 0 auto">
 <div class="link_box" style="margin: 0 auto 20px; text-align: center;">
+<% end %>
 	<% if user_signed_in? %>
 
 <!-- ログイン時表示される内容-->
 	<ul style="list-style: none;">
 		<li style="display:inline-block;">
-			<%= link_to cart_items_path do %>
+			<%= link_to home_about_path do %>
 			<span style="color:#694D49; margin-right: 10px;">ABOUT US</span>
 			<% end %>
 		</li>
@@ -31,7 +34,7 @@
 		</li>
 	</ul>
 	<% else %>
-	
+
 <!-- 非ログイン時、または非会員に表示される内容 -->
 	<ul style="list-style:none;">
 		<li style="display:inline-block;">

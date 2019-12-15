@@ -21,7 +21,7 @@ before_action :access
   def leave
     @user.is_deleted = true
     @user.save
-    redirect_to :root_path
+    redirect_to root_path
   end
 
   private
