@@ -23,5 +23,6 @@ class ApplicationController < ActionController::Base
  #    		users_sign_out_path
  #  		end
 	# end
+
 end
 
