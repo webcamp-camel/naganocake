@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>ながのcake</title>
-	<meta charset="UTF-8">
-</head>
-<body>
-	<h1>管理者画面</h1>
-	 <%= @count %>
-	<% @orders.each do |order| %>
-		<%= ordered_item.quantity %>
-	<% end %>
-</body>
-</html>
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>ながのcake</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div>
+			<h1>管理者画面</h1>
+			<span>本日の注文件数は</span>
+		 		<%=link_to admins_orders_path do%>
+					<%= @count %>
+				<% end %>
+			<span>件です</span>
+		</div>
+	</body>
+	</html>
