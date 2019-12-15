@@ -32,4 +32,6 @@ before_action :authenticate_user!, only: [:show]
 	def product_params
 		params.require(:product).permit(:image_id, :name, :introduction)
 	end
+
+
 end
