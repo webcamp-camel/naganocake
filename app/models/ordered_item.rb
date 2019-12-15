@@ -9,5 +9,6 @@ class OrderedItem < ApplicationRecord
 	validates :quantity, presence: true
 	validates :product_status, presence: true
 
-	enum product_status: {制作待ち:1,製作中:2,制作完了:3}
+
+enum product_status: {製作待ち:1,製作中:2,製作完了:3}
 end
