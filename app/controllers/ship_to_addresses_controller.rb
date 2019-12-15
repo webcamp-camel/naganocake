@@ -34,7 +34,7 @@ before_action :authenticate_user!
     def edit
         @ship_to_address = ShipToAddress.find(params[:id])
 
-        if @ship_to_address.user.id != current_user.id
+        if  current_user.id != @ship_to_address.user_id
             flash[:notice] = "errors"
             redirect_to ship_to_addresses_path
         end
@@ -56,6 +56,11 @@ private
     def ship_to_address_params
         params.require(:ship_to_address).permit(:last_name, :first_name, :postal_code, :address, :last_name_kana, :first_name_kana, :phone,:user_id)
 
-end
+    end
 
+    def authenticate_user!
+     unless user_signed_in? && current_user.is_deleted?
+        redirect_to root_path
+     end
+    end
 end

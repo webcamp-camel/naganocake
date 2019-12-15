@@ -30,4 +30,11 @@ before_action :authenticate_user!, only: [:show]
 	def product_params
 		params.require(:product).permit(:image_id, :name, :introduction)
 	end
+
+	def authenticate_user!
+      unless user_signed_in? && current_user.is_deleted?
+        sign_out
+        redirect_to root_path
+      end
+    end
 end

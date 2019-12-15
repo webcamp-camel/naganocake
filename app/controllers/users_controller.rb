@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 #ログインユーザーのみ
 before_action :authenticate_user!
 before_action :set_user
-before_action :access
 
 # 顧客詳細画面
   def show
@@ -31,12 +30,20 @@ before_action :access
   	end
 
     def access
-      return if @user != current_user
+      if current_user.id != @user.id
         redirect_to root_path
+      end
     end
 
 # ストロングパラメーター
   	def user_params
   		params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :address, :postal_code, :phone, :email, :is_deleted)
   	end
+
+     def authenticate_user!
+      unless user_signed_in? && current_user.is_deleted?
+        sign_out
+        redirect_to root_path
+      end
+    end
 end
