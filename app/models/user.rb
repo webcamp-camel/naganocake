@@ -10,4 +10,10 @@ class User < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   #注文履歴との紐付け
   has_many :orders, dependent: :destroy
+
+  #validation
+  validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+  validates :first_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
+  validates :postal_code, format: /\A[0-9]+\z/
+  validates :phone, format:/\A[0-9]+\z/
 end

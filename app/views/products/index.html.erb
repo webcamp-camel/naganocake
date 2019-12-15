@@ -19,4 +19,10 @@
 			</tr>
 			<% end %>
 	</table>
+
+	<!--　ジャンル検索ボタン　-->
+	<label><%= link_to "全商品", root_path %></label>
+	<% @genres.each do |genre| %>
+	  <label><%= link_to genre.name, root_path(genre: genre.id) %></label>
+    <% end %>
 </div>
