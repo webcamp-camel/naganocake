@@ -5,25 +5,25 @@
   <%= form_for(@product, url:admins_product_path) do |f| %>
     <div class="form-horizontal">
       <h4 style ="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">商品編集画面</h4>
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for= "InputName">画像投稿</label>
+      <div>
+        <label class="col-sm-2">画像投稿</label>
         <%= attachment_image_tag @product, :image, :fill, 150,100, fallback: "no_imag.jpg" %>
         <div class="col-sm-10">
-          <%= f.attachment_field :image %>
+          <%= f.attachment_field :image  %>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for= "InputName">商品名</label>
+        <label class="col-sm-2 control-label" for="InputName">商品名</label>
         <div class="col-sm-6">
-          <%= f.text_field :name, class:"form-comtrol",id:"InputName", autocomplete: "name" %>
+          <%= f.text_field :name, class:"form-control",　id:"InputName", autocomplete: "name" %>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for= "InputName">商品説明</label>
-        <div class="col-sm-2">
-          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", rows:10 %>
+        <label class="col-sm-2 control-label" for= "InputIntroduction">商品説明</label>
+        <div class="col-sm-7">
+          <%= f.text_area :introduction, class:"form-control", id:"InputIntroduction", autocomplete: "introduction", rows: 10 %>
         </div>
       </div>
 
