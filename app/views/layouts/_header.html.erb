@@ -1,57 +1,61 @@
-<header style="border-bottom:1px solid #dad7d7">
+<style>
+	ul {
+		list-style: none;
+	}
 
-<% if user_signed_in? %>
-<p style="text-align:right; padding: 10px 10px 0 0; color:#694D49;">
-	ようこそ、
-	<%= link_to user_path(current_user) do %>
-	<%= current_user.first_name %>
+	li {
+		display: inline-block;
+		color:#694d49;
+		margin-right: 10px;
+	}
+</style>
+
+
+
+<div id="header" style="border-bottom:1px solid #dad7d7">
+
+<!-- 退会済みユーザーの場合は表示を変える。 -->
+	<% if user_signed_in? && current_user.is_deleted? %>
+			<p style="text-align:right; padding: 10px 10px 0 0; color:#694D49;">
+				あなたは退会済みです
+			</p>
+	<% elsif user_signed_in? && !current_user.is_deleted %>
+			<p style="text-align:right; padding: 10px 10px 0 0; color:#694D49;">
+				ようこそ、
+				<%= link_to current_user.first_name, user_path(current_user) %>
+				さん
+			</p>
 	<% end %>
-  	さん
-</p>
-<% end %>
+
 <%= link_to root_path do %>
-<img src="/assets/logo.jpg" style="height:100px; display:block; margin: 0 auto">
-<div class="link_box" style="margin: 0 auto 20px; text-align: center;">
+		<img src="/assets/logo.jpg" style="height:100px; display:block; margin: 0 auto">
 <% end %>
-	<% if user_signed_in? %>
 
+
+<div id="box" style="margin: 0 auto 20px; text-align: center;">
+	<% if user_signed_in? && !current_user.is_deleted? %>
 <!-- ログイン時表示される内容-->
-	<ul style="list-style: none;">
-		<li style="display:inline-block;">
-			<%= link_to home_about_path do %>
-			<span style="color:#694D49; margin-right: 10px;">ABOUT US</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%= link_to cart_items_path do %>
-			<span style="color:#694D49; margin-right: 10px;">SHOPPING</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%= link_to destroy_user_session_path, method: :delete do %>
-			<span style="color:#694D49;">LOGOUT</span>
-			<% end %>
-		</li>
+	<ul>
+		<li><%= link_to 'ABOUT US', home_about_path %></li>
+		<li><%= link_to 'SHOPPING', cart_items_path %></li>
+		<li><%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
 	</ul>
-	<% else %>
 
-<!-- 非ログイン時、または非会員に表示される内容 -->
-	<ul style="list-style:none;">
-		<li style="display:inline-block;">
-			<%= link_to cart_items_path do %>
-			<span style="color:#694D49;">ABOUT US</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%= link_to new_user_registration_path do %>
-			<span style="color:#694D49;">SIGN UP</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%= link_to new_user_session_path do %>
-			<span style="color:#694D49;">LOGIN</span>
-			<% end %>
-		</li>
+	<% elsif user_signed_in? && current_user.is_deleted? %>
+<!-- 退会済みユーザーに表示される内容 -->
+	<ul>
+		<li><%= link_to 'ABOUT US', home_about_path %></li>
+		<li><%= link_to 'SIGN UP', new_user_registration_path %></li>
+		<li><%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
+	</ul>
+
+	<% else %>
+<!-- ログアウト時に表示される内容 -->
+	<ul>
+		<li><%= link_to 'ABOUT US', cart_items_path %></li>
+		<li><%= link_to 'SIGN UP', new_user_registration_path %></li>
+		<li><%= link_to 'LOGIN', new_user_session_path %></li>
+	</ul>
 	<% end %>
 </div>
-</header>
+</div>

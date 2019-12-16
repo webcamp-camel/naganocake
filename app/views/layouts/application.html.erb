@@ -11,12 +11,25 @@
 
 
   <body>
-    <% if admin_signed_in? %>
-      <%= render 'layouts/adminheader' %>
-    <% else %>
-      <%= render 'layouts/header' %>
-    <% end %>
-    <%= yield %>
-    <%= render 'layouts/footer'%>
+
+  <div id="container">
+    <header>
+        <% if admin_signed_in? %>
+            <%= render 'layouts/adminheader' %>
+        <% else %>
+            <%= render 'layouts/header' %>
+        <% end %>
+    </header>
+
+    <main>
+        <%= yield %>
+    </main>
+
+    <footer>
+      <%= render 'layouts/footer'%>
+    </footer>
+
+  </div>
+
   </body>
 </html>

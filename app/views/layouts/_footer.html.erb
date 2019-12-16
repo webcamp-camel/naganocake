@@ -1,13 +1,45 @@
+<style>
+	.link_box {
+		position: absolute;
+		top: 10px;
+		right: 40px;
+		text-align: center;
+	}
 
-<footer style="padding:50px; border-top:1px solid #eee;">
-<img src="/assets/logo.jpg" alt="非表示", style = "height:100px; margin: 30px 5px;">
+	.icon {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		margin-right: 10px;
+		margin-top: 5px;
+	}
+
+	p {
+		color: #836159;
+	}
+
+</style>
 
 
-<div class="link_group pull-right">
-	<img src="/assets/facebook.jpg" alt="非表示", style = "height:30px; margin: 30px 5px;">
-	<img src="/assets/twitter.jpg" alt="非表示", style = "height:30px; margin: 30px 5px;">
-	<img src="/assets/instagram.jpg" alt="非表示", style = "height:30px; margin: 30px 5px;">
+
+<div style="width:100%; position:relative;">
+
+	<img src="/assets/logo.jpg" alt="非表示", style = "height:80px;">
+
+
+	<div class="link_box">
+		<span id="text">share us!</span><br>
+		 <%= link_to '/' do %>
+			<img src="/assets/twitter.jpg" class="icon">
+		 <% end %>
+		 <%= link_to '/' do %>
+			<img src="/assets/facebook.jpg" class="icon">
+		<% end %>
+		<%= link_to '/' do %>
+			<img src="/assets/instagram.jpg" class="icon">
+		<% end %>
+	</div>
+
+	<p class="text-center">(c) all rights naganocake & team camel</p>
+
 </div>
-</footer>
-
-
