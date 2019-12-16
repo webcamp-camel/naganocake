@@ -1,81 +1,71 @@
 <!-- 配送先一覧・登録画面 -->
 
-<div class="show-container" style="width:50%; margin: 20px auto;">
+<div class="index-container" style="width:60%; margin: 20px auto;">
 
   <!-- 配送先登録フォーム -->
-  <div class="row">
-    <div class="col-xs-4">
-    	<h5>配送先/一覧</h5>
+      <h5>配送先/一覧</h5>
       <%= form_for (@ship_to_address) do |f| %>
-        <table class="table-bordered">
+        <table class="table table-bordered">
 	      <tr>
-		    <td>郵便番号</td>
+		    <th>郵便番号</th>
 		    <td><%= f.text_field :postal_code %></td>
 	      </tr>
 	      <tr>
-		    <td>住所</td>
-		    <td><%= f.text_field :address %></td>
+		    <th>住所</th>
+		    <td><%= f.text_field :address, style: "width: 80%;" %></td>
 	      </tr>
 	      <tr>
-	  	    <td>電話番号</td>
+	  	    <th>電話番号</th>
 	  	    <td><%= f.text_field :phone %></td>
 	      </tr>
 	      <tr>
-		    <td></td>
-		    <td>姓/名</td>
-	      </tr>
-	      <tr>
-		    <td>漢字</td>
+		    <th>姓/名</th>
 		    <td><%= f.text_field :last_name %>/<%= f.text_field :first_name %></td>
 	      </tr>
 	      <tr>
-	  	    <td></td>
-	  	    <td>セイ/メイ</td>
-	      </tr>
-	      <tr>
-	  	    <td>カナ</td>
+	  	    <th>セイ/メイ</th>
 	  	    <td><%= f.text_field :last_name_kana %>/<%= f.text_field :first_name_kana %></td>
 	      </tr>
 	    </table>
-	</div>
-	    <div class="col-xs-3">
-	      <%= f.submit "登録する", class:"btn-primary btn-sm" %>
-	    </div>
+	      <%= f.submit "登録する", class:"btn btn-primary btn-md" %>
       <% end %>
-  </div>
 
   <!-- 配送先一覧/編集/削除/ -->
-  <table class="table-bordered index" style="margin-top: 20px;">
-	<tr>
-		<td>郵便番号</td>
-		<td>住所</td>
-		<td>電話番号</td>
-		<td>宛名</td>
-		<td>あてな</td>
-		<td></td>
-	</tr>
-	<% @ship_to_addresses.each do |ship_to_address| %>
+  <table class="table table-bordered" style="margin-top: 20px;">
+  	<thead>
 	  <tr>
-		<td>
-			<%= ship_to_address.postal_code %>
-		</td>
-		<td>
-			<%= ship_to_address.address %>
-		</td>
-		<td>
-			<%= ship_to_address.phone %>
-		</td>
-		<td>
-			<%= ship_to_address.last_name %><% ship_to_address.first_name %>
-		</td>
-		<td>
-			<%= ship_to_address.last_name_kana %><% ship_to_address.first_name_kana %>
-		</td>
-		<td>
-			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address), class:"btn-primary btn-sm" %>
-			<%= link_to "削除する", ship_to_address_path(ship_to_address), class:"btn-danger btn-sm", method: :delete %>
-		</td>
+	    <th>郵便番号</th>
+		<th>住所</th>
+		<th>電話番号</th>
+		<th>宛名</th>
+		<th>あてな</th>
+		<th></th>
 	  </tr>
+    </thead>
+	<% @ship_to_addresses.each do |ship_to_address| %>
+	  <tbody>
+	    <tr>
+		  <td>
+			<%= ship_to_address.postal_code %>
+		  </td>
+		  <td>
+			<%= ship_to_address.address %>
+		  </td>
+		  <td>
+			<%= ship_to_address.phone %>
+		  </td>
+		  <td>
+			<%= ship_to_address.last_name %><%= ship_to_address.first_name %>
+		  </td>
+		  <td>
+			<%= ship_to_address.last_name_kana %><%= ship_to_address.first_name_kana %>
+		  </td>
+		  <td>
+			<%= link_to "編集する", edit_ship_to_address_path(ship_to_address), class:"btn btn-primary btn-md" %>
+			<%= link_to "削除する", ship_to_address_path(ship_to_address), class:"btn btn-danger btn-md", method: :delete %>
+		  </td>
+	    </tr>
+	  </tbody>
 	<% end %>
   </table>
 
