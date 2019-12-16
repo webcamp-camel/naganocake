@@ -1,20 +1,20 @@
 <!-- 配送先編集画面 -->
 
-<body>
+<div class="edit-container" style="width:50%; margin: 20px auto;">
 
   <!-- 編集フォーム見出し -->
-  <h1>配送先編集</h1>
+  <h3>配送先編集</h3>
 
   <!-- 編集フォーム -->
   <%= form_for(@ship_to_address) do |f| %>
-    <table>
+    <table class="table table-bordered">
       <tr>
 	    <td>郵便番号</td>
 	    <td><%= f.text_field :postal_code, autofocus: true %></td>
 	  </tr>
 	  <tr>
 	    <td>住所</td>
-	    <td><%= f.text_field :address, autofocus: true %></td>
+	    <td><%= f.text_field :address, autofocus: true, style: "width: 80%;" %></td>
 	  </tr>
 	  <tr>
 	    <td>電話番号</td>
@@ -22,16 +22,16 @@
 	  </tr>
 	  <tr>
 	    <td>(姓/名)</td>
-	    <td><%= f.text_field :last_name, autofocus: true %><%= f.text_field :first_name, autofocus: true %></td>
+	    <td><%= f.text_field :last_name, autofocus: true %>/<%= f.text_field :first_name, autofocus: true %></td>
 	  </tr>
 	  <tr>
 	    <td>(セイ/メイ)</td>
-	    <td><%= f.text_field :last_name_kana, autofucus: true %><%= f.text_field :first_name_kana, autofucus: true %></td>
+	    <td><%= f.text_field :last_name_kana, autofucus: true %>/<%= f.text_field :first_name_kana, autofucus: true %></td>
 	  </tr>
     </table>
 
     <!-- 編集確定ボタン -->
-    <%= f.submit "編集する" %>
+    <%= f.submit "編集する", class:"btn btn-primary btn-md" %>
   <% end %>
 
-</body>
+</div>
