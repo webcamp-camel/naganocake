@@ -9,12 +9,18 @@
 			</h1>
 
 			<table class="table">
+				<tr>
+					<td class="col-xs-4"></td>
+					<td style ="text-align: center", class="col-xs-4">商品</td>
+					<td style ="text-align: center", class="col-xs-4">個数</td>
+				</tr>
 				<% @items.each do |item|%>
 				<tr>
-					<td><%= attachment_image_tag item.product, :image, style: "width: 100%;" %></td>
-					<td><%= item.product.name %></td>
-					<td><%= item.today_count %></td>
+					<td style ="text-align: center"><%= attachment_image_tag item.product, :image, style: "width: 200px;" %></td>
+					<td ><%= item.product.name %></td>
+					<td style ="text-align: center"><%= 2%></td>
 				</tr>
+				<!-- item.today_count  -->
 				<% end %>
 			</table>
 		</div>
