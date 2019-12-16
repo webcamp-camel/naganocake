@@ -1,38 +1,45 @@
 <!-- ジャンル一覧ページ -->
 
-<!-- ジャンル追加フォーム -->
-<%= form_for(@genre, url:admins_genres_path) do |f| %>
+<div class="index-container" style="width:40%; margin: 20px auto;">
 
-  <div class="form-group">
-    <%= f.text_field :name %>
-  </div>
-  <div class="action">
-	<%= f.submit '追加' %>
-  </div>
-<% end %>
+  <h3>ジャンル管理画面</h3>
 
-<!-- ジャンル一覧/使用切り替え/編集 -->
-<table>
-  <tr>
-	<th>ジャンルの名前</th>
-  </tr>
-  <% @genres.each do |genre| %>
+  <!-- ジャンル追加フォーム -->
+  <%= form_for(@genre, url:admins_genres_path) do |f| %>
 
-    <tr>
-      <td>
-	    <%= genre.name %>
-	  </td>
-	  <td>
+    <div class="form-group">
+      <p>ジャンル追加</p>
+      <%= f.text_field :name %>
+      <%= f.submit '追加', class:"btn btn-info btn-md" %>
+    </div>
+  <% end %>
 
-	    <% if genre.is_disable == false  %>
-	      <%= link_to "無効にする", disable_admins_genre_path(genre), method: :patch %>
-	    <% elsif genre.is_disable == true %>
-		  <%= link_to "有効にする", enable_admins_genre_path(genre), method: :patch %>
+  <!-- ジャンル一覧/使用切り替え/編集 -->
+  <table class="table">
+  	<thead>
+      <tr>
+	    <th>ジャンル一覧</th>
+      </tr>
+    </thead>
+    <% @genres.each do |genre| %>
+
+      <tr>
+        <th>
+	      <%= genre.name %>
+	    </th>
+	    <td>
+
+	      <% if genre.is_disable == false  %>
+	        <%= link_to "無効にする", disable_admins_genre_path(genre), class:"btn btn-danger btn-md", method: :patch %>
+	      <% elsif genre.is_disable == true %>
+		  <%= link_to "有効にする", enable_admins_genre_path(genre), class:"btn btn-success btn-md", method: :patch %>
 	    <% end %>
 
+        <%= link_to "編集する", edit_admins_genre_path(genre), class:"btn btn-primary btn-md" %>
 	  </td>
-	  <td><%= link_to "編集する", edit_admins_genre_path(genre) %></td>
     </tr>
 
   <% end %>
 </table>
+
+</div>
