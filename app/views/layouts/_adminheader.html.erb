@@ -1,31 +1,35 @@
 <!-- admin側のheader -->
-	<img src="/assets/logo.jpg" style="height:100px; display:block; margin: 0 auto">
-<div class="link_box" style="margin: 0 auto 20px; text-align: center;">
-	<ul style="list-style: none;">
-		<li style="display:inline-block;">
-			<%=link_to admins_products_path do%>
-				<span style="color:#694D49; margin-right: 10px;">商品一覧</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%=link_to admins_users_path do%>
-				<span style="color:#694D49; margin-right: 10px;">会員一覧</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%=link_to admins_orders_path do%>
-				<span style="color:#694D49; margin-right: 10px;">注文履歴一覧</span>
-			<% end %>
-		</li>
-		<li style="display:inline-block;">
-			<%=link_to admins_genres_path do%>
-				<span style="color:#694D49; margin-right: 10px;">ジャンル管理</span>
-				<%end%>
-		</li>
-		<li style="display:inline-block;">
-			<%=link_to destroy_admin_session_path, method: :delete do%>
-				<span style="color:#694D49; ">ログアウト</span>
-			<%end%>
-		</li>
+<style>
+	#header {
+		width: 100%;
+		height: 181px;
+		border-bottom: 1px solid #dad7d7;
+		padding: 20px;
+	}
+	ul {
+		list-style: none;
+	}
+
+	li {
+		display: inline-block;
+		color:#694d49;
+		margin-right: 10px;
+	}
+</style>
+
+<div id="header">
+<p>管理者ページ</p>
+<%= link_to admins_path do %>
+	<img src="/assets/logo.jpg" style="height:100px; display:block; margin: 0 auto;">
+<% end %>
+
+<div class="box" style="margin: 0 auto; text-align: center;">
+	<ul>
+		<li><%=link_to '商品一覧', admins_products_path %></li>
+		<li><%=link_to '会員一覧', admins_users_path %></li>
+		<li><%=link_to '注文履歴一覧', admins_orders_path %></li>
+		<li><%=link_to 'ジャンル管理', admins_genres_path %></li>
+		<li><%=link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
 	</ul>
+</div>
 </div>
