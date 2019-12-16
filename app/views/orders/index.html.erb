@@ -1,25 +1,36 @@
-<div class="container">
-<h1>注文履歴一覧</h1>
-<table  class="table table-bordered ">
-	<thead>
-		<tr>
-			<th>注文日</th>
-			<th>配送先</th>
-			<th>注文商品</th>
-			<th>支払い金額</th>
-			<th>注文詳細</th>
-		</tr>
+<div class="row" style="width: 90%; margin: 20px auto;">
+<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴一覧</h4>
+	<table  class="table table-bordered ">
+		<thead>
+			<tr style="background:#dad7d7;">
+				<th>注文日</th>
+				<th>配送先</th>
+				<th>注文商品</th>
+				<th>支払い金額</th>
+				<th>注文詳細</th>
+			</tr>
 	</thead>
 	<tbody>
 		<% @orders.each do |order| %>
 		<tr>
-			<td><%= order.created_at %></td>
-			<td><%= order.ship_address %></td>
-			<td><%= order.payment %></td>
+			<td><%= order.created_at.strftime('%Y年%m月%d日') %></td>
+			<td>
+				〒<%= order.ship_postal_code %><br>
+				<%= order.ship_address %><br>
+				<%= order.last_name %><%= order.first_name %> 様
+			</td>
+			<td>
+				<% order.ordered_items.each do |item| %>
+					<%= item.product.name %><br>
+				<% end %>
+			</td>
 			<td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
-			<td><%= link_to order_path(order), class: "btn btn-primary" do %>表示する<% end %></td>
+			<td><%= link_to order_path(order), class: "btn btn-success" do %>表示する<% end %></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
+<%= link_to root_path do %>
+	<span class="glyphicon glyphicon-chevron-left">トップページ</span>
+<% end %>
 </div>
