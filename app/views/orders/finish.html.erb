@@ -1,1 +1,23 @@
-<h1>ご購入ありがとうございました！</h1>
+
+<div class="text-center" style="width: 60%; margin: 0 auto; color:#694d49;">
+	<h2 style="padding-top: 50px; color:#694d49;">ご購入ありがとうございました！</h2>
+	<h4 style="color:#694d49;">またのご利用をお待ちしております。</h4>
+
+	<div class="row" style="margin: 0 auto;">
+		<div class="col-sm-3" style="background-image:url(/assets/tart1.jpg); background-size:cover; height: 200px; opacity:.8;"></div>
+		<div class="col-sm-3" style="background-image:url(/assets/cake3.jpg); background-size:cover; background-position: center; height: 200px; opacity:.8;"></div>
+		<div class="col-sm-3" style="background-image:url(/assets/tart2.jpg); background-size:cover; background-position: center; height: 200px; opacity:.8;"></div>
+		<div class="col-sm-3" style="background-image:url(/assets/cake2.jpg); background-size:cover; background-position: center; height: 200px; opacity:.8;"></div>
+	</div>
+
+	<h6>このページはあと５秒でトップページに移動します。
+		移動しない場合は<%= link_to 'こちら', root_path %></h6>
+
+</div>
+
+<script>
+	setTimeout(function() {
+		window.location.href = "/";
+	}, 5*1000);
+</script>
+
