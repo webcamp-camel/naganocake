@@ -1,24 +1,22 @@
-	<img src="assets/tart1" alt="非表示",height ="50px;",width ="100px;">
-	</img>
+
+	<img src="assets/tart1" alt="非表示", style = " height: 50px; width: 100px;">
 	<div class="container">
 		<h1>PRODUCTS</h1>
-	<div>
-		<h1>ジャンル一覧</h1>
-	<label><%= link_to "ジャンルで検索", root_path %></label>
-		<% @genres.each do |genre| %>
-	 		<label><%= link_to genre.name, root_path(genre: genre.id) %></label>
-   		 <% end %>
-	<div>
+		<h2>ジャンルで検索</h2>
+			<% @products.each do |genre| %>
+	 			<label><%= link_to genre.name, root_path(genre: genre.id) %></label>
+	 			<%link_to root_path(genre: genre.id) do%>
+	 				<span style = "background-color: #2D714C">genre.name</span>
+   		 	<% end %>
+		<div>
 			<% @products.each do |product| %>
 			<div>
 				<span><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></span>
-				<%= link_to product_path(product.id) do %>
-						<%= product.name %>
-						<% end %>
-				<%= product.price %>
-			</div>
+					<%= link_to product_path(product.id) do %>
+					<%= product.name %>
+					<%= product.price %>
 			<% end %>
+			</div>
+		</div>
 
 	</div>
-
-</div>
