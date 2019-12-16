@@ -1,16 +1,25 @@
-<h4>ショッピングカート</h4>
+<div class="cart_container" style="width:90%; margin: 20px auto; position:relative;">
 
-<div class="pull-right">
+<strong style="font-size:18px;">
+	<img src="/assets/cart_icon.jpg" style="display:inline-block; height: 25px;">
+	ショッピングカート
+</strong>
+
+<div class="row" style="width:100%; height:20px;"></div>
+
+<div style="position:absolute; top: 30px; right: 0;">
 	<%= link_to cart_items_path, method: :delete do %>
 		<span class="btn btn-danger">カートを空にする</span>
 	<% end %>
 </div>
 
+
 <%= form_for cart_items_path, method: :patch do |f| %>
+<span style="color:#266846;">表示されている価格は全て税込です。</span>
 <table class="table table-bordered">
-	<tr>
+	<tr style="background:#dad7d7; border: 1px solid #fff;">
 		<th>商品名</th>
-		<th>単価（税込）</th>
+		<th>単価</th>
 		<th>数量</th>
 		<th>小計</th>
 		<th></th>
@@ -18,6 +27,7 @@
  <% @cart_items.each do |item| %>
 	<tr>
 		<td>
+			<%= attachment_image_tag item.product, :image, :fill, 50, 50 %>
 			<%= item.product.name %>
 		</td>
 		<td>
@@ -39,20 +49,38 @@
 
 <div class="row">
 	<div class="col-xs-4">
-		<%= link_to '買い物を続ける', root_path %>
+		<%= link_to root_path do %>
+			<span class="btn btn-info glyphicon glyphicon-chevron-left">買い物を続ける</span>
+		<% end %>
 	</div>
 	<div class="col-xs-4 pull-right">
 		<table class="table table-striped">
-			<tr><th>合計金額</th></tr>
+			<tr style="background:#dad7d7; border: 1px solid #fff;"><th>合計金額</th></tr>
 			<tr><td><%= addTax(@total_price) %></td></tr>
 		</table>
-		<%= f.submit '再計算する' %>
-		<% end %>
+
+		<div class="pull-right">
+			<%= f.submit '再計算する', class:"btn btn-default", data: {toggle:"tooltip", placement:"left"}, title:"数量を変更したらクリック" %>
+		</div>
+<% end %>
+
 	</div>
 </div>
 
 <!-- カートに商品が入っていたら表示させる -->
-<% if @cart_items.blank? %>
-<% else %>
-	<%= link_to '購入情報の入力', new_order_path %>
-<% end %>
+	<% if @cart_items.blank? %>
+		<% else %>
+		<div class="text-center">
+			<%= link_to '購入に進む', new_order_path, class:"btn btn-success" %>
+		</div>
+	<% end %>
+
+</div>
+
+
+
+<script>
+	$(function () {
+	$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
