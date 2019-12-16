@@ -1,28 +1,22 @@
-<div class="container">
-<h1>商品一覧ページ</h1>
-	<table  class="table table-bordered ">
-			<tr>
-				<th>商品画像</th>
-				<th>商品名</th>
-				<th>税込み価格</th>
-				<th></th>
-				<th></th>
-			</tr>
-			<% @products.each do |product| %>
-			<tr>
-				<td><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></td>
-				<td><%= link_to product_path(product.id) do %>
-						<%= product.name %>
-						<% end %>
-				</td>
-				<td><%= product.price %></td>
-			</tr>
-			<% end %>
-	</table>
 
-	<!--　ジャンル検索ボタン　-->
-	<label><%= link_to "全商品", root_path %></label>
-	<% @genres.each do |genre| %>
-	  <label><%= link_to genre.name, root_path(genre: genre.id) %></label>
-    <% end %>
-</div>
+	<img src="assets/tart1" alt="非表示", style = " height: 50px; width: 100px;">
+	<div class="container">
+		<h1>PRODUCTS</h1>
+		<h2>ジャンルで検索</h2>
+			<% @products.each do |genre| %>
+	 			<label><%= link_to genre.name, root_path(genre: genre.id) %></label>
+	 			<%link_to root_path(genre: genre.id) do%>
+	 				<span style = "background-color: #2D714C">genre.name</span>
+   		 	<% end %>
+		<div>
+			<% @products.each do |product| %>
+			<div>
+				<span><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></span>
+					<%= link_to product_path(product.id) do %>
+					<%= product.name %>
+					<%= product.price %>
+			<% end %>
+			</div>
+		</div>
+
+	</div>

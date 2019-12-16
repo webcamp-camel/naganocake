@@ -1,3 +1,4 @@
+
 <div class="edit-container" style="width:50%; margin: 20px auto; position: relative;">
   <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">ユーザー情報編集</h4>
 <%= form_for(@user) do |f| %>
@@ -5,9 +6,10 @@
               <span class="btn btn-danger" style="position: absolute; top: 30px; right: 50px;">退会する</span>
        <% end %>
     <div class="row" style="height: 20px;"></div>
+
 <div class="form-group">
     <label>姓</label>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", style: "margin;"  %>
     <label>名</label>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
@@ -42,9 +44,11 @@
   <div style="text-align:center;">
     <%= f.submit "変更を保存する", class:"btn btn-success", style: "display:inline-block" %>
   </div>
+
   <%= link_to user_path(@user) do %>
       <span class="glyphicon glyphicon-chevron-left">マイページ</span>
   <% end %>
+
 <% end %>
 </div>
 

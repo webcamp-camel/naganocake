@@ -1,3 +1,4 @@
+
 <div class="cart_container" style="width:90%; margin: 20px auto; position:relative;">
 
 <strong style="font-size:18px;">
@@ -12,7 +13,6 @@
 		<span class="btn btn-danger">カートを空にする</span>
 	<% end %>
 </div>
-
 
 <%= form_for cart_items_path, method: :patch do |f| %>
 <span style="color:#266846;">表示されている価格は全て税込です。</span>
@@ -65,9 +65,13 @@
 <% end %>
 
 	</div>
+
 </div>
 
+
+
 <!-- カートに商品が入っていたら表示させる -->
+
 	<% if @cart_items.blank? %>
 		<% else %>
 		<div class="text-center">
@@ -84,3 +88,4 @@
 	$('[data-toggle="tooltip"]').tooltip();
 });
 </script>
+
