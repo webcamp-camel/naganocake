@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	before_action :authenticate_admin!
 
 	protected
 		def configure_permitted_parameters
@@ -14,6 +13,7 @@ class ApplicationController < ActionController::Base
   		when Admin
     		admins_path
 		end
+	end
 
 	# def after_sign_out_path_for(resource)
  #  		case resource
@@ -23,5 +23,6 @@ class ApplicationController < ActionController::Base
  #    		users_sign_out_path
  #  		end
 	# end
+
 end
 
