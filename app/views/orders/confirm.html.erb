@@ -1,11 +1,23 @@
-<div class="container">
+<style>
+	th {
+		background: #dad7d7;
+		border: 1px solid #fff;
+	}
+	h4 {
+		border-left: 2px solid #2D6F4C;
+		padding: 10px;
+	}
+</style>
+
+<div class="container" style="margin-top: 20px;">
  <h4>注文情報確認</h4>
+ 	<span style="color:#2d714c;">表示価格は全て税込です。</span>
 <div class="row">
 	<div class="col-xs-8">
 		<table class="table table-bordered">
 			<tr>
 				<th>商品名</th>
-				<th>単価（税込)</th>
+				<th>単価</th>
 				<th>数量</th>
 				<th>小計</th>
 			</tr>
@@ -39,16 +51,19 @@
 	</div>
 </div>
 
-<label>支払い方法：</label>
-<p><%= @order.payment %></p>
+<h4>支払い方法</h4>
+	<p><%= @order.payment %></p>
 
-<label>お届け先</label>
-<p><%= @order.ship_postal_code %></p>
-<p><%= @order.ship_address %></p>
-<p><%= @order.last_name %> <%= @order.first_name %></p>
+<h4>お届け先</h4>
+	<p>〒<%= @order.ship_postal_code %>
+	<%= @order.ship_address %>
+	<%= @order.last_name %> <%= @order.first_name %> 様</p>
 
+<hr>
 
-<%= link_to '注文を確定する', orders_finish_path %>
+<div class="text-center">
+	<%= link_to '注文を確定する', orders_finish_path, class:"btn btn-success" %>
+</div>
 </div>
 
 
