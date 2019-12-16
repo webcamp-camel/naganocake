@@ -1,10 +1,8 @@
 
-<<<<<<< HEAD
 
 <div class="container">
 <h4>ショッピングカート</h4>
-=======
->>>>>>> origin
+
 <div class="pull-right">
 <%= link_to cart_items_path, method: :delete do %>
 		<span class="btn btn-danger",style = "margin-bottom: 5px;">カートを空にする</span>
@@ -56,14 +54,11 @@
 
 </div>
 
-<<<<<<< HEAD
 
-<%= link_to '購入情報の入力', new_order_path %>
-</div>
-=======
+
 <!-- カートに商品が入っていたら表示させる -->
 <% if @cart_items.blank? %>
 <% else %>
 	<%= link_to '購入情報の入力', new_order_path %>
 <% end %>
->>>>>>> origin
+
