@@ -1,11 +1,9 @@
-<!-- 配送先一覧・登録 -->
+<!-- 配送先一覧・登録画面 -->
 
-<body>
-
+<div class="show-container" style="width:50%; margin: 20px auto;">
 
   <!-- 配送先登録フォーム -->
   <div class="row">
-  	<div class="col-xs-3"></div>
     <div class="col-xs-4">
     	<h5>配送先/一覧</h5>
       <%= form_for (@ship_to_address) do |f| %>
@@ -47,7 +45,7 @@
   </div>
 
   <!-- 配送先一覧/編集/削除/ -->
-  <table class="table-bordered index">
+  <table class="table-bordered index" style="margin-top: 20px;">
 	<tr>
 		<td>郵便番号</td>
 		<td>住所</td>
@@ -81,4 +79,4 @@
 	<% end %>
   </table>
 
-</body>
+</div>
