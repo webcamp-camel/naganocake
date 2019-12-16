@@ -1,40 +1,46 @@
-<div class="container">
-	<h2 style="font-weight: normal;">マイページ</h2>
-	<h4>登録情報</h4>
-	<%= link_to '編集する', edit_user_path(@user) %>
-	<%= link_to 'パスワードを編集する', edit_user_registration_path %>
+<div class="show-container" style="width:50%; margin: 20px auto;">
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">マイページ</h4>
+
 	<table class="table table-condensed">
 		<tbody>
 			<tr>
-				<th style="background-color: #eee;">名前</th>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">名前</th>
 				<td><%= @user.last_name %> <%= @user.first_name %></td>
 			</tr>
 			<tr>
-				<th style="background-color: #eee;">フリガナ</th>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">フリガナ</th>
 				<td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
 			</tr>
 			<tr>
-				<th style="background-color: #eee;">郵便番号</th>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">郵便番号</th>
 				<td>〒 <%= @user.postal_code %></td>
 			</tr>
 			<tr>
-				<th style="background-color: #eee;">住所</th>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">住所</th>
 				<td><%= @user.address %></td>
 			</tr>
 			<tr>
-				<th style="background-color: #eee;">電話番号</th>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">電話番号</th>
 				<td><%= @user.phone %></td>
 			</tr>
 			<tr>
-				<th style="background-color: #eee;">メールアドレス</th>
-				<td><%= @user.email %></td>
+				<th style="background-color: #dad7d7; border-bottom: 1px solid #fff;">メールアドレス</th>
+				<td style="border-bottom: 1px solid #dad7d7;"><%= @user.email %></td>
 			</tr>
 
 		</tbody>
 	</table>
-
-	<h4>配送先</h4>
-		<%= link_to '一覧を見る', ship_to_addresses_path %>
-	<h4>注文履歴</h4>
-		<%= link_to '一覧を見る', orders_path(id: @user.id) %>
+	<%= link_to '登録情報を編集する', edit_user_path(@user), class:"btn btn-info" %>
+	<%= link_to 'パスワードを編集する', edit_user_registration_path, class:"btn btn-success" %>
+	<hr>
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">配送先</h4>
+		<%= link_to ship_to_addresses_path do %>
+			一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
+		<% end %>
+	<hr>
+	<h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文履歴</h4>
+		<%= link_to orders_path(id: @user.id) do %>
+			一覧を見る<span class="glyphicon glyphicon-chevron-right"></span>
+		<% end %>
+	<hr>
 </div>
