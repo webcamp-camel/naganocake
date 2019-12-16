@@ -50,7 +50,6 @@ Rails.application.routes.draw do
 
   get 'home/about' => 'home#about'
 
-  get 'cart_items/confirm' => 'cart_items#confirm'
   delete :cart_items, to: 'cart_items#destroy_all'
   patch :cart_items, to: 'cart_items#update_all'
 
