@@ -14,12 +14,6 @@ class ApplicationController < ActionController::Base
     		admins_path
 		end
 	end
-  
-	def authenticate_user!
-		return unless user_signed_in? && current_user.is_deleted?
-		sign_out
-		redirect_to root_path
-	end
 
 	# def after_sign_out_path_for(resource)
  #  		case resource
@@ -29,5 +23,6 @@ class ApplicationController < ActionController::Base
  #    		users_sign_out_path
  #  		end
 	# end
+
 end
 

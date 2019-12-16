@@ -1,4 +1,5 @@
 class Admins::UsersController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
   	@users = User.all
@@ -14,22 +15,23 @@ class Admins::UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-  	@user.update(user_params)
-  	redirect_to admins_user_path(@user)
+  	if @user.update(user_params)
+        redirect_to admins_user_path(@user)
+    else
+        render :edit
+    end
   end
 
   def toggle
   	@user = User.find(params[:id])
 
-  	if @user.is_deleted == false
-  		@user.is_deleted = true
-  		@user.save
-  		redirect_to edit_admins_user_path(@user)
+  	if @user.is_deleted?
+  		  @user.is_deleted = false
   	else
-  		@user.is_deleted = false
-  		@user.save
-  		redirect_to edit_admins_user_path(@user)
+  		  @user.is_deleted = true
   	end
+        @user.save
+        redirect_to edit_admins_user_path(@user)
   end
 
   private

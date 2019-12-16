@@ -1,4 +1,5 @@
 class Admins::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def index
   	@orders = Order.all
   end
@@ -15,11 +16,11 @@ class Admins::OrdersController < ApplicationController
     @order.save
 #ordered_itemのproduct_statusの更新
     @items = @order.ordered_items
-    @items.each do |item|
+      @items.each do |item|
         item.product_status = params[:ordered_items][:product_status][item.id.to_s].to_i
         item.save
-    end
-  	redirect_to orders_path
+      end
+  	redirect_to admins_orders_path
   end
 
   private

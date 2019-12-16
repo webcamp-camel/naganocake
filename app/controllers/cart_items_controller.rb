@@ -1,13 +1,12 @@
 class CartItemsController < ApplicationController
 #ログインユーザーのみ閲覧可
-before_action :authenticate_user!
-
+  before_action :authenticate_user!
+#退会済みユーザーは閲覧不可
+  before_action :user_is_deleted
 
   def index
     @cart_items = current_user.cart_items
     @total_price = @cart_items.sum(:price)
-
-
   end
 
   def create
@@ -17,10 +16,6 @@ before_action :authenticate_user!
     @cart_item.price = @cart_item.product.price * @cart_item.quantity
     @cart_item.save
     redirect_to cart_items_path
-  end
-
-  def show
-    @cart_items = current_user.cart_items
   end
 
   #ある商品の入ったカートを空にする
@@ -43,7 +38,7 @@ before_action :authenticate_user!
 
   @items.each do |item|
         item.quantity = params[:quantity][item.id.to_s].to_i
-        item.price = item.quantity * params[:price][item.id.to_s].to_i
+        item.price = item.quantity * item.product.price
         item.save
   end
     redirect_to cart_items_path
@@ -52,5 +47,12 @@ before_action :authenticate_user!
   private
     def item_params
       params.require(:cart_item).permit(:user_id, :product_id, :quantity, :price)
+    end
+
+    #退会済みユーザーへの対応
+    def user_is_deleted
+      if user_signed_in? && current_user.is_deleted?
+         redirect_to root_path
+      end
     end
 end
