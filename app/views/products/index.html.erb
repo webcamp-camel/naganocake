@@ -1,22 +1,53 @@
+<!-- col-xs-3のcss -->
+<style>
+.each_item{
+	padding: 0px 10px;
+	height: 250px;
+	margin-top: 20px;
+	overflow-y: scroll;
+}
+/*viewport*/
+@media screen and (min-width: 1024px){
+	.img i{
+		width: 80%;
+	}
+}
 
-	<img src="assets/tart1" alt="非表示", style = " height: 50px; width: 100px;">
+@media screen and (max-width: 768px){
+	.img i{
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 425px){
+	.img i{
+		width: 50%;
+	}
+}
+</style>
+
+
+
+	<img src="/assets/tart1" alt="非表示", style = " height: 550px; width: 100%;">
 	<div class="container">
 		<h1>PRODUCTS</h1>
-		<h2>ジャンルで検索</h2>
-			<% @products.each do |genre| %>
-	 			<label><%= link_to genre.name, root_path(genre: genre.id) %></label>
-	 			<%link_to root_path(genre: genre.id) do%>
-	 				<span style = "background-color: #2D714C">genre.name</span>
-   		 	<% end %>
-		<div>
-			<% @products.each do |product| %>
-			<div>
-				<span><%= attachment_image_tag product, :image, :fill, 150, 100,　fallback: "no_image.jpg" %></span>
-					<%= link_to product_path(product.id) do %>
-					<%= product.name %>
-					<%= product.price %>
-			<% end %>
-			</div>
-		</div>
+		<span ><strong>ジャンルで検索</strong></span>
+			<% @genres.each do |genre| %>
+	 				<%= link_to root_path(genre: genre.id) do %>
+	 					<span style = "background-color: #2D714C" class="badge"><%= genre.name %></span>
+	 				<% end %>
+   		 		<% end %>
 
+   		 <div class="row">
+			<% @products.each do |product| %>
+					<div class="col-xs-3 each_item">
+						<%= attachment_image_tag product, :image, style:"width:100%; bottom: 45px;" %>
+						<%= link_to product_path(product) do %>
+							<%= product.name %>
+						<% end %>
+						<%= product.price %>円<br>
+						<%= product.introduction%>
+					</div>
+			<% end %>
+		</div>
 	</div>
