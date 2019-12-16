@@ -1,17 +1,20 @@
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>ながのcake</title>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<div>
-			<h1>管理者画面</h1>
+
+		<div class="container">
+			<h1>
 			<span>本日の注文件数は</span>
 		 		<%=link_to admins_orders_path do%>
 					<%= @count %>
 				<% end %>
 			<span>件です</span>
+			</h1>
+
+			<table class="table">
+				<% @items.each do |item|%>
+				<tr>
+					<td><%= attachment_image_tag item.product, :image, style: "width: 100%;" %></td>
+					<td><%= item.product.name %></td>
+					<td><%= item.today_count %></td>
+				</tr>
+				<% end %>
+			</table>
 		</div>
-	</body>
-	</html>
