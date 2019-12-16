@@ -29,9 +29,11 @@ class UsersController < ApplicationController
 
 #退会機能
   def leave
+
       @user.is_deleted = true
       @user.save
       redirect_to destroy_user_session_path
+
   end
 
   private
