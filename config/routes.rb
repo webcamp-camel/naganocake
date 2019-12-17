@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         patch :toggle
       end
     end
-  	resources :genres, only: [:index, :create, :edit, :update] do
+  	resources :genres, only: [:index, :create, :update] do
       member do
         patch :enable
         patch :disable
