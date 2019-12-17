@@ -1,7 +1,7 @@
 
 <div class="edit-container" style="width:50%; margin: 20px auto; position: relative;">
   <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">ユーザー情報編集</h4>
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, url:user_path(@user), method: :patch) do |f| %>
        <%= link_to leave_user_path(@user), method: :patch, data: { confirm: '本当に退会しますか？' } do %>
               <span class="btn btn-danger" style="position: absolute; top: 30px; right: 50px;">退会する</span>
        <% end %>

@@ -25,8 +25,10 @@
 		</tr>
 		<tr>
 			<th>注文ステータス</th>
-			<td><%= form_for(@order, url:admins_order_path, method: :patch) do |f| %>
-					<%= f.select :deposit_status,{入金待ち:1,入金済み:2} %></td>
+			<td><%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
+					<%= f.select :deposit_status, Order.deposit_statuses.keys.map{ |k| k } %>
+
+			</td>
 		</tr>
 	</table>
 
@@ -47,15 +49,15 @@
 			<td><%= totalPrice(item.product.price,item.quantity) %></td>
 			<%= fields_for :ordered_items do |i| %>
 			<td>
-				<%= i.select "product_status[#{item.id}]", OrderedItem.product_statuses.map{ |k,v| [k,v] } %>
+				<%= i.select "product_status[#{item.id}]", OrderedItem.product_statuses.keys.map{ |i| i } %>
 				<label>現在ステータス：</label>
-				<% case item.product_status when "製作待ち" %>
-							<span class="badge" style="background: red;"><%= item.product_status %></span>
-					<% when "製作中" %>
-							<span class="badge" style="background: green;"><%= item.product_status %></span>
-					<% when "製作完了" %>
-							<span class="badge" style="background: blue;"><%= item.product_status %></span>
-				<% end %>
+						<% case item.product_status when "製作待ち" %>
+								<span class="badge" style="background: red;"><%= item.product_status %></span>
+						<% when "製作中" %>
+								<span class="badge" style="background: green;"><%= item.product_status %></span>
+						<% when "製作完了" %>
+								<span class="badge" style="background: blue;"><%= item.product_status %></span>
+						<% end %>
 			</td>
 			<% end %>
 		</tr>
@@ -80,8 +82,8 @@
 	</table>
 	<hr>
 	<div class="text-center">
-		<%= f.submit '更新する', class:"btn btn-success"%>
+		<%= f.submit '更新する', class:"btn btn-success" %>
 	</div>
-	<% end %>
+		<% end %>
 </div>
 
