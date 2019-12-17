@@ -44,26 +44,24 @@
 		</tr>
 
 
-<%= f.fields_for :ordered_item do |i| %>
-	<% @items.each do |item| %>
+<%= f.fields_for :ordered_items do |i| %>
 		<tr>
-			<td><%= item.product.name %></td>
-			<td><%= addTax(item.product.price) %>円</td>
-			<td><%= item.quantity %></td>
-			<td><%= totalPrice(addTax(item.product.price),item.quantity) %>円</td>
+			<td><%= i.object.product.name %></td>
+			<td><%= addTax(i.object.product.price) %>円</td>
+			<td><%= i.object.quantity %></td>
+			<td><%= totalPrice(addTax(i.object.product.price),i.object.quantity) %>円</td>
 			<td>
 				<%= i.select :product_status, OrderedItem.product_statuses.keys.map{ |l| l } %>
 					<label>現在ステータス：</label>
-						<% case item.product_status when "製作待ち" %>
-							<span class="badge" style="background: red;"><%= item.product_status %></span>
+						<% case i.object.product_status when "製作待ち" %>
+							<span class="badge" style="background: red;"><%= i.object.product_status %></span>
 						<% when "製作中" %>
-							<span class="badge" style="background: green;"><%= item.product_status %></span>
+							<span class="badge" style="background: green;"><%= i.object.product_status %></span>
 						<% when "製作完了" %>
-							<span class="badge" style="background: blue;"><%= item.product_status %></span>
+							<span class="badge" style="background: blue;"><%= i.object.product_status %></span>
 						<% end %>
 			</td>
 		</tr>
-	<% end %>
 <% end %>
 	</table>
 
