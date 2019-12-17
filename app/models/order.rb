@@ -6,6 +6,8 @@ class Order < ApplicationRecord
 	# 顧客との紐付け
 	belongs_to :user
 
+	scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
+
 	#enum_支払い方法
 	enum payment: {クレジットカード:1, 銀行振込:2}
 

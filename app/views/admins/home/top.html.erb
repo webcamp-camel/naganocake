@@ -2,7 +2,7 @@
 		<div class="container">
 			<h1>
 			<span>本日の注文件数は</span>
-		 		<%=link_to admins_orders_path do%>
+		 		<%=link_to admins_orders_path(day: 1) do%>
 					<%= @count %>
 				<% end %>
 			<span>件です</span>
@@ -18,7 +18,7 @@
 				<tr>
 					<td style ="text-align: center"><%= attachment_image_tag item.product, :image, style: "width: 200px;" %></td>
 					<td ><%= item.product.name %></td>
-					<td style ="text-align: center"><%= 2%></td>
+					<td style ="text-align: center"><%= item.today_count %></td>
 				</tr>
 				<!-- item.today_count  -->
 				<% end %>
