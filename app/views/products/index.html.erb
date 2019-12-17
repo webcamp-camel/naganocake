@@ -1,3 +1,4 @@
+
 <!-- col-xs-3のcss -->
 <style>
 .each_item{
@@ -27,12 +28,12 @@
 </style>
 
 
-
 	<img src="/assets/tart1" alt="非表示", style = " height: 550px; width: 100%;">
 	<div class="container">
 		<h1>PRODUCTS</h1>
 		<span ><strong>ジャンルで検索</strong></span>
 			<% @genres.each do |genre| %>
+
 	 				<%= link_to root_path(genre: genre.id) do %>
 	 					<span style = "background-color: #2D714C" class="badge"><%= genre.name %></span>
 	 				<% end %>
