@@ -16,20 +16,13 @@ class Admins::OrdersController < ApplicationController
   def update
 #orderのdeposit_statusの更新
   	@order = Order.find(params[:id])
-    @order.deposit_status = params[:order][:deposit_status].to_i
-    @order.save
-#ordered_itemのproduct_statusの更新
-    @items = @order.ordered_items
-      @items.each do |item|
-        item.product_status = params[:ordered_items][:product_status][item.id.to_s].to_i
-        item.save
-      end
+    @order.update(order_params)
   	redirect_to admins_orders_path
   end
 
   private
   def order_params
-  	params.require(:order).permit(:product_status, :deposit_status, :product_status)
+  	params.require(:order).permit(:deposit_status,ordered_item_attributes:[:id, :product_status])
   end
 
 end

@@ -17,8 +17,10 @@
   		<td><%= order.ordered_items.sum(:quantity) %></td>
   		<td><% case order.deposit_status when "入金待ち" %>
               <span class="badge" style="background: red;"><%= order.deposit_status %></span>
-          <% when "入金済み" %>
+          <% when "発送待ち" %>
               <span class="badge" style="background: green;"><%= order.deposit_status %></span>
+              <% when "発送済み" %>
+              <span class="badge" style="background: blue;"><%= order.deposit_status %></span>
         <% end %></td>
   	 </tr>
     <% end %>
