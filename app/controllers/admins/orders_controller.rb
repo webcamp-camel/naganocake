@@ -1,7 +1,11 @@
 class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
   def index
-  	@orders = Order.all
+    if params[:day]
+      @orders = Order.created_today
+    else
+  	   @orders = Order.all
+    end
   end
 
   def show

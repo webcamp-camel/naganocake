@@ -12,7 +12,8 @@ class OrderedItem < ApplicationRecord
 	scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
 
 	def today_count
-		cnt = OrderedItem.group(:product_id).where(product_id: product_id).count
+		cnt = OrderedItem.group(:product_id).where(product_id: product_id,created_at: Time.zone.now.all_day).sum(:quantity)
+		#pp cnt
 		cnt[product_id]
 	end
 
