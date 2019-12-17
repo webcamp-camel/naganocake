@@ -56,7 +56,7 @@
 		</tr>
 		<tr>
 			<th>ご請求額</th>
-			<td><%= addTax(@order.ordered_items.sum(:price) + @order.postage) %>円</td>
+			<td><%= addTax(@order.ordered_items.sum(:price))+ @order.postage %>円</td>
 		</tr>
 	</tbody>
 </table>
