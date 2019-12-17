@@ -9,7 +9,7 @@ class OrderedItem < ApplicationRecord
 	validates :quantity, presence: true
 	validates :product_status, presence: true
 
-	scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
+	scope :created_today, -> { where(created_at: Time.zone.now.all_day).select(:product_id).distinct }
 
 	def today_count
 		cnt = OrderedItem.group(:product_id).where(product_id: product_id,created_at: Time.zone.now.all_day).sum(:quantity)
