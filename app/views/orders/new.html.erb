@@ -54,14 +54,12 @@
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
 			<label>
-				<a href="#form" data-toggle="collapse">
-					<%= radio_button_tag("_add", "newAdd") %>
-				</a>
+				<%= radio_button_tag("_add", "newAdd") %>
 				新しいお届け先
 			</label>
 		</div>
 
-		<div class="collapse" id="form">
+		<div id="form">
 			<p class="text">ご希望のお届け先を入力してください。</p>
 			<%= fields_for :ship_to_address do |a| %>
 
@@ -109,3 +107,4 @@
 	</div>
 <% end %>
 </div>
+

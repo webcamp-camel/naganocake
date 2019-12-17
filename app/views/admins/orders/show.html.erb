@@ -1,12 +1,14 @@
+
 <div class="row" style="width:60%; margin:0 auto;">
+<%= form_for(@order, url:admins_order_path(@order), method: :patch) do |f| %>
 <h4 style="margin-bottom: 20px; border-left: 2px solid #2D6F4C; padding: 10px;">注文詳細画面</h4>
 
 	<table class="table table-bordered">
 		<tr>
 			<th>購入者</th>
 			<td><%= link_to  admins_user_path(@order.id) do %>
-					<%= @order.last_name %>
-					<%= @order.first_name %>
+					<%= @order.user.last_name %>
+					<%= @order.user.first_name %>
 					<% end %>
 			</td>
 		</tr>
@@ -25,10 +27,12 @@
 		</tr>
 		<tr>
 			<th>注文ステータス</th>
-			<td><%= form_for(@order, url:admins_order_path, method: :patch) do |f| %>
-					<%= f.select :deposit_status,{入金待ち:1,入金済み:2} %></td>
+			<td>
+				<%= f.select :deposit_status, Order.deposit_statuses.keys.map{ |k| k } %>
+			</td>
 		</tr>
 	</table>
+
 
 	<table class="table table-bordered">
 		<tr>
@@ -38,50 +42,50 @@
 			<th>小計</th>
 			<th>制作ステータス</th>
 		</tr>
-		<tbody>
-			<% @items.each do |item| %>
+
+
+<%= f.fields_for :ordered_item do |i| %>
+	<% @items.each do |item| %>
 		<tr>
 			<td><%= item.product.name %></td>
-			<td><%= addTax(item.product.price) %></td>
+			<td><%= addTax(item.product.price) %>円</td>
 			<td><%= item.quantity %></td>
-			<td><%= totalPrice(item.product.price,item.quantity) %></td>
-			<%= fields_for :ordered_items do |i| %>
+			<td><%= totalPrice(addTax(item.product.price),item.quantity) %>円</td>
 			<td>
-				<%= i.select "product_status[#{item.id}]", OrderedItem.product_statuses.map{ |k,v| [k,v] } %>
-				<label>現在ステータス：</label>
-				<% case item.product_status when "製作待ち" %>
+				<%= i.select :product_status, OrderedItem.product_statuses.keys.map{ |l| l } %>
+					<label>現在ステータス：</label>
+						<% case item.product_status when "製作待ち" %>
 							<span class="badge" style="background: red;"><%= item.product_status %></span>
-					<% when "製作中" %>
+						<% when "製作中" %>
 							<span class="badge" style="background: green;"><%= item.product_status %></span>
-					<% when "製作完了" %>
+						<% when "製作完了" %>
 							<span class="badge" style="background: blue;"><%= item.product_status %></span>
-				<% end %>
+						<% end %>
 			</td>
-			<% end %>
 		</tr>
-		<% end %>
-		</tbody>
+	<% end %>
+<% end %>
 	</table>
+
 
 	<table class="table table-bordered">
 		<tr>
-			<th>商品合計</th>
-			<td><%= addTax(@items.sum(:price)) %></td>
+			<th style="width:30%;">商品合計</th>
+			<td><%= addTax(@items.sum(:price)) %>円</td>
 		</tr>
 		<tr>
-			<th>配送料</th>
-			<td><%= @order.postage %></td>
+			<th style="width:30%;">配送料</th>
+			<td><%= @order.postage %>円</td>
 		</tr>
 		<tr>
-			<th>請求金額合計</th>
-			<td><%= @items.sum(:price) + @order.postage %>
-			</td>
+			<th style="width:30%;">請求金額合計</th>
+			<td><%= addTax(@items.sum(:price)) + @order.postage %>円</td>
 		</tr>
 	</table>
 	<hr>
 	<div class="text-center">
-		<%= f.submit '更新する', class:"btn btn-success"%>
+		<%= f.submit '更新する', class:"btn btn-success" %>
 	</div>
-	<% end %>
+<% end %>
 </div>
 

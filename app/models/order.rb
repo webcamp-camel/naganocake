@@ -11,11 +11,8 @@ class Order < ApplicationRecord
 	#enum_支払い方法
 	enum payment: {クレジットカード:1, 銀行振込:2}
 
-	#配送状況
-	enum ship_status: {発送待ち:1, 発送済み:2}
-
-	#入金状況
-	enum deposit_status: {入金待ち:1,入金済み:2}
+	#注文ステータス
+	enum deposit_status: {入金待ち:1,発送待ち:2,発送済み:3}
 
 
     validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
