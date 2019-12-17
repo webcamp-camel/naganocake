@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
   # 他のuserのアクセス阻止
     unless current_user.nil? || current_user.id == @user.id
+      flash[:warning] = "アクセス権がありません"
       redirect_to user_path(current_user)
     end
   end
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
   def edit
     # 他のuserのアクセス阻止
     unless current_user.nil? || current_user.id == @user.id
+      flash[:warning] = "アクセス権がありません"
       redirect_to user_path(current_user)
     end
   end
@@ -25,19 +27,20 @@ class UsersController < ApplicationController
 # 顧客編集画面で変更された内容を保存
   def update
   	if @user.update(user_params)
+        flash[:success] =  "更新に成功しました"
         redirect_to user_path(current_user)
     else
+      flash[:warning] = "入力内容を確認してください"
       render :edit
     end
   end
 
 #退会機能
   def leave
-
       @user.is_deleted = true
       @user.save
+      flash[:success] =  "さようなら、#{@user.first_name}さん"
       redirect_to destroy_user_session_path
-
   end
 
   private

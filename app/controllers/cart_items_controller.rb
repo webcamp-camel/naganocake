@@ -40,8 +40,10 @@ class CartItemsController < ApplicationController
         item.quantity = params[:quantity][item.id.to_s].to_i
         item.price = item.quantity * item.product.price
         item.save
+        flash[:success] =  "更新に成功しました"
   end
-    redirect_to cart_items_path
+        flash[:warning] = "入力内容を確認してください"
+        redirect_to cart_items_path
   end
 
   private

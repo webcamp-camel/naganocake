@@ -33,6 +33,7 @@ class ShipToAddressesController < ApplicationController
     def destroy
         @ship_to_address = ShipToAddress.find(params[:id])
         @ship_to_address.destroy
+        flash[:success] = "削除に成功しました"
         redirect_to ship_to_addresses_path
     end
 
