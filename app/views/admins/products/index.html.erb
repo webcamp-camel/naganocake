@@ -1,6 +1,18 @@
-<div class="container">
+<style>
+ th {
+ 	background: #dad7d7;
+ }
+</style>
+
+
+
+<div class="container" style="position:relative;">
 <h1>商品一覧</h1>
-<%= link_to "新規商品登録" , new_admins_product_path, class:"btn btn-primary btn-md" %>
+<div style="position:absolute; top: 30px; right: 12px;">
+	<%= link_to new_admins_product_path do %>
+		<span class="btn btn-primary">新規商品登録</span>
+	<% end %>
+</div>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -15,17 +27,19 @@
 		<% @products.each do |product| %>
 		<tr>
 			<td><%= product.id %></td>
-			<td><%= link_to admins_product_path(product.id) do %>
+			<td>
+					<%= attachment_image_tag product, :image, :fill, 50, 50 %>
+					<%= link_to admins_product_path(product.id) do %>
 					<%= product.name %>
 					<% end %>
 			</td>
 			<td><%= product.price %></td>
 			<td><%= product.genre.name %></td>
 			<td>
-				<% if product.is_stopped == false %>
-					<span>販売中</span>
-				<% elsif product.is_stopped == true %>
-					<span>販売停止</span>
+				<% if product.is_stopped? %>
+					<span class="badge" style="background:#D52438">販売停止</span>
+				<% else %>
+					<span class="badge" style="background:#8BCE9A">販売中</span>
 				<% end %>
 			</td>
 		</tr>
