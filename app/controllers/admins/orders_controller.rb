@@ -10,6 +10,7 @@ class Admins::OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
+    @items = @order.ordered_items
   end
 
   def update
