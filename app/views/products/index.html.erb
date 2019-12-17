@@ -2,34 +2,38 @@
 <!-- col-xs-3のcss -->
 <style>
 .each_item{
-	padding: 0px 10px;
+	padding: 0px 5px;
 	height: 250px;
-	margin-top: 20px;
+	margin-top: 15px;
 	overflow-y: scroll;
 }
 /*viewport*/
+img i{
+	width: 100%;
+}
+
 @media screen and (min-width: 1024px){
-	.img i{
+	img i{
 		width: 80%;
 	}
 }
 
 @media screen and (max-width: 768px){
-	.img i{
+	img i{
 		width: 60%;
 	}
 }
 
 @media screen and (max-width: 425px){
-	.img i{
+	img i{
 		width: 50%;
 	}
 }
+
 </style>
 
-
+	<div class="row" style="width: 90%; margin: 20px auto;">
 	<img src="/assets/tart1" alt="非表示", style = " height: 550px; width: 100%;">
-	<div class="container">
 		<h1>PRODUCTS</h1>
 		<span ><strong>ジャンルで検索</strong></span>
 			<% @genres.each do |genre| %>

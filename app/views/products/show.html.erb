@@ -1,29 +1,26 @@
 
-<div class="container" >
-	<div class="row">
-	<div class="col-xs-3" style = "margin-top: 50px">
+
+	<div class="row" style="width: 90%; margin: 20px auto;">
+		<div class="col-xs-3" style = "margin-top: 50px">
 	</div>
 
 	<div class="col-xs-5" style ="margin: 100px 0 100px 0">
 		<%= attachment_image_tag @product, :image,style: "width:100%; "%>
 	</div>
 
-
-
-<div class="col-xs-4" style ="margin: 100px 0 100px 0">
-	<h3><%= @product.name %></h3>
-
-	<p><%= @product.introduction%></p>
-<!-- application_helper (税込価格	) -->
-	<h4><%= addTax(@product.price)%>
-	<span>円(税込価格)</span>
-	</h4>
-<!-- #選択型のプルダウンメニュー -->
-<%= form_for(@cart_item) do |f| %>
+	<div class="col-xs-4" style ="margin: 100px 0 100px 0">
+		<h3><%= @product.name %></h3>
+		<p><%= @product.introduction%></p>
+	<!-- application_helper (税込価格	) -->
+		<h4><%= addTax(@product.price)%>
+		<span>円(税込価格)</span>
+		</h4>
+	<!-- #選択型のプルダウンメニュー -->
+	<%= form_for(@cart_item) do |f| %>
 		<%= f.hidden_field :product_id %>
 		<%= f.submit "カートに入れる", class: 'btn btn-primary col-xs-5' %>
 		<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10] %>
-<% end %>
+	<% end %>
 	</div>
 	</div>
-</div>
+
