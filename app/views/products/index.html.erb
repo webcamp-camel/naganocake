@@ -41,10 +41,10 @@
    		 <div class="row">
 			<% @products.each do |product| %>
 					<div class="col-xs-3 each_item">
-						<%= attachment_image_tag product, :image, style:"width:100%; bottom: 45px;" %>
 						<%= link_to product_path(product) do %>
-							<%= product.name %>
+						  <%= attachment_image_tag product, :image, style:"width:100%; bottom: 45px;" %>
 						<% end %>
+						<%= product.name %>
 						<%= product.price %>円<br>
 						<%= product.introduction%>
 					</div>
