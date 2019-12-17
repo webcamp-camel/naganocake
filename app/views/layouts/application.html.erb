@@ -23,6 +23,13 @@
     </header>
 
     <main>
+
+      <% if flash[:success] %>
+          <div class="alert alert-success text-center" role="alert"><%= flash[:success] %></div>
+      <% elsif flash[:warning] %>
+          <div class="alert alert-warning text-center" role="alert"><%= flash[:warning] %></div>
+      <% end %>
+
         <%= yield %>
     </main>
 

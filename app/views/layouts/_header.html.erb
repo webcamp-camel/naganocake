@@ -41,14 +41,6 @@
 		<li><%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
 	</ul>
 
-	<% elsif user_signed_in? && current_user.is_deleted? %>
-<!-- 退会済みユーザーに表示される内容 -->
-	<ul>
-		<li><%= link_to 'ABOUT US', home_about_path %></li>
-		<li><%= link_to 'SIGN UP', new_user_registration_path %></li>
-		<li><%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
-	</ul>
-
 	<% else %>
 <!-- ログアウト時に表示される内容 -->
 	<ul>

@@ -24,8 +24,11 @@ class UsersController < ApplicationController
 
 # 顧客編集画面で変更された内容を保存
   def update
-  	@user.update(user_params)
-    redirect_to user_path(current_user)
+  	if @user.update(user_params)
+        redirect_to user_path(current_user)
+    else
+      render :edit
+    end
   end
 
 #退会機能

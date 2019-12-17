@@ -8,4 +8,7 @@ module ApplicationHelper
 	def totalPrice(price,quantity)
 		total_price = price * quantity
 	end
+
+
 end
+
