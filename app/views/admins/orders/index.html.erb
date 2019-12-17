@@ -1,8 +1,8 @@
 <!-- 注文一覧画面 -->
-<body>
-  <h1>注文一覧画面</h1>
+<div class="container">
+<h4>注文一覧画面</h4>
 
-  <table>
+  <table class="table table-bordered">
   	<tr>
   		<th>購入日時</th>
   		<th>購入者</th>
@@ -11,14 +11,17 @@
   	</tr>
 
     <% @orders.each do |order| %>
-  	  <tr>
-  	    <th><%= link_to order[:created_at].strftime("%Y-%m-%d%H:%M"), admins_order_path(order) %></th>
-  		<th><%= order.user.last_name %><%= order.user.first_name %></th>
-  		<th><%= order.ordered_items.sum(:quantity) %>
-  		<th><%= order.deposit_status %></th>
-  	  </tr>
+  	<tr>
+  	  <td><%= link_to order[:created_at].strftime("%Y-%m-%d %H:%M"), admins_order_path(order) %></td>
+  		<td><%= order.user.last_name %><%= order.user.first_name %></td>
+  		<td><%= order.ordered_items.sum(:quantity) %></td>
+  		<td><% case order.deposit_status when "入金待ち" %>
+              <span class="badge" style="background: red;"><%= order.deposit_status %></span>
+          <% when "入金済み" %>
+              <span class="badge" style="background: green;"><%= order.deposit_status %></span>
+        <% end %></td>
+  	 </tr>
     <% end %>
-
   </table>
-</body>
+</div>
 

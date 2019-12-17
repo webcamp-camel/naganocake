@@ -4,19 +4,33 @@
     <title>Naganocake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
 
   <body>
-    <% if admin_signed_in? %>
-      <%= render 'layouts/adminheader' %>
-    <% else %>
-      <%= render 'layouts/header' %>
-    <% end %>
-    <%= yield %>
-    <%= render 'layouts/footer'%>
+
+  <div id="container">
+    <header>
+        <% if admin_signed_in? %>
+            <%= render 'layouts/adminheader' %>
+        <% else %>
+            <%= render 'layouts/header' %>
+        <% end %>
+    </header>
+
+    <main>
+        <%= yield %>
+    </main>
+
+    <footer>
+      <%= render 'layouts/footer'%>
+    </footer>
+
+  </div>
+
   </body>
 </html>

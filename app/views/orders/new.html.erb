@@ -1,11 +1,30 @@
-<div class="container">
-<h4>購入情報入力</h4>
+<style>
+	h4 {
+		border-left: 2px solid #2D6F4C;
+		padding: 10px;
+	}
 
+	.glyphicon,
+	.text {
+		color: #2d714c;
+	}
+
+	.text {
+		font-size: 12px;
+	}
+
+</style>
+
+
+
+<div class="row" style="width: 60%; margin: 20px auto;">
+<h4>購入情報入力</h4>
+<hr>
 <%= form_for(@order) do |f| %>
 	<%= f.hidden_field :user_id %>
 	<div class="form-group">
-		<label>支払い方法</label>
-
+		<label><span class="glyphicon glyphicon-stop"></span>お支払い方法</label>
+			<p class="text">ご希望のお支払い方法を選択してください。</p>
 		<div class="radio">
 			<label><%= f.radio_button :payment, :クレジットカード %>クレジットカード</label>
 		</div>
@@ -15,18 +34,16 @@
 	</div>
 
 	<div class="form-group">
-		<label>お届け先</label>
-
+		<label><span class="glyphicon glyphicon-stop"></span>お届け先</label>
+		  <p class="text">ご希望のお届け先を選択してください。</p>
 		<!-- 自宅 -->
 		<div class="radio">
 			<label>
-				<%= radio_button_tag("_add", "usersAdd") %>ご自身の住所
+				<%= radio_button_tag("_add", "usersAdd") %>ご自身の住所:
 			</label>
+			<span>〒<%= current_user.postal_code %> <%= current_user.address %></span>
 		</div>
-			<span>
-				〒<%= current_user.postal_code %>
-				<%= current_user.address %>
-			</span>
+
 
 		<!-- 登録した配送先 -->
 		<div class="radio">
@@ -36,24 +53,59 @@
 
 		<!-- 新しく配送先を設定-->
 		<div class="radio">
-			<label><%= radio_button_tag("_add", "newAdd") %>新しいお届け先</label>
+			<label>
+				<a href="#form" data-toggle="collapse">
+					<%= radio_button_tag("_add", "newAdd") %>
+				</a>
+				新しいお届け先
+			</label>
 		</div>
+
+		<div class="collapse" id="form">
+			<p class="text">ご希望のお届け先を入力してください。</p>
 			<%= fields_for :ship_to_address do |a| %>
-			<label>郵便番号</label>
-				<%= a.text_field :postal_code %>
-			<label>住所</label>
-				<%= a.text_field :address %>
-			<div class="row"></div>
-			<label>姓名</label>
-				<%= a.text_field :last_name %><%= a.text_field :first_name %>
+
+		<div class="form-group">
+			<label for="inputPostalCode">郵便番号</label>
+				<%= a.text_field :postal_code, class:"form-control", id:"inputPostalCode", style:"width:30%;" %>
+		</div>
+
+		<div class="form-group">
+			<label for="inputAddress">住所</label>
+				<%= a.text_field :address, class:"form-control", id:"inputAddress", style:"width:70%;" %>
+		</div>
+
+		<div class="form-group">
+			<label>姓・名</label>
+			<div>
+				<%= a.text_field :last_name, class:"form-control col-xs-4", style:"width:30%;" %>
+				<%= a.text_field :first_name, class:"form-control col-xs-4", style:"width:30%;" %>
+			</div>
+		</div>
+
+		<div class="row" style="margin:10px 0;"></div>
+
+		<div class="form-group">
 			<label>カナ</label>
-				<%= a.text_field :last_name_kana %><%= a.text_field :first_name_kana %>
-			<label>電話</label>
-				<%= a.text_field :phone %>
+			<div>
+				<%= a.text_field :last_name_kana, class:"form-control col-xs-4", style:"width:30%;" %>
+				<%= a.text_field :first_name_kana, class:"form-control col-xs-4", style:"width:30%;" %>
+			</div>
+		</div>
+
+		<div class="row" style="margin:10px 0;"></div>
+
+		<div class="form-group">
+			<label for="inputPhone">電話</label>
+				<%= a.telephone_field :phone , class:"form-control", id:"inputPhone", style:"width:40%;" %>
+		</div>
 			<% end %>
+		</div>
 	</div>
 
-		<%= f.submit '登録する' %>
-
+	<hr>
+	<div class="text-center">
+		<%= f.submit '登録する', class:"btn btn-success" %>
+	</div>
 <% end %>
 </div>

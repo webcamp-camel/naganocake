@@ -1,38 +1,75 @@
 <!-- ジャンル一覧ページ -->
 
-<!-- ジャンル追加フォーム -->
-<%= form_for(@genre, url:admins_genres_path) do |f| %>
+<style>
+  .btn {
+    width: 100px;
+  }
+  .change {
+    display: none;
+  }
+  .show {
+    display: inline-block;
+  }
+</style>
 
-  <div class="form-group">
-    <%= f.text_field :name %>
-  </div>
-  <div class="action">
-	<%= f.submit '追加' %>
-  </div>
-<% end %>
+<div class="index-container" style="width:50%; margin: 20px auto;">
 
-<!-- ジャンル一覧/使用切り替え/編集 -->
-<table>
-  <tr>
-	<th>ジャンルの名前</th>
-  </tr>
-  <% @genres.each do |genre| %>
+  <h3>ジャンル管理画面</h3>
 
-    <tr>
-      <td>
-	    <%= genre.name %>
-	  </td>
-	  <td>
+  <!-- ジャンル追加フォーム -->
+  <%= form_for(@genre, url:admins_genres_path) do |f| %>
 
-	    <% if genre.is_disable == false  %>
-	      <%= link_to "無効にする", disable_admins_genre_path(genre), method: :patch %>
-	    <% elsif genre.is_disable == true %>
-		  <%= link_to "有効にする", enable_admins_genre_path(genre), method: :patch %>
-	    <% end %>
-
-	  </td>
-	  <td><%= link_to "編集する", edit_admins_genre_path(genre) %></td>
-    </tr>
-
+    <div class="form-group">
+      <p>ジャンル追加</p>
+      <%= f.text_field :name %>
+      <%= f.submit '追加', class:"btn btn-info btn-md" %>
+    </div>
   <% end %>
+
+  <!-- ジャンル一覧/使用切り替え/編集 -->
+
+  <table class="table">
+      <tr>ジャンル一覧</tr>
+        <% @genres.each_with_index do |genre, index| %>
+            <%= form_for(genre, url:admins_genre_path(genre), method: :patch) do |f| %>
+          <tr>
+            <td id="form_<%= index %>" class="change">
+                <%= text_field_tag "name[#{genre.id}]", genre.name %>
+            </td>
+            <td id="title_<%= index %>" class="change show">
+                <%= genre.name %>
+            </td>
+
+	    <td style="width:110px;">
+	      <% if genre.is_disable == false  %>
+	        <%= link_to "無効にする", disable_admins_genre_path(genre), class:"btn btn-danger btn-md", method: :patch %>
+	      <% elsif genre.is_disable == true %>
+		      <%= link_to "有効にする", enable_admins_genre_path(genre), class:"btn btn-success btn-md", method: :patch %>
+	     <% end %>
+      </td>
+      <td>
+        <a class="btn btn-primary change show" id="edit_<%= index %>">編集する</a>
+        <%= f.submit "更新する", class:"btn btn-info change", id:"update_#{index}" %>
+	   </td>
+        <% end %>
+      <% end %>
+    </tr>
 </table>
+
+</div>
+
+<script>
+  $(function() {
+      var i = 0;
+      while( i < gon.genres.length) {
+        const index = i;
+        $('#edit_' + index).on('click', function() {
+            $(this).toggleClass('show');
+            $('#update_' + index).toggleClass('show');
+            $('#title_' + index).toggleClass('show');
+            $('#form_' + index).toggleClass('show');
+        });
+        i ++ ;
+      };
+  })
+</script>

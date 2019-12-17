@@ -4,6 +4,7 @@ class Admins::GenresController < ApplicationController
   def index
   	@genre = Genre.new
   	@genres = Genre.all
+    gon.genres = Genre.all
   end
 
   def create
@@ -35,16 +36,13 @@ class Admins::GenresController < ApplicationController
 
   def update
     @genre = Genre.find(params[:id])
-    if @genre.update(genre_params)
-      redirect_to admins_genres_path
-      flash[:notice] = "You have updated genre successfully."
-    else
-      render :edit
-    end
+    @genre.name = params[:name][@genre.id.to_s]
+    @genre.save
+    redirect_to admins_genres_path
   end
 
   private
   	def genre_params
-  		params.require(:genre).permit(:name,:is_disable)
+  		params.require(:genre).permit(:name,:is_disable,params[:name])
   	end
 end
