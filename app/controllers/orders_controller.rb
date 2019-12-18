@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 		@orders = @user.orders
 	#他のuserのアクセス阻止
 		unless current_user.nil? || current_user.id == @user.id
+      		flash[:warning] = "アクセス権がありません"
 			redirect_to orders_path(id: current_user.id)
 		end
 	end
@@ -22,6 +23,7 @@ class OrdersController < ApplicationController
 
 	# 他のuserのアクセス阻止
 		unless current_user.nil? || current_user.id == @order.user_id
+    		flash[:warning] = "アクセス権がありません"
 			redirect_to orders_path(id: current_user.id)
 		end
 	end
@@ -31,6 +33,7 @@ class OrdersController < ApplicationController
 		@user = current_user
 	#cartが空の場合、cart_items#indexに戻される
 		if @user.cart_items.blank?
+ 		    flash[:warning] = "カートが空です"
 			redirect_to cart_items_path
 		else
 			@order = Order.new(user_id: @user.id)
@@ -93,6 +96,7 @@ class OrdersController < ApplicationController
 		if @order.save
 			redirect_to confirm_order_path(@order)
 		else
+ 		     flash[:warning] = "入力内容を確認してください"
 			render :new
 		end
 	end
@@ -102,6 +106,7 @@ class OrdersController < ApplicationController
 		@order = Order.find(params[:id])
 	# 他のuserのアクセス阻止
 		unless current_user.nil? || current_user.id == @order.user_id
+    		flash[:warning] = "アクセス権がありません"
 			redirect_to orders_path(id: current_user.id)
 		end
 		@items = @order.ordered_items
