@@ -20,9 +20,9 @@
 		<td><%= user.last_name_kana %> <%= user.first_name_kana %></td>
 		<td><%= user.email %></td>
 		<% if user.is_deleted == false %>
-			<td><span class="badge" style="background:palegreen">有効</span></td>
+			<td><span class="badge" style="background:green">会員</span></td>
 		<% else %>
-			<td><span class="badge" style="background:red">無効</span></td>
+			<td><span class="badge" style="background:red">退会済み</span></td>
 		<% end %>
 	</tr>
 	<% end %>
