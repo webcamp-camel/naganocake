@@ -19,11 +19,12 @@ class ShipToAddressesController < ApplicationController
         @ship_to_address = ShipToAddress.new(ship_to_address_params)
         @ship_to_address.user_id = current_user.id
        if @ship_to_address.save
-           flash[:notice] = "You have creatad ship_to_addresses successfully."
+           flash[:success] = "登録に成功しました"
            redirect_to ship_to_addresses_path
         else
             @user = current_user
             @ship_to_addresses = @user.ship_to_addresses.all
+            flash[:warning] = "入力内容を確認してください"
             render :index
         end
     end
@@ -32,6 +33,7 @@ class ShipToAddressesController < ApplicationController
     def destroy
         @ship_to_address = ShipToAddress.find(params[:id])
         @ship_to_address.destroy
+        flash[:success] = "削除に成功しました"
         redirect_to ship_to_addresses_path
     end
 
@@ -40,7 +42,7 @@ class ShipToAddressesController < ApplicationController
         @ship_to_address = ShipToAddress.find(params[:id])
 
         if  current_user.id != @ship_to_address.user_id
-            flash[:notice] = "errors"
+            flash[:warning] = "アクセス権がありません"
             redirect_to ship_to_addresses_path
         end
     end
@@ -51,9 +53,10 @@ class ShipToAddressesController < ApplicationController
 
         if @ship_to_address.update(ship_to_address_params)
             redirect_to ship_to_addresses_path
-            flash[:notice] =  "You have updated book successfully."
+            flash[:success] =  "更新に成功しました"
         else
-         render :edit
+            flash[:warning] = "入力内容を確認してください"
+            render :edit
         end
     end
 
