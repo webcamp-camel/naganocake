@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 2019_12_17_072402) do
     t.string "phone", null: false
     t.string "postal_code", null: false
     t.text "address", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "ship_to_adresses", force: :cascade do |t|

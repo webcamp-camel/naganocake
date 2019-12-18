@@ -8,6 +8,7 @@ class CreateShipToAddresses < ActiveRecord::Migration[5.2]
       t.string :phone,           null: false
       t.string :postal_code,     null: false
       t.text :address,           null: false
+      t.integer :user_id
       t.timestamps
     end
   end
