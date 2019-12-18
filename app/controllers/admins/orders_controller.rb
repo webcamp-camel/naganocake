@@ -17,6 +17,7 @@ class Admins::OrdersController < ApplicationController
 #orderのdeposit_statusの更新
   	@order = Order.find(params[:id])
     @order.update(order_params)
+    flash[:success] = "更新に成功しました"
   	redirect_to admins_orders_path
   end
 
