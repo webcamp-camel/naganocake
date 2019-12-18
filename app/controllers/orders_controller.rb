@@ -96,7 +96,7 @@ class OrdersController < ApplicationController
 		if @order.save
 			redirect_to confirm_order_path(@order)
 		else
- 		     flash[:warning] = "入力内容を確認してください"
+ 		    flash[:warning] = "入力内容を確認してください"
 			render :new
 		end
 	end
